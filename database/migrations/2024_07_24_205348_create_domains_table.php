@@ -17,6 +17,8 @@ class CreateDomainsTable extends Migration
             $table->decimal('price', 8, 2);  // Prix avec deux décimales
             $table->integer('duration');     // Durée en années
             $table->string('status');        // Statut du domaine
+            $table->enum('status', ['available', 'unavailable', 'reserved'])->default('available');  // Statut du domaine
+          
             $table->timestamps();
         });
     }

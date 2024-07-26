@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class CartController extends Controller
 
         $domain = Domain::findOrFail($request->input('domain_id'));
 
-        if ($domain->status != 'disponible') {
+        if ($domain->status != 'available') { // Correct status check
             return redirect()->back()->with('error', 'Le domaine n\'est pas disponible.');
         }
 
@@ -41,7 +42,7 @@ class CartController extends Controller
             "name" => $domain->name,
             "extension" => $domain->extension,
             "price" => $domain->price,
-            "duration" => $domain->duration, // Exemple, 1 an
+            "duration" => 1, // Exemple, 1 an
         ];
 
         session()->put('cart', $cart);
@@ -60,6 +61,14 @@ class CartController extends Controller
     {
         $cart = session()->get('cart', []);
 
+        if (is_string($cart)) {
+            $cart = json_decode($cart, true);
+        }
+
+        if (!is_array($cart)) {
+            $cart = [];
+        }
+
         if (isset($cart[$domainId])) {
             unset($cart[$domainId]);
             session()->put('cart', $cart);
@@ -74,5 +83,28 @@ class CartController extends Controller
         }
 
         return redirect()->route('cart')->with('success', 'Domaine retiré du panier avec succès!');
+    }
+
+    public function update(Request $request)
+    {
+        $cart = session()->get('cart', []);
+
+        foreach ($request->input('domains') as $domainId => $data) {
+            if (isset($cart[$domainId])) {
+                $cart[$domainId]['duration'] = $data['duration'];
+            }
+        }
+
+        session()->put('cart', $cart);
+
+        if (Auth::check()) {
+            $userCart = Cart::where('user_id', Auth::id())->first();
+            if ($userCart) {
+                $userCart->items = $cart;
+                $userCart->save();
+            }
+        }
+
+        return redirect()->route('cart')->with('success', 'Panier mis à jour avec succès!');
     }
 }

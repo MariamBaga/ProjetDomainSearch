@@ -77,7 +77,7 @@ Checkout
                                                 <span class="input-group-text"><i class="flaticon-user"></i></span>
                                             </div>
                                             <select name="country" class="form-control">
-                                                <option value="1">Your Country*</option>
+                                                <option value="1">Mali</option>
                                                 <option value="2">USA</option>
                                                 <option value="3">UK</option>
                                                 <option value="4">Germany</option>
@@ -106,7 +106,7 @@ Checkout
                                                 <span class="input-group-text"><i class="flaticon-user"></i></span>
                                             </div>
                                             <select name="city" class="form-control">
-                                                <option value="1">Town/City*</option>
+                                                <option value="1">Bamako</option>
                                                 <option value="2">New York</option>
                                                 <option value="3">Florida</option>
                                                 <option value="4">Miami</option>
@@ -144,8 +144,8 @@ Checkout
                                             <label for="payment_method">Méthode de paiement</label>
                                             <select name="payment_method" id="payment_method" class="form-control" required>
                                                 <option value="credit_card">Carte de crédit</option>
+                                                <option value="orange_money">Orange Money</option>
                                                 <option value="paypal">PayPal</option>
-                                                <!-- Ajoutez d'autres méthodes de paiement ici -->
                                             </select>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@ Checkout
                                     <div class="col-sm-12">
                                         <div class="form-check mb-20">
                                             <input type="checkbox" class="form-check-input" id="check4">
-                                            <label class="form-check-label" for="check4">Visa</label>
+                                            <label class="form-check-label" for="check4">Orange Money</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">

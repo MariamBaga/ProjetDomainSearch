@@ -22,19 +22,36 @@
                 @foreach($domains as $domain)
                     <tr>
                         <td>{{ $domain->name . '.' . $domain->extension }}</td>
-                        <td>{{ $domain->status == 'disponible' ? 'Disponible' : 'Non disponible' }}</td>
+                        <td>
+                            @switch($domain->status)
+                                @case('available')
+                                    Disponible
+                                    @break
+                                @case('unavailable')
+                                    Non disponible
+                                    @break
+                                @case('reserved')
+                                    Réservé
+                                    @break
+                                @default
+                                    Statut inconnu
+                            @endswitch
+                        </td>
                         <td>{{ $domain->price }} €</td>
                         <td>
-                            @if($domain->status == 'disponible')
+                            @if($domain->status === 'available')
                                 @php
                                     $cart = session('cart', []);
-                                    $isInCart = in_array($domain->id, $cart);
+                                    if (is_string($cart)) {
+                                        $cart = json_decode($cart, true);
+                                    }
+                                    $isInCart = is_array($cart) && array_key_exists($domain->id, $cart);
                                 @endphp
 
                                 @if($isInCart)
-                                    <form action="{{ route('cart.remove') }}" method="POST">
+                                    <form action="{{ route('cart.remove', $domain->id) }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="domain_id" value="{{ $domain->id }}">
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Retirer du panier</button>
                                     </form>
                                 @else

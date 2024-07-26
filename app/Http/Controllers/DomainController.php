@@ -27,7 +27,6 @@ public function search(Request $request)
     $domainName = $request->input('domain_name');
     $extension = $request->input('domain_extension');
 
-    // Rechercher tous les domaines avec le nom spécifié ou des variantes similaires
     $domains = Domain::where('extension', $extension)
                     ->where(function($query) use ($domainName) {
                         $query->where('name', 'like', "%$domainName%")
@@ -35,6 +34,7 @@ public function search(Request $request)
                               ->orWhere('name', 'like', "%$domainName%")
                               ->orWhere('name', 'like', "%$domainName%"); // Ajoutez des variantes si nécessaire
                     })
+                    ->where('status', 'available')  // Filtrer par statut si nécessaire
                     ->get();
 
     // Retourner une vue avec les résultats de la recherche

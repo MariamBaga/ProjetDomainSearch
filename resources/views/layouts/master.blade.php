@@ -176,8 +176,12 @@
                                             class="shopping-cart navbar-option-icon">
                                             <span><i class="flaticon-shopping-bags"></i></span>
                                             <span class="shopping-cart-tooltip">
-                                                {{ session()->get('cart') ? count(session()->get('cart')) : '0' }}
-                                            </span>
+            @php
+                $cart = session()->get('cart');
+                $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
+            @endphp
+            {{ $cartCount }}
+        </span>
                                         </a>
                                     </div>
                                 </li>
@@ -230,8 +234,12 @@
                             <a href="{{ route('cart') }}" target="_blank" class="shopping-cart navbar-option-icon">
                                 <span><i class="flaticon-shopping-bags"></i></span>
                                 <span class="shopping-cart-tooltip">
-                                    {{ session()->has('cart') ? count(session()->get('cart')) : '0' }}
-                                </span>
+            @php
+                $cart = session()->get('cart');
+                $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
+            @endphp
+            {{ $cartCount }}
+        </span>
                             </a>
                         </div>
 
@@ -418,8 +426,12 @@
                 <a href="{{ route('cart') }}" target="_blank" class="shopping-cart navbar-option-icon">
                     <span><i class="flaticon-shopping-bags"></i></span>
                     <span class="shopping-cart-tooltip">
-                        {{ session()->has('cart') ? count(session()->get('cart')) : '0' }}
-                    </span>
+            @php
+                $cart = session()->get('cart');
+                $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
+            @endphp
+            {{ $cartCount }}
+        </span>
                 </a>
             </div>
 
