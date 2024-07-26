@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::put('/admin/users/{user}/role', [UserController::class, 'updateRole'])->name('admin.users.updateRole');
 });
