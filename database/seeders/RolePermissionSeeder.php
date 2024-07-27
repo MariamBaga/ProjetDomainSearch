@@ -1,6 +1,8 @@
 <?php
 
 // database/seeders/RolePermissionSeeder.php
+
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -11,27 +13,26 @@ class RolePermissionSeeder extends Seeder
 {
     public function run()
     {
-        // Create roles
-        $userRole = Role::create(['name' => 'user']);
-        $adminRole = Role::create(['name' => 'admin']);
-        $superAdminRole = Role::create(['name' => 'superadmin']);
+        // Vérifiez et créez les rôles si nécessaire
+        $userRole = Role::firstOrCreate(['name' => 'user']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $superAdminRole = Role::firstOrCreate(['name' => 'superadmin']);
 
-        // Create permissions
+        // Créez les permissions
         $permissions = [
             'view home',
             'manage users',
             'manage domains',
-            // Add more permissions as needed
+            // Ajoutez plus de permissions si nécessaire
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission]);
         }
 
-        // Assign permissions to roles
+        // Attribuez les permissions aux rôles
         $userRole->givePermissionTo('view home');
         $adminRole->givePermissionTo(['view home', 'manage users']);
         $superAdminRole->givePermissionTo(Permission::all());
     }
 }
-

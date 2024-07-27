@@ -4,6 +4,29 @@
 Panier
 @endsection
 
+@section('beforecontent')
+<div class="container">
+<div class="row align-items-center">
+<div class="col-sm-12 col-lg-6">
+<div class="header-page-content text-center text-lg-start">
+<h1>Cart</h1>
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="{{ route ('home')}}">Home</a></li>
+<li class="breadcrumb-item active" aria-current="page">Cart</li>
+</ol>
+</nav>
+</div>
+</div>
+<div class="col-sm-12 offset-lg-3 col-lg-3">
+<div class="header-page-image">
+<img src="assets/images/vps-header-shape.png" alt="shape">
+</div>
+</div>
+</div>
+</div>
+@endsection
+
 @section('content')
 
 @if(session('success'))
@@ -23,7 +46,7 @@ Panier
                         <th>Durée (années)</th>
                         <th>Total</th>
                         <th>Actions</th>
-                    </tr>   
+                    </tr>
                 </thead>
                 <tbody>
                     @if(!empty($cart) && is_array($cart))

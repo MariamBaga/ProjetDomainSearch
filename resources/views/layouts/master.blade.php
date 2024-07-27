@@ -283,7 +283,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="domain-name.html" class="nav-link active">Domain Name</a>
+                                        <a href="{{ route('home') }}" class="nav-link active">Domain Name</a>
 
                                     </li>
                                     <li class="nav-item">
