@@ -19,11 +19,8 @@ use App\Http\Controllers\DomainController;
 
 use App\Http\Controllers\ProfileController;
 
-
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\RegisterController;
-
-
 
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +28,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// Route::get('/test-role', function () {
+//     $user = User::find(4);
+//     $user->assignRole('admin');
+//     return 'Role assigned!';
+// });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home', [DomainController::class, 'search'])->name('search.domain');
@@ -50,12 +51,9 @@ Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-
-
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::put('/admin/users/{user}/role', [UserController::class, 'updateRole'])->name('admin.users.updateRole');
 });
@@ -68,11 +66,9 @@ Route::middleware(['auth', 'permission:manage users'])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
 
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'registerpost'])->name('register.post');
-
-
-
 
 Route::get('/cart', [CartController::class, 'view'])->name('cart');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -80,9 +76,3 @@ Route::delete('/cart/remove/{domainId}', [CartController::class, 'remove'])->nam
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
 Route::get('/passwordforget', [PasswordController::class, 'passwordforget'])->name('password.forget');
-
-
-
-
-
-
