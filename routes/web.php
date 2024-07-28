@@ -60,11 +60,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::put('/admin/users/{user}/role', [UserController::class, 'updateRole'])->name('admin.users.updateRole');
+
 });
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/superadmin', [SuperAdminController::class, 'index'])->name('superadmin.index');
+    Route::put('/superadmin/users/{user}/role', [UserController::class, 'updateRole'])->name('admin.users.updateRole');
 });
 
 Route::middleware(['auth', 'permission:manage users'])->group(function () {
