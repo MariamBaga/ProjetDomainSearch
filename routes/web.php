@@ -7,6 +7,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthenticatedSessionController;
 
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ContactController;
@@ -38,6 +39,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home', [DomainController::class, 'search'])->name('search.domain');
 
 Route::get('/contact', [ContactController::class, 'view'])->name('contact');
+Route::post('/contact', [ContactController::class, 'sendmessage'])->name('contact.post');
+
+
+
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
@@ -75,4 +80,13 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{domainId}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
-Route::get('/passwordforget', [PasswordController::class, 'passwordforget'])->name('password.forget');
+
+// Route pour afficher le formulaire de réinitialisation du mot de passe
+Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->name('password.forget');
+
+// Route pour traiter la demande de réinitialisation du mot de passe
+Route::post('/passwordforget', [PasswordController::class, 'sendResetLink'])->name('password.email');
+
+// Route pour réinitialiser le mot de passe (généralement gérée par Laravel)
+Route::get('/password/reset/{token}', [\App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');
