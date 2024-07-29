@@ -11,7 +11,7 @@ class DomainController extends Controller
     public function index(){
 
 
-        
+
         return view('homes.index');
 
     }
@@ -44,6 +44,7 @@ public function search(Request $request)
         'domainName' => $domainName,
         'extension' => $extension,
         'domains' => $domains,
+        
     ]);
 }
 

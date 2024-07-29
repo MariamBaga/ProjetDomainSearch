@@ -14,7 +14,9 @@
                 <tr>
                     <th scope="col">Domaine</th>
                     <th scope="col">Statut</th>
+
                     <th scope="col">Prix</th>
+                    <th scope="col">Years</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -38,6 +40,7 @@
                             @endswitch
                         </td>
                         <td>{{ $domain->price }} €</td>
+                        <td>{{ $domain->duration }} ans</td>
                         <td>
                             @if($domain->status === 'available')
                                 @php

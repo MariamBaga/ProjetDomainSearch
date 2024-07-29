@@ -162,23 +162,7 @@ Checkout
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
-                                    <div class="form-group mb-20">
-                                        <div class="input-group">
-                                            <label for="payment_method">Méthode de paiement</label>
-                                            <select name="payment_method" id="payment_method" class="form-control" required>
-                                                <option value="credit_card">Carte de crédit</option>
-                                                <option value="orange_money">Orange Money</option>
-                                                <option value="paypal">PayPal</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <button class="btn btn-gradient full-width" type="submit">
-                                        Confirmer et Payer
-                                    </button>
-                                </div>
+                               
                             </div>
                         </form>
                     </div>

@@ -54,12 +54,10 @@ Panier
                             <tr>
                                 <td>{{ $domain['name'] . '.' . $domain['extension'] }}</td>
                                 <td>{{ $domain['price'] }} €</td>
-                                <td>
-                                    <div class="cart-duration">
-                                        <input type="number" name="domains[{{ $domainId }}][duration]" value="{{ $domain['duration'] }}" min="1">
-                                    </div>
-                                </td>
+                                <td>{{ $domain['duration'] }}  ans</td>
                                 <td>{{ $domain['price'] * $domain['duration'] }} €</td>
+
+                                <!-- <td>{{ $domain['duration'] }} €</td> -->
                                 <td>
                                     <div class="cart-action">
                                         <form action="{{ route('cart.remove', $domainId) }}" method="POST" style="display:inline;">

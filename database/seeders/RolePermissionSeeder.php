@@ -2,7 +2,6 @@
 
 // database/seeders/RolePermissionSeeder.php
 
-
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -23,6 +22,10 @@ class RolePermissionSeeder extends Seeder
             'view home',
             'manage users',
             'manage domains',
+            'update-role', // Ajoutez cette permission spécifique pour les rôles
+
+            'update-user-info',
+            'manage permissions',
             // Ajoutez plus de permissions si nécessaire
         ];
 
@@ -32,7 +35,7 @@ class RolePermissionSeeder extends Seeder
 
         // Attribuez les permissions aux rôles
         $userRole->givePermissionTo('view home');
-        $adminRole->givePermissionTo(['view home', 'manage users']);
+        $adminRole->givePermissionTo(['view home', 'manage users', 'manage domains']);
         $superAdminRole->givePermissionTo(Permission::all());
     }
 }

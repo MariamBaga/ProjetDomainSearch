@@ -1,33 +1,30 @@
 <?php
 
-// app/Http/Controllers/Admin/UserController.php
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-use Spatie\Permission\Models\Role; // Importez la classe Role
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
-    public function index()
+    public function userDashboard()
     {
-        $users = User::all();
+        // Récupérer les utilisateurs pour les afficher dans la vue
+        $users = User::all(); // ou une logique plus spécifique si nécessaire
         $roles = Role::all();
+        $permissions = Permission::all();
 
-        return view('Admin.users', compact('users', 'roles'));
+        return view('Admin.users', compact('users', 'roles', 'permissions'));
     }
 
-    public function updateRole(Request $request, $id)
+    public function updateInfo(Request $request)
     {
-        $user = User::findOrFail($id);
-        $role = $request->input('role');
+        $user = auth()->user();
+        // Implémentez la logique pour mettre à jour les informations de l'utilisateur
+        // ...
 
-        // Remove all current roles and assign the selected role
-        $user->syncRoles([$role]);
-
-        return redirect()->back()->with('success', 'User role updated successfully.');
+        return redirect()->back()->with('success', 'Vos informations ont été mises à jour avec succès.');
     }
 }
-
