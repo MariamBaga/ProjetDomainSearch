@@ -21,7 +21,8 @@
 </div>
 <div class="col-sm-12 offset-lg-3 col-lg-3">
 <div class="header-page-image">
-<img src="assets/images/about-us-shape.png" alt="shape">
+<img src="{{ asset('assets/images/about-us-shape.png') }}" alt="shape">
+
 </div>
 </div>
 </div>
@@ -67,7 +68,8 @@
 <div class="info-card fluid-height">
 <div class="info-card-inner bg-white full-height">
 <div class="info-card-thumb-two bg-blue">
-<img src="assets/images/team-1.png" alt="team">
+<img src="{{ asset('assets/images/team-1.png') }}" alt="team">
+
 </div>
 <div class="info-card-content text-center">
 <div class="info-team-data">
@@ -91,7 +93,8 @@
 <div class="info-card fluid-height">
 <div class="info-card-inner bg-white full-height">
 <div class="info-card-thumb-two bg-blue">
-<img src="assets/images/team-2.png" alt="team">
+<img src="{{ asset('assets/images/team-2.png') }}" alt="team">
+
 </div>
 <div class="info-card-content text-center">
 <div class="info-team-data">
@@ -115,7 +118,8 @@
 <div class="info-card fluid-height">
 <div class="info-card-inner bg-white full-height">
 <div class="info-card-thumb-two bg-blue">
-<img src="assets/images/team-3.png" alt="team">
+<img src="{{ asset('assets/images/team-3.png') }}" alt="team">
+
 </div>
 <div class="info-card-content text-center">
 <div class="info-team-data">
@@ -139,7 +143,8 @@
 <div class="info-card fluid-height">
 <div class="info-card-inner bg-white full-height">
 <div class="info-card-thumb-two bg-blue">
-<img src="assets/images/team-4.png" alt="team">
+<img src="{{ asset('assets/images/team-4.png') }}" alt="team">
+
 </div>
 <div class="info-card-content text-center">
 <div class="info-team-data">
@@ -163,7 +168,8 @@
 <div class="info-card fluid-height">
 <div class="info-card-inner bg-white full-height">
 <div class="info-card-thumb-two bg-blue">
-<img src="assets/images/team-5.png" alt="team">
+<img src="{{ asset('assets/images/team-5.png') }}" alt="team">
+
 </div>
 <div class="info-card-content text-center">
 <div class="info-team-data">
@@ -212,7 +218,8 @@
 <div class="box-number"><span>01</span></div>
 <div class="box-card-content text-center">
 <div class="box-card-thumb">
-<img src="assets/images/choose-1.png" alt="choose-us">
+<img src="{{ asset('assets/images/choose-1.png') }}" alt="choose-us">
+
 </div>
 <div class="box-card-details">
 <h3>Dedicated support</h3>
@@ -228,7 +235,8 @@
 <div class="box-number"><span>02</span></div>
 <div class="box-card-content text-center">
 <div class="box-card-thumb">
-<img src="assets/images/choose-2.png" alt="choose-us">
+<img src="{{ asset('assets/images/choose-2.png') }}" alt="choose-us">
+
 </div>
 <div class="box-card-details">
 <h3>Data security</h3>
@@ -244,7 +252,8 @@
 <div class="box-number"><span>03</span></div>
 <div class="box-card-content text-center">
 <div class="box-card-thumb">
-<img src="assets/images/choose-3.png" alt="choose-us">
+<img src="{{ asset('assets/images/choose-3.png') }}" alt="choose-us">
+
 </div>
 <div class="box-card-details">
 <h3>Data migration</h3>
@@ -315,7 +324,8 @@
 </div>
 <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30">
 <div class="about-content-image">
-<img src="assets/images/faq.png" alt="faq">
+<img src="{{ asset('assets/images/faq.png') }}" alt="faq">
+
 </div>
 </div>
 </div>

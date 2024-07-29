@@ -18,7 +18,8 @@
             </div>
             <div class="col-sm-12 offset-lg-3 col-lg-3">
                 <div class="header-page-image">
-                    <img src="assets/images/contact-us.png" alt="shape">
+                <img src="{{ asset('assets/images/contact-us.png') }}" alt="shape">
+
                 </div>
             </div>
         </div>
@@ -96,7 +97,8 @@
                 <div class="col-sm-12 col-lg-4 pb-30">
                     <div class="comment-content-item">
                         <div class="about-content-image image-margin-left desk-pad-right-20">
-                            <img src="assets/images/support-2.png" alt="support">
+                        <img src="{{ asset('assets/images/support-2.png') }}" alt="support">
+
                         </div>
                     </div>
                 </div>

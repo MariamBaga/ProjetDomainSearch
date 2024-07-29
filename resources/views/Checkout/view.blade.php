@@ -20,7 +20,8 @@ Checkout
 </div>
 <div class="col-sm-12 offset-lg-3 col-lg-3">
 <div class="header-page-image">
-<img src="assets/images/about-us-shape.png" alt="shape">
+<img src="{{ asset('assets/images/about-us-shape.png') }}" alt="shape">
+
 </div>
 </div>
 </div>
@@ -162,7 +163,7 @@ Checkout
                                         </div>
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </form>
                     </div>

@@ -21,7 +21,8 @@
             </div>
             <div class="col-sm-12 offset-lg-3 col-lg-3">
                 <div class="header-page-image">
-                    <img src="assets/images/vps-header-shape.png" alt="shape">
+                <img src="{{ asset('assets/images/vps-header-shape.png') }}" alt="shape">
+
                 </div>
             </div>
         </div>
@@ -251,7 +252,8 @@
                             <div class="box-number"><span>01</span></div>
                             <div class="box-card-content text-center">
                                 <div class="box-card-thumb">
-                                    <img src="assets/images/choose-1.png" alt="choose-us">
+                                <img src="{{ asset('assets/images/choose-1.png') }}" alt="choose-us">
+
                                 </div>
                                 <div class="box-card-details">
                                     <h3>Dedicated support</h3>
@@ -268,7 +270,8 @@
                             <div class="box-number"><span>02</span></div>
                             <div class="box-card-content text-center">
                                 <div class="box-card-thumb">
-                                    <img src="assets/images/choose-2.png" alt="choose-us">
+                                <img src="{{ asset('assets/images/choose-2.png') }}" alt="choose-us">
+
                                 </div>
                                 <div class="box-card-details">
                                     <h3>Data security</h3>
@@ -285,7 +288,8 @@
                             <div class="box-number"><span>03</span></div>
                             <div class="box-card-content text-center">
                                 <div class="box-card-thumb">
-                                    <img src="assets/images/choose-3.png" alt="choose-us">
+                                <img src="{{ asset('assets/images/choose-3.png') }}" alt="choose-us">
+
                                 </div>
                                 <div class="box-card-details">
                                     <h3>Data migration</h3>
@@ -314,7 +318,8 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="assets/images/feature-icon-1.png" alt="cloud">
+                            <img src="{{ asset('assets/images/feature-icon-1.png') }}" alt="cloud">
+
                             </div>
                             <div class="feature-item-content">
                                 <h3>Personalized Email Service</h3>
@@ -328,7 +333,8 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="assets/images/feature-icon-2.png" alt="cloud">
+                            <img src="{{ asset('assets/images/feature-icon-2.png') }}" alt="cloud">
+
                             </div>
                             <div class="feature-item-content">
                                 <h3>WordPress & cPanel</h3>
@@ -342,7 +348,8 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="assets/images/feature-icon-3.png" alt="cloud">
+                            <img src="{{ asset('assets/images/feature-icon-3.png') }}" alt="cloud">
+
                             </div>
                             <div class="feature-item-content">
                                 <h3>Free SSL Certificates</h3>
@@ -356,7 +363,8 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="assets/images/feature-icon-4.png" alt="cloud">
+                            <img src="{{ asset('assets/images/feature-icon-4.png') }}" alt="cloud">
+
                             </div>
                             <div class="feature-item-content">
                                 <h3>LiteSpeed Web Server</h3>
@@ -370,7 +378,8 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="assets/images/feature-icon-5.png" alt="cloud">
+                            <img src="{{ asset('assets/images/feature-icon-5.png') }}" alt="cloud">
+
                             </div>
                             <div class="feature-item-content">
                                 <h3>PHP Selector</h3>
@@ -384,7 +393,8 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="assets/images/feature-icon-6.png" alt="cloud">
+                            <img src="{{ asset('assets/images/feature-icon-6.png') }}" alt="cloud">
+
                             </div>
                             <div class="feature-item-content">
                                 <h3>No Multi-Tenancy</h3>
@@ -405,21 +415,22 @@
                 <div class="row align-items-center">
                     <div class="col-sm-12 col-lg-5 pb-30">
                         <div class="client-thumb-carousel owl-carousel">
-                            <div class="item">
-                                <img src="assets/images/client-thumb-1.png" alt="client">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/client-thumb-2.png" alt="client">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/client-thumb-3.png" alt="client">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/client-thumb-4.png" alt="client">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/client-thumb-5.png" alt="client">
-                            </div>
+                        <div class="item">
+    <img src="{{ asset('assets/images/client-thumb-1.png') }}" alt="client">
+</div>
+<div class="item">
+    <img src="{{ asset('assets/images/client-thumb-2.png') }}" alt="client">
+</div>
+<div class="item">
+    <img src="{{ asset('assets/images/client-thumb-3.png') }}" alt="client">
+</div>
+<div class="item">
+    <img src="{{ asset('assets/images/client-thumb-4.png') }}" alt="client">
+</div>
+<div class="item">
+    <img src="{{ asset('assets/images/client-thumb-5.png') }}" alt="client">
+</div>
+
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30">
@@ -552,7 +563,8 @@
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30">
                     <div class="about-content-image">
-                        <img src="assets/images/faq.png" alt="faq">
+                    <img src="{{ asset('assets/images/faq.png') }}" alt="faq">
+
                     </div>
                 </div>
             </div>

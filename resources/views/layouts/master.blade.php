@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<!-- Mirrored from templates.hibootstrap.com/blim/default/domain-name.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 22:53:16 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Aila">
@@ -12,30 +10,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>@yield('title') </title>
 
+    <link rel="icon" href="{{ asset('assets/images/tab.png') }}" type="image/png" sizes="16x16">
 
-    <link rel="icon" href="assets/images/tab.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all" />
-<link rel="stylesheet" href="assets/css/app.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/animate.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/meanmenu.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.min.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/magnific-popup.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/boxicons.min.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/boxicons.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/flaticon.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/responsive.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('assets/css/theme-dark.css') }}" type="text/css" media="all" />
 
-    <link rel="stylesheet" href="assets/css/theme-dark.css" type="text/css" media="all" />
 </head>
 
 <body>
@@ -43,7 +41,7 @@
     <div class="preloader blue-gradient">
         <div class="preloader-wrapper">
             <div class="preloader-img">
-                <img src="assets/images/loader.gif" alt="preloader">
+                <img src="{{ asset('assets/images/loader.gif') }}" alt="preloader">
             </div>
         </div>
     </div>
@@ -111,8 +109,10 @@
 
                 <div class="mobile-nav">
                     <a href="{{ route('home') }}" class="mobile-logo">
-                        <img src="assets/images/logo-blue.png" alt="logo" class="blue-logo logo1">
-                        <img src="assets/images/logo.png" alt="logo" class="blue-logo logo2">
+                        <img src="{{ asset('assets/images/logo-blue.png') }}" alt="logo"
+                            class="blue-logo logo1">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="blue-logo logo2">
+
                     </a>
 
                     <div class="navbar-option">
@@ -132,21 +132,22 @@
                                         </button>
                                         <div class="language-dropdown-menu dropdown-menu" aria-labelledby="language1">
                                             <a class="dropdown-item" href="#" id="english1">
-                                                <img src="assets/images/flag-1.png" alt="flag">
+                                                <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
                                                 English
                                             </a>
                                             <a class="dropdown-item" href="#" id="deutsch1">
-                                                <img src="assets/images/flag-2.png" alt="flag">
+                                                <img src="{{ asset('assets/images/flag-2.png') }}" alt="flag">
                                                 Deutsch
                                             </a>
                                             <a class="dropdown-item" href="#" id="chineese1">
-                                                <img src="assets/images/flag-3.png" alt="flag">
+                                                <img src="{{ asset('assets/images/flag-3.png') }}" alt="flag">
                                                 简体中文
                                             </a>
                                             <a class="dropdown-item" href="#" id="arabic1">
-                                                <img src="assets/images/flag-4.png" alt="flag">
+                                                <img src="{{ asset('assets/images/flag-4.png') }}" alt="flag">
                                                 العربيّة
                                             </a>
+
                                         </div>
                                     </div>
                                 </li>
@@ -176,12 +177,15 @@
                                             class="shopping-cart navbar-option-icon">
                                             <span><i class="flaticon-shopping-bags"></i></span>
                                             <span class="shopping-cart-tooltip">
-            @php
-                $cart = session()->get('cart');
-                $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
-            @endphp
-            {{ $cartCount }}
-        </span>
+                                                @php
+                                                    $cart = session()->get('cart');
+                                                    $cartCount =
+                                                        is_array($cart) || $cart instanceof Countable
+                                                            ? count($cart)
+                                                            : 0;
+                                                @endphp
+                                                {{ $cartCount }}
+                                            </span>
                                         </a>
                                     </div>
                                 </li>
@@ -197,21 +201,22 @@
                             </button>
                             <div class="language-dropdown-menu dropdown-menu" aria-labelledby="language3">
                                 <a class="dropdown-item" href="#" id="english2">
-                                    <img src="assets/images/flag-1.png" alt="flag">
+                                    <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
                                     English
                                 </a>
                                 <a class="dropdown-item" href="#" id="deutsch2">
-                                    <img src="assets/images/flag-2.png" alt="flag">
+                                    <img src="{{ asset('assets/images/flag-2.png') }}" alt="flag">
                                     Deutsch
                                 </a>
                                 <a class="dropdown-item" href="#" id="chineese2">
-                                    <img src="assets/images/flag-3.png" alt="flag">
+                                    <img src="{{ asset('assets/images/flag-3.png') }}" alt="flag">
                                     简体中文
                                 </a>
                                 <a class="dropdown-item" href="#" id="arabic2">
-                                    <img src="assets/images/flag-4.png" alt="flag">
+                                    <img src="{{ asset('assets/images/flag-4.png') }}" alt="flag">
                                     العربيّة
                                 </a>
+
                             </div>
                         </div>
                         <div class="navbar-option-item navbar-option-search dropdown mobile-hide">
@@ -234,36 +239,54 @@
                             <a href="{{ route('cart') }}" target="_blank" class="shopping-cart navbar-option-icon">
                                 <span><i class="flaticon-shopping-bags"></i></span>
                                 <span class="shopping-cart-tooltip">
-            @php
-                $cart = session()->get('cart');
-                $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
-            @endphp
-            {{ $cartCount }}
-        </span>
+                                    @php
+                                        $cart = session()->get('cart');
+                                        $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
+                                    @endphp
+                                    {{ $cartCount }}
+                                </span>
                             </a>
                         </div>
 
                         <div class="navbar-option-item navbar-option-account">
-    @guest
-        <a href="{{ route('login') }}" class="navbar-option-icon">
-            <span><i class="flaticon-user"></i></span>
-        </a>
-    @else
-        <a href="{{ route('profile.show') }}" class="navbar-option-icon">
-            <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}" alt="User Photo" class="user-photo">
-        </a>
-    @endguest
-</div>
+                        <ul class="navbar-nav ml-auto">
+                                    <!-- Other nav items... -->
+                                    @auth
+                                        <li class="nav-item">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                            </form>
+                                            <a href="{{ route('logout') }}" class="nav-link"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="{{ route('profile.show') }}" class="nav-link">
+                                                <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}"
+                                                    alt="User Photo" class="user-photo">
+                                            </a>
+                                        </li>
+                                    @else
+                                        <li class="nav-item">
+                                            <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
+                                                Login / Register
+                                            </a>
+                                        </li>
+                                    @endauth
+                                </ul>
+                        </div>
                     </div>
                 </div>
 
 
                 <div class="main-nav">
-                <div class="custom-container-fluid container-fluid">
+                    <div class="custom-container-fluid container-fluid">
                         <nav class="navbar navbar-expand-md navbar-light">
                             <a class="navbar-brand" href="{{ route('home') }}">
-                                <img src="assets/images/logo.png" alt="logo" class="white-logo">
-                                <img src="assets/images/logo-blue.png" alt="logo" class="blue-logo">
+                                <img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="white-logo">
+                                <img src="{{ asset('assets/images/logo-blue.png') }}" alt="logo"
+                                    class="blue-logo">
                             </a>
 
                             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -422,102 +445,108 @@
 
 
 
-            <div class="navbar-option-item navbar-option-cart mobile-hide">
-                <a href="{{ route('cart') }}" target="_blank" class="shopping-cart navbar-option-icon">
-                    <span><i class="flaticon-shopping-bags"></i></span>
-                    <span class="shopping-cart-tooltip">
-            @php
-                $cart = session()->get('cart');
-                $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
-            @endphp
-            {{ $cartCount }}
-        </span>
-                </a>
-            </div>
+                            <div class="navbar-option-item navbar-option-cart mobile-hide">
+                                <a href="{{ route('cart') }}" target="_blank"
+                                    class="shopping-cart navbar-option-icon">
+                                    <span><i class="flaticon-shopping-bags"></i></span>
+                                    <span class="shopping-cart-tooltip">
+                                        @php
+                                            $cart = session()->get('cart');
+                                            $cartCount =
+                                                is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
+                                        @endphp
+                                        {{ $cartCount }}
+                                    </span>
+                                </a>
+                            </div>
 
-            <div class="navbar-option-item dropdown">
-                <button class="search navbar-option-icon dropdown-toggle" type="button"
-                    id="search2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="navbar-search-zoom"><i class="flaticon-zoom"></i></span>
-                    <span class="navbar-search-cancel"><i class="flaticon-cancel"></i></span>
-                </button>
-                <div class="navbar-search dropdown-menu" aria-labelledby="search2">
-                    <form>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Search...">
-                            <button class="btn btn-gradient"><span><i class="flaticon-loupe"></i></span></button>
-                        </div>
-                    </form>
+                            <div class="navbar-option-item dropdown">
+                                <button class="search navbar-option-icon dropdown-toggle" type="button"
+                                    id="search2" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <span class="navbar-search-zoom"><i class="flaticon-zoom"></i></span>
+                                    <span class="navbar-search-cancel"><i class="flaticon-cancel"></i></span>
+                                </button>
+                                <div class="navbar-search dropdown-menu" aria-labelledby="search2">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Search...">
+                                            <button class="btn btn-gradient"><span><i
+                                                        class="flaticon-loupe"></i></span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="navbar-option-item navbar-language dropdown">
+                                <button class="language-option navbar-option-icon" type="button" id="language2"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="language-globe"><i class="flaticon-worldwide"></i></span>
+                                    <span class="lang-name"></span>
+                                    <span class="language-arrow"><i class="bx bx-chevron-down"></i></span>
+                                </button>
+                                <div class="language-dropdown-menu dropdown-menu" aria-labelledby="language2">
+                                    <a class="dropdown-item" href="#" id="english">
+                                        <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
+                                        English
+                                    </a>
+                                    <a class="dropdown-item" href="#" id="français">
+                                        <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
+                                        Français
+                                    </a>
+                                    <a class="dropdown-item" href="#" id="deutsch">
+                                        <img src="{{ asset('assets/images/flag-2.png') }}" alt="flag">
+                                        Deutsch
+                                    </a>
+                                    <a class="dropdown-item" href="#" id="chineese">
+                                        <img src="{{ asset('assets/images/flag-3.png') }}" alt="flag">
+                                        简体中文
+                                    </a>
+                                    <a class="dropdown-item" href="#" id="arabic">
+                                        <img src="{{ asset('assets/images/flag-4.png') }}" alt="flag">
+                                        العربيّة
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ml-auto">
+                                    <!-- Other nav items... -->
+                                    @auth
+                                        <li class="nav-item">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                            </form>
+                                            <a href="{{ route('logout') }}" class="nav-link"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="{{ route('profile.show') }}" class="nav-link">
+                                                <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}"
+                                                    alt="User Photo" class="user-photo">
+                                            </a>
+                                        </li>
+                                    @else
+                                        <li class="nav-item">
+                                            <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
+                                                Login / Register
+                                            </a>
+                                        </li>
+                                    @endauth
+                                </ul>
+                            </div>
+                        </nav>
+
+
+
+
+
+
+                    </div>
                 </div>
-            </div>
-
-            <div class="navbar-option-item navbar-language dropdown">
-                <button class="language-option navbar-option-icon" type="button" id="language2"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="language-globe"><i class="flaticon-worldwide"></i></span>
-                    <span class="lang-name"></span>
-                    <span class="language-arrow"><i class="bx bx-chevron-down"></i></span>
-                </button>
-                <div class="language-dropdown-menu dropdown-menu" aria-labelledby="language2">
-                    <a class="dropdown-item" href="#" id="english">
-                        <img src="assets/images/flag-1.png" alt="flag">
-                        English
-                    </a>
-<a class="dropdown-item" href="#" id="français">
-                        <img src="assets/images/flag-1.png" alt="flag">
-                        Français
-                    </a>
-
-
-                    <a class="dropdown-item" href="#" id="deutsch">
-                        <img src="assets/images/flag-2.png" alt="flag">
-                        Deutsch
-                    </a>
-                    <a class="dropdown-item" href="#" id="chineese">
-                        <img src="assets/images/flag-3.png" alt="flag">
-                        简体中文
-                    </a>
-                    <a class="dropdown-item" href="#" id="arabic">
-                        <img src="assets/images/flag-4.png" alt="flag">
-                        العربيّة
-                    </a>
-                </div>
-            </div>
-
-            <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <!-- Other nav items... -->
-                    @auth
-            <li class="nav-item">
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('profile.show') }}" class="nav-link">
-                    <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}" alt="User Photo" class="user-photo">
-                </a>
-            </li>
-        @else
-            <li class="nav-item">
-                <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
-                    Login / Register
-                </a>
-            </li>
-        @endauth
-                </ul>
-            </div>
-        </nav>
-
-
-
-
-
-
-    </div>
-</div>
 
             </div>
         </div>
@@ -557,7 +586,9 @@
                     <div class="col-sm-12 col-md-12 col-lg-4">
                         <div class="footer-content-item">
                             <div class="footer-logo">
-                                <a href="{{ route('home') }}"><img src="assets/images/logo.png" alt="logo"></a>
+                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"
+                                        alt="logo">
+                                </a>
                             </div>
                             <div class="footer-details">
                                 <p>Lorem ipsum dolor sit amet, consectetur adiisicing elit, sed do eiusmod tempor inc
@@ -670,27 +701,18 @@
         </div>
     </div>
 
-
     <script data-cfasync="false"
         src="https://templates.hibootstrap.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('assets/js/form-validator.min.js') }}"></script>
+    <script src="{{ asset('assets/js/contact-form-script.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-
-    <script src="assets/js/owl.carousel.min.js"></script>
-
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
-
-    <script src="assets/js/form-validator.min.js"></script>
-
-    <script src="assets/js/contact-form-script.js"></script>
-
-    <script src="assets/js/jquery.meanmenu.min.js"></script>
-
-    <script src="assets/js/script.js"></script>
 </body>
-
-<!-- Mirrored from templates.hibootstrap.com/blim/default/domain-name.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 22:53:16 GMT -->
 
 </html>

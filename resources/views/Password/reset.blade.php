@@ -9,9 +9,13 @@
     <div class="authentication-item bg-white authentication-grid-lost">
         <div class="authentication-user-panel">
             <div class="authentication-user-header">
-                <a href="{{ route('home') }}"><img src="assets/images/logo-blue.png" class="logo1" alt="logo"></a>
-                <a href="{{ route('home') }}"><img src="assets/images/logo.png" class="logo2" alt="logo"></a>
-                <h1>Bienvenue sur Blim</h1>
+            <a href="{{ route('home') }}">
+    <img src="{{ asset('assets/images/logo-blue.png') }}" class="logo1" alt="logo">
+</a>
+<a href="{{ route('home') }}">
+    <img src="{{ asset('assets/images/logo.png') }}" class="logo2" alt="logo">
+</a>
+<h1>Bienvenue sur Blim</h1>
             </div>
             <div class="authentication-user-body">
                 <p class="mt-40">Veuillez entrer votre nouvelle mot de passe.</p>
