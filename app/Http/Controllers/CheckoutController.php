@@ -59,15 +59,16 @@ class CheckoutController extends Controller
             if ($response->successful()) {
                 // Payment successful
                 session()->forget('cart');
-                return redirect()->route('home')->with('success', 'Votre commande a été passée avec succès.');
+                return view('success');
             } else {
                 // Payment failed
-                return redirect()->route('cart')->with('error', 'Échec du paiement. Veuillez réessayer.');
+                return view('error');
             }
         }
 
         // Default behavior
-        return redirect()->route('home')->with('success', 'Votre commande a été passée avec succès.');
+        session()->forget('cart');
+        return view('success');
     }
 
     private function initiateOrangeMoneyPayment($order)

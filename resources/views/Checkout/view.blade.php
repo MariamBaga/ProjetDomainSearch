@@ -78,13 +78,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-check mb-20">
-                                            <input type="checkbox" class="form-check-input" id="check1">
-                                            <label class="form-check-label" for="check1">Get alert of product updates &
-                                                offers</label>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-sm-12 col-lg-6">
                                         <div class="form-group mb-20">
                                             <div class="input-group">

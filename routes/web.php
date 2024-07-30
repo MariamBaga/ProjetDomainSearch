@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PaymentController;
 
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ResetPasswordController;
@@ -95,3 +96,5 @@ Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->nam
     // Route pour réinitialiser le mot de passe (généralement gérée par Laravel)
     Route::get('/password/reset/{token}', [\App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');
+
+    Route::post('/paiement/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
