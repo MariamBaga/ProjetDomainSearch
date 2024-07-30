@@ -86,6 +86,7 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{domainId}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
+
 // Route pour afficher le formulaire de réinitialisation du mot de passe
 Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->name('password.forget');
  // Route pour traiter la demande de réinitialisation du mot de passe

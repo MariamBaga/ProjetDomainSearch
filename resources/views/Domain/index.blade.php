@@ -39,7 +39,7 @@
                                     Statut inconnu
                             @endswitch
                         </td>
-                        <td>{{ $domain->price }} €</td>
+                        <td>{{ $domain->price }} FCFA</td>
                         <td>{{ $domain->duration }} ans</td>
                         <td>
                             @if($domain->status === 'available')

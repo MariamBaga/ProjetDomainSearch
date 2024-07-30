@@ -10,6 +10,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>@yield('title') </title>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .alert {
+            transition: opacity 0.5s ease-out;
+        }
+    </style>
+
     <link rel="icon" href="{{ asset('assets/images/tab.png') }}" type="image/png" sizes="16x16">
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css" media="all" />
@@ -121,56 +128,8 @@
                                 <i class="bx bx-dots-horizontal-rounded"></i>
                             </button>
                             <ul class="dropdown-menu navbar-dots-dropdown">
-                                <li class="dropdown-item">
-                                    <div class="navbar-option-item navbar-language dropdown">
-                                        <button class="language-option navbar-option-icon" type="button"
-                                            id="language1" data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <span class="language-globe"><i class="flaticon-worldwide"></i></span>
-                                            <span class="lang-name"></span>
-                                            <span class="language-arrow"><i class="bx bx-chevron-down"></i></span>
-                                        </button>
-                                        <div class="language-dropdown-menu dropdown-menu" aria-labelledby="language1">
-                                            <a class="dropdown-item" href="#" id="english1">
-                                                <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
-                                                English
-                                            </a>
-                                            <a class="dropdown-item" href="#" id="deutsch1">
-                                                <img src="{{ asset('assets/images/flag-2.png') }}" alt="flag">
-                                                Deutsch
-                                            </a>
-                                            <a class="dropdown-item" href="#" id="chineese1">
-                                                <img src="{{ asset('assets/images/flag-3.png') }}" alt="flag">
-                                                简体中文
-                                            </a>
-                                            <a class="dropdown-item" href="#" id="arabic1">
-                                                <img src="{{ asset('assets/images/flag-4.png') }}" alt="flag">
-                                                العربيّة
-                                            </a>
 
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item">
-                                    <div class="navbar-option-item dropdown">
-                                        <button class="search navbar-option-icon dropdown-toggle" type="button"
-                                            id="search1" data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <span class="navbar-search-zoom"><i class="flaticon-zoom"></i></span>
-                                            <span class="navbar-search-cancel"><i class="flaticon-cancel"></i></span>
-                                        </button>
-                                        <div class="navbar-search dropdown-menu" aria-labelledby="search1">
-                                            <form>
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control"
-                                                        placeholder="Search...">
-                                                    <button class="btn btn-gradient"><span><i
-                                                                class="flaticon-loupe"></i></span></button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
+
                                 <li class="dropdown-item">
                                     <div class="navbar-option-item">
                                         <a href="{{ route('cart') }}" target="_blank"
@@ -192,49 +151,9 @@
 
                             </ul>
                         </div>
-                        <div class="navbar-option-item navbar-language dropdown mobile-hide">
-                            <button class="language-option navbar-option-icon" type="button" id="language3"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="language-globe"><i class="flaticon-worldwide"></i></span>
-                                <span class="lang-name"></span>
-                                <span class="language-arrow"><i class="bx bx-chevron-down"></i></span>
-                            </button>
-                            <div class="language-dropdown-menu dropdown-menu" aria-labelledby="language3">
-                                <a class="dropdown-item" href="#" id="english2">
-                                    <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
-                                    English
-                                </a>
-                                <a class="dropdown-item" href="#" id="deutsch2">
-                                    <img src="{{ asset('assets/images/flag-2.png') }}" alt="flag">
-                                    Deutsch
-                                </a>
-                                <a class="dropdown-item" href="#" id="chineese2">
-                                    <img src="{{ asset('assets/images/flag-3.png') }}" alt="flag">
-                                    简体中文
-                                </a>
-                                <a class="dropdown-item" href="#" id="arabic2">
-                                    <img src="{{ asset('assets/images/flag-4.png') }}" alt="flag">
-                                    العربيّة
-                                </a>
+                       
 
-                            </div>
-                        </div>
-                        <div class="navbar-option-item navbar-option-search dropdown mobile-hide">
-                            <button class="search navbar-option-icon dropdown-toggle" type="button" id="search3"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="navbar-search-zoom"><i class="flaticon-zoom"></i></span>
-                                <span class="navbar-search-cancel"><i class="flaticon-cancel"></i></span>
-                            </button>
-                            <div class="navbar-search dropdown-menu" aria-labelledby="search3">
-                                <form>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Search...">
-                                        <button class="btn btn-gradient"><span><i
-                                                    class="flaticon-loupe"></i></span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+
                         <div class="navbar-option-item navbar-option-cart mobile-hide">
                             <a href="{{ route('cart') }}" target="_blank" class="shopping-cart navbar-option-icon">
                                 <span><i class="flaticon-shopping-bags"></i></span>
@@ -252,7 +171,7 @@
                         <ul class="navbar-nav ml-auto">
                                     <!-- Other nav items... -->
                                     @auth
-                                        <li class="nav-item">
+                                        <li class="navbar-option-item">
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                 style="display: none;">
                                                 @csrf
@@ -268,7 +187,7 @@
                                             </a>
                                         </li>
                                     @else
-                                        <li class="nav-item">
+                                        <li class="navbar-option-item">
                                             <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
                                                 Login / Register
                                             </a>
@@ -291,89 +210,34 @@
 
                             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item">
-                                        <a href="{{ route('home') }}" class="nav-link dropdown-toggle">Home</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="{{ route('home') }}" class="nav-link">Home Page 1</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="{{ route('home') }}" class="nav-link">Home Page 2</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="{{ route('home') }}" class="nav-link">Home Page 3</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+
                                     <li class="nav-item">
                                         <a href="{{ route('home') }}" class="nav-link active">Domain Name</a>
 
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown-toggle">Pages</a>
+                                        <a href="{{ route('about') }}" class="nav-link dropdown-toggle">Abous Us</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link dropdown-toggle">Services</a>
                                                 <ul class="dropdown-menu">
-                                                    <li class="nav-item">
-                                                        <a href="email-security.html" class="nav-link">Email
-                                                            Security</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="ssl-certificates.html" class="nav-link">SSL
-                                                            Certificates</a>
-                                                    </li>
+
                                                     <li class="nav-item">
                                                         <a href="enterprise-email.html" class="nav-link">Enterprise
                                                             Email</a>
                                                     </li>
-                                                    <li class="nav-item">
-                                                        <a href="magento-pro.html" class="nav-link">Magento Pro</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="gsuite-google.html" class="nav-link">G Suite
-                                                            Google</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="iptv-services.html" class="nav-link">IPTV
-                                                            Services</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="gaming-services.html" class="nav-link">Gaming
-                                                            Services</a>
-                                                    </li>
+
+
+
+
                                                 </ul>
                                             </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle">Infrastructure</a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="nav-item">
-                                                        <a href="voice-servers.html" class="nav-link">Voice
-                                                            Servers</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="virtual-numbers.html" class="nav-link">Virtual
-                                                            Numbers</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="database-services.html" class="nav-link">Database
-                                                            Services</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="ddos-protections.html" class="nav-link">DDoS
-                                                            Protections</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+
                                             <li class="nav-item">
                                                 <a href="{{ route('about') }}" class="nav-link">About Us</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a href="faqs.html" class="nav-link">FAQ's</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="affiliate.html" class="nav-link">Affiliate</a>
-                                            </li>
+
+
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link dropdown-toggle">User</a>
                                                 <ul class="dropdown-menu">
@@ -410,10 +274,7 @@
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link dropdown-toggle">Others</a>
                                                 <ul class="dropdown-menu">
-                                                    <li class="nav-item">
-                                                        <a href="specials.html" class="nav-link">Specials <span
-                                                                class="badge badge-primary">New</span></a>
-                                                    </li>
+
                                                     <li class="nav-item">
                                                         <a href="search-page.html" class="nav-link">Search Page</a>
                                                     </li>
@@ -460,55 +321,9 @@
                                 </a>
                             </div>
 
-                            <div class="navbar-option-item dropdown">
-                                <button class="search navbar-option-icon dropdown-toggle" type="button"
-                                    id="search2" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <span class="navbar-search-zoom"><i class="flaticon-zoom"></i></span>
-                                    <span class="navbar-search-cancel"><i class="flaticon-cancel"></i></span>
-                                </button>
-                                <div class="navbar-search dropdown-menu" aria-labelledby="search2">
-                                    <form>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Search...">
-                                            <button class="btn btn-gradient"><span><i
-                                                        class="flaticon-loupe"></i></span></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
 
-                            <div class="navbar-option-item navbar-language dropdown">
-                                <button class="language-option navbar-option-icon" type="button" id="language2"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="language-globe"><i class="flaticon-worldwide"></i></span>
-                                    <span class="lang-name"></span>
-                                    <span class="language-arrow"><i class="bx bx-chevron-down"></i></span>
-                                </button>
-                                <div class="language-dropdown-menu dropdown-menu" aria-labelledby="language2">
-                                    <a class="dropdown-item" href="#" id="english">
-                                        <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
-                                        English
-                                    </a>
-                                    <a class="dropdown-item" href="#" id="français">
-                                        <img src="{{ asset('assets/images/flag-1.png') }}" alt="flag">
-                                        Français
-                                    </a>
-                                    <a class="dropdown-item" href="#" id="deutsch">
-                                        <img src="{{ asset('assets/images/flag-2.png') }}" alt="flag">
-                                        Deutsch
-                                    </a>
-                                    <a class="dropdown-item" href="#" id="chineese">
-                                        <img src="{{ asset('assets/images/flag-3.png') }}" alt="flag">
-                                        简体中文
-                                    </a>
-                                    <a class="dropdown-item" href="#" id="arabic">
-                                        <img src="{{ asset('assets/images/flag-4.png') }}" alt="flag">
-                                        العربيّة
-                                    </a>
 
-                                </div>
-                            </div>
+
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
@@ -552,6 +367,15 @@
         </div>
         </div>
 
+        <div class="container">
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+
+    </div>
         @yield('beforecontent')
 
     </header>
@@ -701,6 +525,17 @@
         </div>
     </div>
 
+
+<script>
+        $(document).ready(function() {
+            // Disparaître après 2 minutes (120000 millisecondes)
+            setTimeout(function() {
+                $('.alert').fadeOut('slow', function() {
+                    $(this).remove();
+                });
+            }, 50000); // 120000 ms = 2 minutes
+        });
+    </script>
     <script data-cfasync="false"
         src="https://templates.hibootstrap.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>

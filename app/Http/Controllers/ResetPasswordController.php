@@ -40,7 +40,7 @@ class ResetPasswordController extends Controller
         );
 
         return $status == Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('login')->with('status', 'Votre mot de passe a été réinitialisé avec succès.')
+            : back()->withErrors(['email' => 'Une erreur est survenue lors de la réinitialisation de votre mot de passe.']);
     }
 }

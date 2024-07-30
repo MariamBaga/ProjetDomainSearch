@@ -54,11 +54,29 @@ Panier
                         @foreach($cart as $domainId => $domain)
                             <tr>
                                 <td>{{ $domain['name'] . '.' . $domain['extension'] }}</td>
-                                <td>{{ $domain['price'] }} €</td>
-                                <td>{{ $domain['duration'] }}  ans</td>
-                                <td>{{ $domain['price'] * $domain['duration'] }} €</td>
+                                <td>{{ $domain['price'] }} FCFA</td>
+
+                                <td>
+<div class="cart-update cart-info-item">
+    <form action="{{ route('cart.update') }}" method="POST">
+        @csrf
+ <input type="hidden" name="domains[{{ $domainId }}][duration]" value="{{ $domain['duration'] }}">
+                                <input type="number" name="domains[{{ $domainId }}][duration]" value="{{ $domain['duration'] }}" min="1" max="5" required>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    </div>
+
+
+                                </td>
+
+
+
+
+                                <td>{{ $domain['price'] * $domain['duration'] }} FCFA</td>
 
                                 <!-- <td>{{ $domain['duration'] }} €</td> -->
+
                                 <td>
                                     <div class="cart-action">
                                         <form action="{{ route('cart.remove', $domainId) }}" method="POST" style="display:inline;">
@@ -78,20 +96,6 @@ Panier
                 </tbody>
             </table>
 
-            <div class="row justify-content-between mt-4">
-                <div class="col-sm-12 col-md-7 col-lg-5">
-                    <div class="cart-coupon cart-info-item">
-                        <form action="" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <input type="text" name="coupon_code" class="form-control" placeholder="Entrez le code promo">
-                                <button class="btn btn-gradient" type="submit">Appliquer le coupon</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="col-sm-12 col-lg-6 pb-30">
                     <div class="cart-details default-box-shadow">
@@ -101,12 +105,12 @@ Panier
                                 @foreach($cart as $domain)
                                     <div class="cart-total-item">
                                         <h4>{{ $domain['name'] . '.' . $domain['extension'] }}</h4>
-                                        <p>{{ $domain['price'] * $domain['duration'] }} €</p>
+                                        <p>{{ $domain['price'] * $domain['duration'] }} FCFA</p>
                                     </div>
                                 @endforeach
                                 <div class="cart-total-item">
                                     <h4>Total</h4>
-                                    <p>{{ array_sum(array_map(fn($domain) => $domain['price'] * $domain['duration'], $cart)) }} €</p>
+                                    <p>{{ array_sum(array_map(fn($domain) => $domain['price'] * $domain['duration'], $cart)) }} FCFA</p>
                                 </div>
                             @endif
                         </div>

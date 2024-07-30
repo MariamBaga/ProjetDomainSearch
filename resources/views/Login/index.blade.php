@@ -27,6 +27,12 @@
                     @endif
 
                     <div class="authentication-tab">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
                         <div class="authentication-tab-item authentication-tab-active" data-authentcation-tab="1">
                             <i class="flaticon-user-1"></i>
                             Login

@@ -21,6 +21,21 @@
             <div class="authentication-user-body">
                 <p class="mt-40">Vous avez oublié votre mot de passe ? Veuillez entrer votre nom d'utilisateur ou votre adresse e-mail. Vous recevrez un lien pour créer un nouveau mot de passe par e-mail.</p>
                 <div class="authentication-form">
+                @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('password.email') }}" method="POST">
                         @csrf
                         <div class="row">

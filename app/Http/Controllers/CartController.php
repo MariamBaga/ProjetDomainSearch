@@ -86,17 +86,29 @@ class CartController extends Controller
     }
 
     public function update(Request $request)
-    {
-        $cart = session()->get('cart', []);
+{
+    // Validation des données envoyées
+    $request->validate([
+        'domains.*.duration' => 'required|integer|min:1|max:5', // Valider la durée pour chaque domaine
+    ]);
 
-        foreach ($request->input('domains') as $domainId => $data) {
+    // Récupérer le panier de la session
+    $cart = session()->get('cart', []);
+
+    // Vérifier si 'domains' est fourni et est un tableau
+    $domains = $request->input('domains', []);
+
+    if (is_array($domains)) {
+        foreach ($domains as $domainId => $data) {
             if (isset($cart[$domainId])) {
                 $cart[$domainId]['duration'] = $data['duration'];
             }
         }
 
+        // Mettre à jour le panier dans la session
         session()->put('cart', $cart);
 
+        // Mettre à jour le panier de l'utilisateur connecté en base de données
         if (Auth::check()) {
             $userCart = Cart::where('user_id', Auth::id())->first();
             if ($userCart) {
@@ -106,5 +118,10 @@ class CartController extends Controller
         }
 
         return redirect()->route('cart')->with('success', 'Panier mis à jour avec succès!');
+    } else {
+        return redirect()->route('cart')->with('error', 'Aucune donnée de domaine valide reçue.');
     }
+}
+
+
 }

@@ -1,4 +1,4 @@
-@extends('layouts.master1')
+@extends('layouts.Authentification')
 
 @section('title')
     Réinitialisation du mot de passe
@@ -20,6 +20,21 @@
             <div class="authentication-user-body">
                 <p class="mt-40">Veuillez entrer votre nouvelle mot de passe.</p>
                 <div class="authentication-form">
+                @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('password.update') }}" method="POST">
                         @csrf
                         <input type="hidden" name="token" value="{{ $token }}">
