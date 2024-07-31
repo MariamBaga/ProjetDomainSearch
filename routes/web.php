@@ -29,6 +29,11 @@ use App\Http\Controllers\RegisterController;
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DomainSearchApiController;
+
+Route::get('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
