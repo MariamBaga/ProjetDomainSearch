@@ -5,8 +5,6 @@
 @endsection
 
 @section('beforecontent')
-
-
     <div class="container">
         <div class="row align-items-center">
             <div class="col-sm-12 col-lg-6">
@@ -21,7 +19,7 @@
             </div>
             <div class="col-sm-12 offset-lg-3 col-lg-3">
                 <div class="header-page-image">
-                <img src="{{ asset('assets/images/vps-header-shape.png') }}" alt="shape">
+                    <img src="{{ asset('assets/images/vps-header-shape.png') }}" alt="shape">
 
                 </div>
             </div>
@@ -38,26 +36,27 @@
                 <h2>Search perfect domain</h2>
             </div>
             <div class="domain-search domain-search-two">
-            <form id="domain-search-form" method="POST" action="{{ route('search.domain') }}">
-    @csrf
-    <div class="form-group">
-        <input type="text" name="domain_name" class="form-control search-text-field" placeholder="Search Your Domain Name..." required>
-        <div class="input-group-append">
-            <select name="domain_extension" class="form-control" required>
-                <option value="com">COM</option>
-                <option value="net">NET</option>
-                <option value="org">ORG</option>
-                <option value="co">CO</option>
-                <option value="video">VIDEO</option>
-                <option value="tech">TECH</option>
-                <option value="design">DESIGN</option>
-                <option value="xyz">XYZ</option>
-                <option value="io">IO</option>
-            </select>
-        </div>
-        <button class="btn btn-gradient">Search Now</button>
-    </div>
-</form>
+                <form id="domain-search-form" method="POST" action="{{ route('search.domain') }}">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" name="domain_name" class="form-control search-text-field"
+                            placeholder="Search Your Domain Name..." required>
+                        <div class="input-group-append">
+                            <select name="domain_extension" class="form-control" required>
+                                <option value="com">COM</option>
+                                <option value="net">NET</option>
+                                <option value="org">ORG</option>
+                                <option value="co">CO</option>
+                                <option value="video">VIDEO</option>
+                                <option value="tech">TECH</option>
+                                <option value="design">DESIGN</option>
+                                <option value="xyz">XYZ</option>
+                                <option value="io">IO</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-gradient">Search Now</button>
+                    </div>
+                </form>
 
                 <div class="domain-search-category">
                     <ul>
@@ -114,116 +113,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-orange"></span>
-                                    <p>mobi</p>
-                                </div>
-                            </td>
-                            <td>$5.55</td>
-                            <td>$15.55</td>
-                            <td>$25.55</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-green"></span>
-                                    <p>com</p>
-                                </div>
-                            </td>
-                            <td>$7.75</td>
-                            <td>$17.75 <del>$19.25</del></td>
-                            <td>$27.75</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-orange"></span>
-                                    <p>net</p>
-                                </div>
-                            </td>
-                            <td>$10.75</td>
-                            <td>$20.75</td>
-                            <td>$30.75</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-red"></span>
-                                    <p>org</p>
-                                </div>
-                            </td>
-                            <td>$14.25</td>
-                            <td>$24.25</td>
-                            <td>$44.25</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-blue"></span>
-                                    <p>info</p>
-                                </div>
-                            </td>
-                            <td>$19.95</td>
-                            <td>$38.54 <del>$45.99</del></td>
-                            <td>$55.19</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-violet"></span>
-                                    <p>co</p>
-                                </div>
-                            </td>
-                            <td>$12.57</td>
-                            <td>$24.45</td>
-                            <td>$38.23</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-green-light"></span>
-                                    <p>int</p>
-                                </div>
-                            </td>
-                            <td>$17.25</td>
-                            <td>$27.42</td>
-                            <td>$37.35</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-blue-light"></span>
-                                    <p>edu</p>
-                                </div>
-                            </td>
-                            <td>$9.12</td>
-                            <td>$19.72 <del>$22.45</del></td>
-                            <td>$29.45</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-orange"></span>
-                                    <p>gov</p>
-                                </div>
-                            </td>
-                            <td>$5.24</td>
-                            <td>$15.45</td>
-                            <td>$25.55</td>
-                        </tr>
-                        <tr>
-                            <td class="td-main td-bg">
-                                <div class="td-domain-name">
-                                    <span class="bullet bullet-red"></span>
-                                    <p>bitz</p>
-                                </div>
-                            </td>
-                            <td>$13.45</td>
-                            <td>$35.23</td>
-                            <td>$45.34</td>
-                        </tr>
+                    @foreach ($domainPrices as $price)
+                            <tr>
+                                <td class="td-main td-bg">
+                                    <div class="td-domain-name">
+                                        <span class="bullet bullet-orange"></span>
+                                        <p>{{ $price->name }}</p>
+                                    </div>
+                                </td>
+                                <td>{{ $price->transfer_price }} {{ $price->currency }}</td>
+                                <td>{{ $price->register_price }} {{ $price->currency }}</td>
+                                <td>{{ $price->renew_price }} {{ $price->currency }}</td>
+                            </tr>
+                        @endforeach
                         <tr>
                             <td class="td-main td-bg"></td>
                             <td><a href="cart.html" class="btn btn-gradient">Buy Now</a></td>
@@ -235,7 +137,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="choose-section pt-100 pb-70 blue-gradient-with-opacity">
         <div class="container">
@@ -252,7 +153,7 @@
                             <div class="box-number"><span>01</span></div>
                             <div class="box-card-content text-center">
                                 <div class="box-card-thumb">
-                                <img src="{{ asset('assets/images/choose-1.png') }}" alt="choose-us">
+                                    <img src="{{ asset('assets/images/choose-1.png') }}" alt="choose-us">
 
                                 </div>
                                 <div class="box-card-details">
@@ -270,7 +171,7 @@
                             <div class="box-number"><span>02</span></div>
                             <div class="box-card-content text-center">
                                 <div class="box-card-thumb">
-                                <img src="{{ asset('assets/images/choose-2.png') }}" alt="choose-us">
+                                    <img src="{{ asset('assets/images/choose-2.png') }}" alt="choose-us">
 
                                 </div>
                                 <div class="box-card-details">
@@ -288,7 +189,7 @@
                             <div class="box-number"><span>03</span></div>
                             <div class="box-card-content text-center">
                                 <div class="box-card-thumb">
-                                <img src="{{ asset('assets/images/choose-3.png') }}" alt="choose-us">
+                                    <img src="{{ asset('assets/images/choose-3.png') }}" alt="choose-us">
 
                                 </div>
                                 <div class="box-card-details">
@@ -318,7 +219,7 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                            <img src="{{ asset('assets/images/feature-icon-1.png') }}" alt="cloud">
+                                <img src="{{ asset('assets/images/feature-icon-1.png') }}" alt="cloud">
 
                             </div>
                             <div class="feature-item-content">
@@ -333,7 +234,7 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                            <img src="{{ asset('assets/images/feature-icon-2.png') }}" alt="cloud">
+                                <img src="{{ asset('assets/images/feature-icon-2.png') }}" alt="cloud">
 
                             </div>
                             <div class="feature-item-content">
@@ -348,7 +249,7 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                            <img src="{{ asset('assets/images/feature-icon-3.png') }}" alt="cloud">
+                                <img src="{{ asset('assets/images/feature-icon-3.png') }}" alt="cloud">
 
                             </div>
                             <div class="feature-item-content">
@@ -363,7 +264,7 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                            <img src="{{ asset('assets/images/feature-icon-4.png') }}" alt="cloud">
+                                <img src="{{ asset('assets/images/feature-icon-4.png') }}" alt="cloud">
 
                             </div>
                             <div class="feature-item-content">
@@ -378,7 +279,7 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                            <img src="{{ asset('assets/images/feature-icon-5.png') }}" alt="cloud">
+                                <img src="{{ asset('assets/images/feature-icon-5.png') }}" alt="cloud">
 
                             </div>
                             <div class="feature-item-content">
@@ -393,7 +294,7 @@
                     <div class="feature-item feature-item-2 fluid-height">
                         <div class="feature-item-inner full-height bg-white">
                             <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                            <img src="{{ asset('assets/images/feature-icon-6.png') }}" alt="cloud">
+                                <img src="{{ asset('assets/images/feature-icon-6.png') }}" alt="cloud">
 
                             </div>
                             <div class="feature-item-content">
@@ -415,21 +316,21 @@
                 <div class="row align-items-center">
                     <div class="col-sm-12 col-lg-5 pb-30">
                         <div class="client-thumb-carousel owl-carousel">
-                        <div class="item">
-    <img src="{{ asset('assets/images/client-thumb-1.png') }}" alt="client">
-</div>
-<div class="item">
-    <img src="{{ asset('assets/images/client-thumb-2.png') }}" alt="client">
-</div>
-<div class="item">
-    <img src="{{ asset('assets/images/client-thumb-3.png') }}" alt="client">
-</div>
-<div class="item">
-    <img src="{{ asset('assets/images/client-thumb-4.png') }}" alt="client">
-</div>
-<div class="item">
-    <img src="{{ asset('assets/images/client-thumb-5.png') }}" alt="client">
-</div>
+                            <div class="item">
+                                <img src="{{ asset('assets/images/client-thumb-1.png') }}" alt="client">
+                            </div>
+                            <div class="item">
+                                <img src="{{ asset('assets/images/client-thumb-2.png') }}" alt="client">
+                            </div>
+                            <div class="item">
+                                <img src="{{ asset('assets/images/client-thumb-3.png') }}" alt="client">
+                            </div>
+                            <div class="item">
+                                <img src="{{ asset('assets/images/client-thumb-4.png') }}" alt="client">
+                            </div>
+                            <div class="item">
+                                <img src="{{ asset('assets/images/client-thumb-5.png') }}" alt="client">
+                            </div>
 
                         </div>
                     </div>
@@ -563,7 +464,7 @@
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30">
                     <div class="about-content-image">
-                    <img src="{{ asset('assets/images/faq.png') }}" alt="faq">
+                        <img src="{{ asset('assets/images/faq.png') }}" alt="faq">
 
                     </div>
                 </div>

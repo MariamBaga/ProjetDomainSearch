@@ -39,6 +39,7 @@ Route::get('/', function () {
 //     return 'Role assigned!';
 // });
 
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home', [DomainController::class, 'search'])->name('search.domain');
 
@@ -96,5 +97,8 @@ Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->nam
     // Route pour réinitialiser le mot de passe (généralement gérée par Laravel)
     Route::get('/password/reset/{token}', [\App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');
+// Route pour le callback de paiement d'Orange Money
+Route::post('/paiement/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
 
-    Route::post('/paiement/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
+// Route pour le webhook de paiement d'Orange Money
+Route::post('/paiement/webhook', [PaymentController::class, 'handleWebhook'])->name('payment.webhook');

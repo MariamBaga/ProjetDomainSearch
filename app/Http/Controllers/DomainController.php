@@ -8,13 +8,9 @@ use App\Models\Domain;
 class DomainController extends Controller
 {
     //
-    public function index(){
 
 
 
-        return view('homes.index');
-
-    }
 
     // DomainController.php
 public function search(Request $request)
@@ -44,7 +40,7 @@ public function search(Request $request)
         'domainName' => $domainName,
         'extension' => $extension,
         'domains' => $domains,
-        
+
     ]);
 }
 
