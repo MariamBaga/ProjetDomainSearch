@@ -15,7 +15,8 @@ class DomainSearchApiController extends Controller
      * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
      */
     public function fetchDomains()
-    {
+{
+    try {
         // URL de l'API de APIDomaine
         $apiUrl = 'http://localhost:8000/api/domains'; // Remplace par l'URL correcte de ton API
 
@@ -27,8 +28,17 @@ class DomainSearchApiController extends Controller
             // Passer les domaines à la vue Blade
             return view('domains.index', ['domains' => $domains]);
         } else {
-            // Gérer les erreurs et retourner une réponse JSON avec le message d'erreur
-            return response()->json(['error' => 'Unable to fetch domains'], 500);
+            // Gérer les erreurs si la réponse de l'API n'est pas réussie
+            return response()->json([
+                'error' => 'Unable to fetch domains from API. Status: ' . $response->status()
+            ], 500);
         }
+    } catch (\Throwable $th) {
+        // Gérer les exceptions et retourner une réponse JSON avec le message d'erreur
+        return response()->json([
+            'error' => 'An unexpected error occurred: ' . $th->getMessage()
+        ], 500);
     }
+}
+
 }

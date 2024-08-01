@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Domain;
+use App\Models\Webhook;
 
 class PaymentController extends Controller
 {
+
     /**
      * Gère le callback de paiement d'Orange Money.
      */
@@ -36,6 +38,16 @@ class PaymentController extends Controller
                 }
                 $order->save();
             }
+
+            // Enregistre les détails du callback dans la base de données
+            Webhook::create([
+                'event' => 'payment_callback',
+                'payload' => $request->all(),
+                'status' => 'processed',
+                'domain_id' => $request->input('domain_id'),
+                'order_id' => $request->input('order_id'),
+                'received_at' => now(),
+            ]);
         }
 
         return response()->json(['message' => 'Callback traité'], 200);
@@ -46,30 +58,54 @@ class PaymentController extends Controller
      */
     public function handleWebhook(Request $request)
     {
-        // Vérifie si le webhook est valide
-        if ($this->verifyWebhook($request)) {
-            // Trouve la commande par ID
-            $order = Order::where('id', $request->input('order_id'))->first();
+        try {
+            // Vérifie si le webhook est valide
+            if ($this->verifyWebhook($request)) {
+                // Trouve la commande par ID
+                $order = Order::where('id', $request->input('order_id'))->first();
 
-            if ($order) {
-                // Met à jour le statut de la commande en fonction du résultat du paiement
-                if ($request->input('status') == 'success') {
-                    $order->status = 'completed';
-                    $order->save();
+                if ($order) {
+                    // Met à jour le statut de la commande en fonction du résultat du paiement
+                    if ($request->input('status') == 'success') {
+                        $order->status = 'completed';
+                        $order->save();
 
-                    // Met à jour le statut des domaines associés à la commande
-                    foreach ($order->orderItems as $item) {
-                        $domain = Domain::find($item->domain_id);
-                        if ($domain) {
-                            $domain->status = 'unavailable';
-                            $domain->save();
+                        // Met à jour le statut des domaines associés à la commande
+                        foreach ($order->orderItems as $item) {
+                            $domain = Domain::find($item->domain_id);
+                            if ($domain) {
+                                $domain->status = 'unavailable';
+                                $domain->save();
+                            }
                         }
+                    } else {
+                        $order->status = 'failed';
+                        $order->save();
                     }
-                } else {
-                    $order->status = 'failed';
-                    $order->save();
+
+                    // Enregistre les détails du webhook dans la base de données
+                    Webhook::create([
+                        'event' => 'payment_webhook',
+                        'payload' => $request->all(),
+                        'status' => 'processed',
+                        'domain_id' => $request->input('domain_id'),
+                        'order_id' => $request->input('order_id'),
+                        'received_at' => now(),
+                    ]);
                 }
             }
+        } catch (\Throwable $th) {
+            // Enregistre les erreurs de traitement dans la base de données
+            Webhook::create([
+                'event' => 'payment_webhook',
+                'payload' => $request->all(),
+                'status' => 'failed',
+                'domain_id' => $request->input('domain_id'),
+                'order_id' => $request->input('order_id'),
+                'received_at' => now(),
+            ]);
+            // Rejette l'exception pour le journal de l'application
+            throw $th;
         }
 
         return response()->json(['message' => 'Webhook traité'], 200);
