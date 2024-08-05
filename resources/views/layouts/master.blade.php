@@ -123,6 +123,8 @@
                     </a>
 
                     <div class="navbar-option">
+
+
                         <div class="navbar-option-item navbar-option-dots dropdown">
                             <button type="button" id="dot" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-dots-horizontal-rounded"></i>
@@ -151,7 +153,7 @@
 
                             </ul>
                         </div>
-                       
+
 
 
                         <div class="navbar-option-item navbar-option-cart mobile-hide">
@@ -293,7 +295,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="pricing.html" class="nav-link">Pricing</a>
+                                        <a href="{{route ('pricing')}}" class="nav-link">Pricing</a>
                                     </li>
 
                                     <li class="nav-item">

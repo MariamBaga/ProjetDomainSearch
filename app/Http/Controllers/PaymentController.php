@@ -9,7 +9,6 @@ use App\Models\Webhook;
 
 class PaymentController extends Controller
 {
-
     /**
      * Gère le callback de paiement d'Orange Money.
      */

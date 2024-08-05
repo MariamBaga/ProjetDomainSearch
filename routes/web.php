@@ -23,6 +23,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\DomainController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PriceController;
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\RegisterController;
@@ -46,6 +47,10 @@ Route::get('/', function () {
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/pricing', [PriceController::class, 'index'])->name('pricing');
+
+
 Route::post('/home', [DomainController::class, 'search'])->name('search.domain');
 
 Route::get('/contact', [ContactController::class, 'view'])->name('contact');
