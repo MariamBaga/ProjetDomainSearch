@@ -54,7 +54,7 @@ class CartController extends Controller
             );
         }
 
-        return redirect()->back()->with('success', 'Domaine ajouté au panier avec succès!');
+        return redirect()->route('cart')->with('success', 'Domaine ajouté au panier avec succès!');
     }
 
     public function remove($domainId)

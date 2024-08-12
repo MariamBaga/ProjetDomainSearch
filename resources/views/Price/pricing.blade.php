@@ -59,9 +59,9 @@
                         @endforeach
                         <tr>
                             <td class="td-main td-bg"></td>
-                            <td><a href="cart.html" class="btn btn-gradient">Buy Now</a></td>
-                            <td><a href="cart.html" class="btn btn-gradient">Buy Now</a></td>
-                            <td><a href="cart.html" class="btn btn-gradient">Buy Now</a></td>
+                            <td><a href="{{route('cart')}}" class="btn btn-gradient">Buy Now</a></td>
+                            <td><a href="{{route('cart')}}" class="btn btn-gradient">Buy Now</a></td>
+                            <td><a href="{{route('cart')}}" class="btn btn-gradient">Buy Now</a></td>
                         </tr>
                     </tbody>
                 </table>

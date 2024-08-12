@@ -129,10 +129,10 @@
                             <button type="button" id="dot" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-dots-horizontal-rounded"></i>
                             </button>
-                            <ul class="dropdown-menu navbar-dots-dropdown">
-
+                             <ul class="dropdown-menu navbar-dots-dropdown">
 
                                 <li class="dropdown-item">
+
                                     <div class="navbar-option-item">
                                         <a href="{{ route('cart') }}" target="_blank"
                                             class="shopping-cart navbar-option-icon">
@@ -141,17 +141,20 @@
                                                 @php
                                                     $cart = session()->get('cart');
                                                     $cartCount =
-                                                        is_array($cart) || $cart instanceof Countable
-                                                            ? count($cart)
-                                                            : 0;
+                                                        is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
                                                 @endphp
                                                 {{ $cartCount }}
                                             </span>
+
+
                                         </a>
                                     </div>
                                 </li>
+                              </ul>
 
-                            </ul>
+
+
+
                         </div>
 
 
@@ -170,32 +173,32 @@
                         </div>
 
                         <div class="navbar-option-item navbar-option-account">
-                        <ul class="navbar-nav ml-auto">
-                                    <!-- Other nav items... -->
-                                    @auth
-                                        <li class="navbar-option-item">
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                            </form>
-                                            <a href="{{ route('logout') }}" class="nav-link"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                        </li>
+                            <ul class="navbar-nav ">
+                                <!-- Other nav items... -->
+                                @auth
+                                    <li class="navbar-option-item">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                        <a href="{{ route('logout') }}" class="nav-link"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    </li>
 
-                                        <li class="nav-item">
-                                            <a href="{{ route('profile.show') }}" class="nav-link">
-                                                <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}"
-                                                    alt="User Photo" class="user-photo">
-                                            </a>
-                                        </li>
-                                    @else
-                                        <li class="navbar-option-item">
-                                            <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
-                                                Login / Register
-                                            </a>
-                                        </li>
-                                    @endauth
-                                </ul>
+                                    <li class="nav-item">
+                                        <a href="{{ route('profile.show') }}" class="nav-link">
+                                            <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}"
+                                                alt="User Photo" class="user-photo">
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="navbar-option-item">
+                                        <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
+                                            Login / Register
+                                        </a>
+                                    </li>
+                                @endauth
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -295,7 +298,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route ('pricing')}}" class="nav-link">Pricing</a>
+                                        <a href="{{ route('pricing') }}" class="nav-link">Pricing</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -308,7 +311,8 @@
 
 
 
-                            <div class="navbar-option-item navbar-option-cart mobile-hide">
+                            <div class="navbar-option">
+                             <div class="navbar-option-item">
                                 <a href="{{ route('cart') }}" target="_blank"
                                     class="shopping-cart navbar-option-icon">
                                     <span><i class="flaticon-shopping-bags"></i></span>
@@ -321,7 +325,8 @@
                                         {{ $cartCount }}
                                     </span>
                                 </a>
-                            </div>
+                                </div>
+                                </div>
 
 
 
@@ -370,14 +375,14 @@
         </div>
 
         <div class="container">
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
 
 
-    </div>
+        </div>
         @yield('beforecontent')
 
     </header>
@@ -528,7 +533,7 @@
     </div>
 
 
-<script>
+    <script>
         $(document).ready(function() {
             // Disparaître après 2 minutes (120000 millisecondes)
             setTimeout(function() {
