@@ -7,9 +7,30 @@
 @section('beforecontent')
 
 
+<div class="container">
+<div class="row align-items-center">
+<div class="col-sm-12 col-lg-6">
+<div class="header-page-content text-center text-lg-start">
+<h1>Pricing</h1>
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+<li class="breadcrumb-item active" aria-current="page">Pricing</li>
+</ol>
+</nav>
+</div>
+</div>
+<div class="col-sm-12 offset-lg-3 col-lg-3">
+<div class="header-page-image">
+<img src="assets/images/dedicated-header-shape.png" alt="shape">
+</div>
+</div>
+</div>
+</div>
 
+@endsection
 
-
+@section('content')
     <section class="pricing-section-three p-tb-100">
         <div class="container">
             <div class="section-title section-title-two">

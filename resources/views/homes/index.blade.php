@@ -141,8 +141,8 @@
     <section class="choose-section pt-100 pb-70 blue-gradient-with-opacity">
         <div class="container">
             <div class="section-title section-title-two">
-                <small>Why best</small>
-                <h2>Why choose us</h2>
+                
+
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam quis </p>
             </div>
@@ -206,109 +206,6 @@
     </section>
 
 
-    <section class="feature-section pt-100 pb-70">
-        <div class="container">
-            <div class="section-title section-title-two">
-                <small>We offers</small>
-                <h2>Hosting features</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam quis</p>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-lg-6">
-                    <div class="feature-item feature-item-2 fluid-height">
-                        <div class="feature-item-inner full-height bg-white">
-                            <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="{{ asset('assets/images/feature-icon-1.png') }}" alt="cloud">
-
-                            </div>
-                            <div class="feature-item-content">
-                                <h3>Personalized Email Service</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elt,tium, totam rem aperiam, eaque
-                                    ipsa quae ab illo invent ut labore et dolore magnam luptatem.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="feature-item feature-item-2 fluid-height">
-                        <div class="feature-item-inner full-height bg-white">
-                            <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="{{ asset('assets/images/feature-icon-2.png') }}" alt="cloud">
-
-                            </div>
-                            <div class="feature-item-content">
-                                <h3>WordPress & cPanel</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elt,tium, totam rem aperiam, eaque
-                                    ipsa quae ab illo invent ut labore et dolore magnam luptatem.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="feature-item feature-item-2 fluid-height">
-                        <div class="feature-item-inner full-height bg-white">
-                            <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="{{ asset('assets/images/feature-icon-3.png') }}" alt="cloud">
-
-                            </div>
-                            <div class="feature-item-content">
-                                <h3>Free SSL Certificates</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elt,tium, totam rem aperiam, eaque
-                                    ipsa quae ab illo invent ut labore et dolore magnam luptatem.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="feature-item feature-item-2 fluid-height">
-                        <div class="feature-item-inner full-height bg-white">
-                            <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="{{ asset('assets/images/feature-icon-4.png') }}" alt="cloud">
-
-                            </div>
-                            <div class="feature-item-content">
-                                <h3>LiteSpeed Web Server</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elt,tium, totam rem aperiam, eaque
-                                    ipsa quae ab illo invent ut labore et dolore magnam luptatem.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="feature-item feature-item-2 fluid-height">
-                        <div class="feature-item-inner full-height bg-white">
-                            <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="{{ asset('assets/images/feature-icon-5.png') }}" alt="cloud">
-
-                            </div>
-                            <div class="feature-item-content">
-                                <h3>PHP Selector</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elt,tium, totam rem aperiam, eaque
-                                    ipsa quae ab illo invent ut labore et dolore magnam luptatem.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="feature-item feature-item-2 fluid-height">
-                        <div class="feature-item-inner full-height bg-white">
-                            <div class="feature-item-thumb feature-item-thumb-round bg-off-hard-gradient">
-                                <img src="{{ asset('assets/images/feature-icon-6.png') }}" alt="cloud">
-
-                            </div>
-                            <div class="feature-item-content">
-                                <h3>No Multi-Tenancy</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elt,tium, totam rem aperiam, eaque
-                                    ipsa quae ab illo invent ut labore et dolore magnam luptatem.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <div class="testimonial-section-two pb-70">
         <div class="container">
@@ -337,7 +234,7 @@
                     <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30">
                         <div class="client-content-2">
                             <div class="section-title section-title-two section-title-left">
-                                <small>Testimonials</small>
+
                                 <h2>What clients are saying</h2>
                             </div>
                             <div class="client-content-carousel owl-carousel owl-theme">

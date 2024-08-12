@@ -7,38 +7,49 @@ use Illuminate\Support\Facades\Http;
 
 class DomainSearchApiController extends Controller
 {
-    //
 
-     /**
-     * Récupérer les domaines depuis l'API de APIDomaine.
-     *
-     * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
-     */
-    public function fetchDomains()
-{
-    try {
-        // URL de l'API de APIDomaine
-        $apiUrl = 'http://localhost:8000/api/domains'; // Remplace par l'URL correcte de ton API
+        /**
+         * Récupérer les domaines depuis l'API externe et les passer à la vue Blade.
+         *
+         * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
+         */
+        public function fetchDomains()
+        {
+            try {
+                // URL de l'API externe
+                $apiUrl = 'http://api.mane.com/api/domains'; // Remplace par l'URL correcte de l'API
 
-        // Appel à l'API de APIDomaine pour obtenir les domaines
-        $response = Http::get($apiUrl);
+                // Appel à l'API pour obtenir les domaines
+                $response = Http::get($apiUrl);
 
-        if ($response->successful()) {
-            $domains = $response->json();
-            // Passer les domaines à la vue Blade
-            return view('domains.index', ['domains' => $domains]);
-        } else {
-            // Gérer les erreurs si la réponse de l'API n'est pas réussie
-            return response()->json([
-                'error' => 'Unable to fetch domains from API. Status: ' . $response->status()
-            ], 500);
+                if ($response->successful()) {
+                    $domains = $response->json();
+
+                    // Adapter la structure des données si nécessaire
+                    $formattedDomains = collect($domains)->map(function ($domain) {
+                        return [
+                            'id' => $domain['id'],
+                            'name' => $domain['name'],
+                            'extension' => $domain['extension'],
+                            'status' => $domain['status'],
+                            'price' => $domain['price'],
+                            'duration' => $domain['duration'],
+                        ];
+                    });
+
+                    // Passer les domaines formatés à la vue Blade
+                    return view('Domain.index', ['domains' => $formattedDomains]);
+                } else {
+                    // Gérer les erreurs si la réponse de l'API n'est pas réussie
+                    return response()->json([
+                        'error' => 'Impossible de récupérer les domaines depuis l\'API. Statut : ' . $response->status()
+                    ], 500);
+                }
+            } catch (\Throwable $th) {
+                // Gérer les exceptions et retourner une réponse JSON avec le message d'erreur
+                return response()->json([
+                    'error' => 'Une erreur inattendue s\'est produite : ' . $th->getMessage()
+                ], 500);
+            }
         }
-    } catch (\Throwable $th) {
-        // Gérer les exceptions et retourner une réponse JSON avec le message d'erreur
-        return response()->json([
-            'error' => 'An unexpected error occurred: ' . $th->getMessage()
-        ], 500);
     }
-}
-
-}

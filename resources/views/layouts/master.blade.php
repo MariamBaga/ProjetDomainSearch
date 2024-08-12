@@ -223,68 +223,11 @@
                                     <li class="nav-item">
                                         <a href="{{ route('about') }}" class="nav-link dropdown-toggle">Abous Us</a>
                                         <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle">Services</a>
-                                                <ul class="dropdown-menu">
-
-                                                    <li class="nav-item">
-                                                        <a href="enterprise-email.html" class="nav-link">Enterprise
-                                                            Email</a>
-                                                    </li>
 
 
 
 
-                                                </ul>
-                                            </li>
 
-                                            <li class="nav-item">
-                                                <a href="{{ route('about') }}" class="nav-link">About Us</a>
-                                            </li>
-
-
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle">User</a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('login') }}"
-                                                            class="nav-link">Authentication</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('password.forget') }}"
-                                                            class="nav-link">Forget
-                                                            Password</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle">Shop</a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('cart') }}" class="nav-link">Cart</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('checkout') }}"
-                                                            class="nav-link">Checkout</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="payment-method.html" class="nav-link">Payment
-                                                            Method</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="configurator.html" class="nav-link">Configurator</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle">Others</a>
-                                                <ul class="dropdown-menu">
-
-                                                    <li class="nav-item">
-                                                        <a href="search-page.html" class="nav-link">Search Page</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
                                             <li class="nav-item">
                                                 <a href="terms-conditions.html" class="nav-link">Terms &
                                                     Conditions</a>
@@ -292,9 +235,7 @@
                                             <li class="nav-item">
                                                 <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a href="404.html" class="nav-link">404 Error Page</a>
-                                            </li>
+                                           
                                         </ul>
                                     </li>
                                     <li class="nav-item">
