@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DomainSearchApiController;
 
-Route::get('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
+Route::POST('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
 
 
 // Route::get('/', function () {

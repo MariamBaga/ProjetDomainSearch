@@ -36,7 +36,7 @@
                 <h2>Search perfect domain</h2>
             </div>
             <div class="domain-search domain-search-two">
-                <form id="domain-search-form" method="POST" action="{{ route('search.domain') }}">
+                <form id="domain-search-form" method="POST" action="{{ route('domain.fetch') }}">
                     @csrf
                     <div class="form-group">
                         <input type="text" name="domain_name" class="form-control search-text-field"
