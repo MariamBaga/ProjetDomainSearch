@@ -89,7 +89,7 @@ class CartController extends Controller
 {
     // Validation des données envoyées
     $request->validate([
-        'domains.*.duration' => 'required|integer|min:1|max:5', // Valider la durée pour chaque domaine
+        'domains.*.duration' => 'required|integer|min:1|max:10', // Valider la durée pour chaque domaine
     ]);
 
     // Récupérer le panier de la session

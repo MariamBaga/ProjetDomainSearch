@@ -9,8 +9,8 @@
         <div class="authentication-item bg-white">
             <div class="authentication-user-panel">
                 <div class="authentication-user-header">
-                    <a href="{{ route('home') }}"><img src="assets/images/logo-blue.png" class="logo1" alt="logo"></a>
-                    <a href="{{ route('home') }}"><img src="assets/images/logo.png" class="logo2" alt="logo"></a>
+                <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo1" alt="logo" width="80"></a>
+                    <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo2" alt="logo" width="80"></a>
                 </div>
                 <div class="authentication-user-body">
                     @if (session('success'))

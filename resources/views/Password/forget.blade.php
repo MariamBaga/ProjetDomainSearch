@@ -9,14 +9,10 @@
         <div class="authentication-item bg-white authentication-grid-lost">
             <div class="authentication-user-panel">
                 <div class="authentication-user-header">
-                    <a href="{{ route('home') }}">
-                        <img src="{{ asset('assets/images/logo-blue.png') }}" class="logo1" alt="logo">
-                    </a>
-                    <a href="{{ route('home') }}">
-                        <img src="{{ asset('assets/images/logo.png') }}" class="logo2" alt="logo">
-                    </a>
+                <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo1" alt="logo" width="120"></a>
+                    <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo2" alt="logo" width="120"></a>
 
-                    
+
                 </div>
                 <div class="authentication-user-body">
                     <p class="mt-40">Vous avez oublié votre mot de passe ? Veuillez entrer votre nom d'utilisateur ou votre

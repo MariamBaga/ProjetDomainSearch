@@ -116,9 +116,9 @@
 
                 <div class="mobile-nav">
                     <a href="{{ route('home') }}" class="mobile-logo">
-                        <img src="{{ asset('assets/images/logo-blue.png') }}" alt="logo"
+                        <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo"
                             class="blue-logo logo1">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="blue-logo logo2">
+                        <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo logo2">
 
                     </a>
 
@@ -208,9 +208,9 @@
                     <div class="custom-container-fluid container-fluid">
                         <nav class="navbar navbar-expand-md navbar-light">
                             <a class="navbar-brand" href="{{ route('home') }}">
-                                <img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="white-logo">
-                                <img src="{{ asset('assets/images/logo-blue.png') }}" alt="logo"
-                                    class="blue-logo">
+                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo" width="120">
+                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo"
+                                    class="blue-logo"  width="80">
                             </a>
 
                             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -235,7 +235,7 @@
                                             <li class="nav-item">
                                                 <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
                                             </li>
-                                           
+
                                         </ul>
                                     </li>
                                     <li class="nav-item">

@@ -61,7 +61,7 @@ Panier
     <form action="{{ route('cart.update') }}" method="POST">
         @csrf
  <input type="hidden" name="domains[{{ $domainId }}][duration]" value="{{ $domain['duration'] }}">
-                                <input type="number" name="domains[{{ $domainId }}][duration]" value="{{ $domain['duration'] }}" min="1" max="5" required>
+                                <input type="number" name="domains[{{ $domainId }}][duration]" value="{{ $domain['duration'] }}" min="1" max="10" required>
 
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

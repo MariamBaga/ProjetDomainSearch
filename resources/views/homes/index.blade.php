@@ -141,7 +141,7 @@
     <section class="choose-section pt-100 pb-70 blue-gradient-with-opacity">
         <div class="container">
             <div class="section-title section-title-two">
-                
+
 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam quis </p>

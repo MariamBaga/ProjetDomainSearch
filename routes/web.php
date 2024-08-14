@@ -35,9 +35,9 @@ use App\Http\Controllers\DomainSearchApiController;
 Route::get('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/test-role', function () {
 //     $user = User::find(4);
