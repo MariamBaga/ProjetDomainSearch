@@ -27,4 +27,19 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Vos informations ont été mises à jour avec succès.');
     }
+
+
+    public function userCompte()
+    {
+        return view('User.index');
+
+    }
+
+
+
+    public function profil()
+    {
+        return view('User.profil');
+
+    }
 }

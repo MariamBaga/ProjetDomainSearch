@@ -48,6 +48,11 @@ Route::POST('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains']
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/UserCompte', [UserController::class, 'userCompte'])->name('UserCompte');
+
+Route::get('/profil', [UserController::class, 'profil'])->name('profil');
+
+
 Route::get('/pricing', [PriceController::class, 'index'])->name('pricing');
 
 
