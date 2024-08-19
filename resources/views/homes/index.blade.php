@@ -6,24 +6,27 @@
 
 @section('beforecontent')
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-sm-12 col-lg-6">
-                <div class="header-page-content text-center text-lg-start">
-                    <h1>Domain Name</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam.</p>
-                    <ul class="section-button">
-                        <li><button class="btn btn-pill">Get Started</button></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-12 offset-lg-3 col-lg-3">
-                <div class="header-page-image">
-                    <img src="{{ asset('assets/images/vps-header-shape.png') }}" alt="shape">
-
-                </div>
-            </div>
+    <div class="row align-items-center">
+    <div class="col-sm-12 col-lg-6">
+        <div class="header-page-content text-center text-lg-start">
+            {{-- Titre principal de la page --}}
+            <h1>Nom de Domaine</h1>
+            {{-- Description du service de noms de domaine --}}
+            <p>Découvrez notre service d'achat de noms de domaine. Protégez votre marque en ligne avec un domaine personnalisé, adapté à vos besoins professionnels ou personnels.</p>
+            <ul class="section-button">
+                {{-- Bouton pour démarrer l'achat d'un domaine --}}
+                <li><button class="btn btn-pill">Commencer</button></li>
+            </ul>
         </div>
+    </div>
+    <div class="col-sm-12 offset-lg-3 col-lg-3">
+        <div class="header-page-image">
+            {{-- Image illustrative pour la section d'en-tête --}}
+            <img src="{{ asset('assets/images/vps-header-shape.png') }}" alt="forme">
+        </div>
+    </div>
+</div>
+
     </div>
 @endsection
 
@@ -36,7 +39,7 @@
                 <h2>Search perfect domain</h2>
             </div>
             <div class="domain-search domain-search-two">
-                <form id="domain-search-form" method="POST" action="{{ route('domain.fetch') }}">
+                <form id="domain-search-form" method="POST" action="{{ route('search.domain') }}">
                     @csrf
                     <div class="form-group">
                         <input type="text" name="domain_name" class="form-control search-text-field"
@@ -82,10 +85,12 @@
     <section class="pricing-section p-tb-100">
         <div class="container">
             <div class="section-title section-title-two">
-                <small>Pricing plan</small>
-                <h2>Domain pricing</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim</p>
+            <small>Plan tarifaire</small>
+{{-- Titre de la section --}}
+<h2>Tarification des domaines</h2>
+{{-- Paragraphe d'introduction sur les tarifs des domaines --}}
+<p>Découvrez nos tarifs compétitifs pour l'achat de noms de domaine. Nous offrons des options flexibles pour répondre à tous vos besoins, que vous soyez un particulier ou une entreprise. Choisissez la durée qui vous convient et profitez de prix avantageux tout en assurant la sécurité et la gestion optimale de votre domaine.</p>
+
             </div>
             <div class="pricing-table-default">
                 <table>
@@ -113,7 +118,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($domainPrices as $price)
+                        @foreach ($domainPrices as $price)
                             <tr>
                                 <td class="td-main td-bg">
                                     <div class="td-domain-name">
@@ -128,9 +133,9 @@
                         @endforeach
                         <tr>
                             <td class="td-main td-bg"></td>
-                            <td><a href="{{route('cart')}}" class="btn btn-gradient">Buy Now</a></td>
-                            <td><a href="{{route('cart')}}" class="btn btn-gradient">Buy Now</a></td>
-                            <td><a href="{{route('cart')}}" class="btn btn-gradient">Buy Now</a></td>
+                            <td><a href="{{ route('cart') }}" class="btn btn-gradient">Buy Now</a></td>
+                            <td><a href="{{ route('cart') }}" class="btn btn-gradient">Buy Now</a></td>
+                            <td><a href="{{ route('cart') }}" class="btn btn-gradient">Buy Now</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -232,65 +237,56 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30">
-                        <div class="client-content-2">
-                            <div class="section-title section-title-two section-title-left">
+    <div class="client-content-2">
+        <div class="section-title section-title-two section-title-left">
+            {{-- Titre de la section --}}
+            <h2>Ce que disent les clients</h2>
+        </div>
+        <div class="client-content-carousel owl-carousel owl-theme">
+            <div class="item">
+                <div class="client-carousel-details text-center text-lg-start">
+                    {{-- Témoignage de Alexa Jesmin --}}
+                    <p class="client-carousel-para">Je suis extrêmement satisfaite des services offerts. L'équipe est très professionnelle et toujours prête à aider.</p>
+                    <h3 class="client-carousel-name">Alexa Jesmin</h3>
+                    <h4 class="client-carousel-designation">Responsable marketing</h4>
+                </div>
+            </div>
+            <div class="item">
+                <div class="client-carousel-details text-center text-lg-start">
+                    {{-- Témoignage de Devit M. Kotlin --}}
+                    <p class="client-carousel-para">Les solutions proposées ont permis à notre entreprise de se développer rapidement et efficacement. Un service exceptionnel !</p>
+                    <h3 class="client-carousel-name">Devit M. Kotlin</h3>
+                    <h4 class="client-carousel-designation">PDG & Fondateur</h4>
+                </div>
+            </div>
+            <div class="item">
+                <div class="client-carousel-details text-center text-lg-start">
+                    {{-- Témoignage de John Doe --}}
+                    <p class="client-carousel-para">Le support technique est réactif et compétent. Nous avons pu résoudre nos problèmes en un rien de temps.</p>
+                    <h3 class="client-carousel-name">John Doe</h3>
+                    <h4 class="client-carousel-designation">Directeur technique</h4>
+                </div>
+            </div>
+            <div class="item">
+                <div class="client-carousel-details text-center text-lg-start">
+                    {{-- Témoignage de Robert Alberto --}}
+                    <p class="client-carousel-para">Un service fiable et une équipe toujours disponible pour répondre à nos besoins. Je recommande vivement.</p>
+                    <h3 class="client-carousel-name">Robert Alberto</h3>
+                    <h4 class="client-carousel-designation">Développeur senior</h4>
+                </div>
+            </div>
+            <div class="item">
+                <div class="client-carousel-details text-center text-lg-start">
+                    {{-- Témoignage de Mike Devid --}}
+                    <p class="client-carousel-para">L'accompagnement personnalisé nous a permis de tirer le meilleur parti de leurs solutions. Un vrai partenaire de confiance.</p>
+                    <h3 class="client-carousel-name">Mike Devid</h3>
+                    <h4 class="client-carousel-designation">Responsable des ressources humaines</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                <h2>What clients are saying</h2>
-                            </div>
-                            <div class="client-content-carousel owl-carousel owl-theme">
-                                <div class="item">
-                                    <div class="client-carousel-details text-center text-lg-start">
-                                        <p class="client-carousel-para">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua eos qui
-                                            velit, sed quia non numquam eius modi tempora cidunt lboredolore magnam
-                                            luptatem.</p>
-                                        <h3 class="client-carousel-name">Alexa Jesmin</h3>
-                                        <h4 class="client-carousel-designation">Marketing Manager</h4>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="client-carousel-details text-center text-lg-start">
-                                        <p class="client-carousel-para">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua eos qui
-                                            velit, sed quia non numquam eius modi tempora cidunt lboredolore magnam
-                                            luptatem.</p>
-                                        <h3 class="client-carousel-name">Devit m. kotlin</h3>
-                                        <h4 class="client-carousel-designation">CEO & Founder</h4>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="client-carousel-details text-center text-lg-start">
-                                        <p class="client-carousel-para">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua eos qui
-                                            velit, sed quia non numquam eius modi tempora cidunt lboredolore magnam
-                                            luptatem.</p>
-                                        <h3 class="client-carousel-name">John Doe</h3>
-                                        <h4 class="client-carousel-designation">CTO</h4>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="client-carousel-details text-center text-lg-start">
-                                        <p class="client-carousel-para">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua eos qui
-                                            velit, sed quia non numquam eius modi tempora cidunt lboredolore magnam
-                                            luptatem.</p>
-                                        <h3 class="client-carousel-name">Robert Alberto</h3>
-                                        <h4 class="client-carousel-designation">Senior Developer</h4>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="client-carousel-details text-center text-lg-start">
-                                        <p class="client-carousel-para">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua eos qui
-                                            velit, sed quia non numquam eius modi tempora cidunt lboredolore magnam
-                                            luptatem.</p>
-                                        <h3 class="client-carousel-name">Mike devid</h3>
-                                        <h4 class="client-carousel-designation">HR</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -300,7 +296,7 @@
     <section class="faq-section pt-100 pb-70 blue-gradient-with-opacity">
         <div class="container">
             <div class="section-title section-title-two">
-                <h2>What Would You Like To Know?</h2>
+                <h2>Que souhaitez-vous savoir ?</h2>
             </div>
             <div class="row align-items-center">
                 <div class="col-sm-12 col-md-12 col-lg-5 pb-30">
@@ -308,61 +304,71 @@
 
                         <div class="faq-accordion-item faq-accordion-item-active bg-white">
                             <div class="faq-accordion-header">
-                                <h3 class="faq-accordion-title">What Is Dedicated Hosting?</h3>
+                                <h3 class="faq-accordion-title">Qu'est-ce que l'hébergement dédié ?</h3>
                             </div>
                             <div class="faq-accordion-body">
                                 <div class="faq-accordion-body-inner">
-                                    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                        veniaquis nostrud ullamco nisi ut aliquip.</p>
+                                    {{-- L'hébergement dédié est une forme d'hébergement web où un serveur entier est mis à la disposition d'un seul client. Cela permet un contrôle total sur les ressources du serveur, garantissant ainsi une performance optimale pour les applications ou les sites web hébergés. --}}
+                                    <p class="faq-accordion-para">L'hébergement dédié est une forme d'hébergement web où un
+                                        serveur entier est mis à la disposition d'un seul client. Cela permet un contrôle
+                                        total sur les ressources du serveur, garantissant ainsi une performance optimale
+                                        pour les applications ou les sites web hébergés.</p>
                                 </div>
                             </div>
                         </div>
+
                         <div class="faq-accordion-item bg-white">
                             <div class="faq-accordion-header">
-                                <h3 class="faq-accordion-title">Does the price grow up with sharing?</h3>
+                                <h3 class="faq-accordion-title">Le prix augmente-t-il avec le partage ?</h3>
                                 <div class="faq-accordion-header-overlay"></div>
                             </div>
                             <div class="faq-accordion-body">
                                 <div class="faq-accordion-body-inner">
-                                    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                        veniaquis nostrud ullamco nisi ut aliquip.</p>
+                                    {{-- Non, le prix de l'hébergement partagé est généralement fixe et dépend du plan que vous choisissez. Toutefois, certaines fonctionnalités ou ressources supplémentaires peuvent entraîner des frais supplémentaires. --}}
+                                    <p class="faq-accordion-para">Non, le prix de l'hébergement partagé est généralement
+                                        fixe et dépend du plan que vous choisissez. Toutefois, certaines fonctionnalités ou
+                                        ressources supplémentaires peuvent entraîner des frais supplémentaires.</p>
                                 </div>
                             </div>
                         </div>
+
                         <div class="faq-accordion-item bg-white">
                             <div class="faq-accordion-header">
-                                <h3 class="faq-accordion-title">What access do I have on a free trial?</h3>
+                                <h3 class="faq-accordion-title">Quels accès ai-je pendant la période d'essai gratuite ?
+                                </h3>
                                 <div class="faq-accordion-header-overlay"></div>
                             </div>
                             <div class="faq-accordion-body">
                                 <div class="faq-accordion-body-inner">
-                                    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                        veniaquis nostrud ullamco nisi ut aliquip.</p>
+                                    {{-- Pendant la période d'essai gratuite, vous avez accès à toutes les fonctionnalités principales du service, vous permettant de tester son efficacité et de vérifier s'il correspond à vos besoins avant de vous engager. --}}
+                                    <p class="faq-accordion-para">Pendant la période d'essai gratuite, vous avez accès à
+                                        toutes les fonctionnalités principales du service, vous permettant de tester son
+                                        efficacité et de vérifier s'il correspond à vos besoins avant de vous engager.</p>
                                 </div>
                             </div>
                         </div>
+
                         <div class="faq-accordion-item bg-white">
                             <div class="faq-accordion-header">
-                                <h3 class="faq-accordion-title">What access do I have on the free plan?</h3>
+                                <h3 class="faq-accordion-title">Quels accès ai-je avec le plan gratuit ?</h3>
                                 <div class="faq-accordion-header-overlay"></div>
                             </div>
                             <div class="faq-accordion-body">
                                 <div class="faq-accordion-body-inner">
-                                    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                        veniaquis nostrud ullamco nisi ut aliquip.</p>
+                                    {{-- Avec le plan gratuit, vous bénéficiez d'un accès limité aux fonctionnalités du service, conçu pour vous donner un aperçu de ce que nous offrons. Pour débloquer des fonctionnalités avancées, vous devrez passer à un plan payant. --}}
+                                    <p class="faq-accordion-para">Avec le plan gratuit, vous bénéficiez d'un accès limité
+                                        aux fonctionnalités du service, conçu pour vous donner un aperçu de ce que nous
+                                        offrons. Pour débloquer des fonctionnalités avancées, vous devrez passer à un plan
+                                        payant.</p>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30">
                     <div class="about-content-image">
-                        <img src="{{ asset('assets/images/faq.png') }}" alt="faq">
-
+                        <img src="{{ asset('assets/images/faq.png') }}" alt="FAQ">
                     </div>
                 </div>
             </div>

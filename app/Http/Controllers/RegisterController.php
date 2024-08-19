@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Country;
 use Spatie\Permission\Models\Role; // Importez la classe Role
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\Log;
 class RegisterController extends Controller
 {
     public function index(){
-        return view('Register.index');
+
+        // Récupère la liste des pays (exemple pour une fonctionnalité future)
+        $countries = Country::all();
+        return view('Register.index',compact('countries'));
     }
 
     public function registerpost(RegisterRequest $request){
@@ -34,7 +38,7 @@ class RegisterController extends Controller
 // Assign the "user" role to the newly registered user
 $user->assignRole('user');
 
-return redirect()->route('login')->with('success', 'Registration successful! Please login.');
+return redirect()->route('login')->with('success', 'Inscrit avec succès! Connectez-vous s\'il vous plaît.');
 } catch (Exception $e) {
 Log::error('Registration failed: ' . $e->getMessage());
 return redirect()->back()->with('error', 'Registration failed. Please try again.');

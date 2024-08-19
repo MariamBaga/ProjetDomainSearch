@@ -171,7 +171,7 @@
                             <a class="navbar-brand" href="{{ route('home') }}">
                                 <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo" width="120">
                                 <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo"
-                                    class="blue-logo"  width="80">
+                                    class="blue-logo"  width="120">
                             </a>
 
                             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">

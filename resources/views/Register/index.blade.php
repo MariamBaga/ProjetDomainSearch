@@ -127,15 +127,11 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="flaticon-user"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" id="country"
-                                                name="country" placeholder="Country"
-                                                value="{{ old('country') }}">
-
-                                            @if ($errors->has('country'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('country') }}</strong>
-                                                </span>
-                                            @endif
+                                            <select name="country" class="form-control">
+                                                    @foreach ($countries as $country)
+                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    @endforeach
+                                                </select>
                                         </div>
                                     </div>
                                 </div>

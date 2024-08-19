@@ -6,8 +6,8 @@
                     <div class="col-sm-12 col-md-12 col-lg-4">
                         <div class="footer-content-item">
                             <div class="footer-logo">
-                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"
-                                        alt="logo">
+                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/Ibracilinklogo.png' ) }} "
+                                        alt="logo"  width="120">
                                 </a>
                             </div>
                             <div class="footer-details">
@@ -122,4 +122,28 @@
     </div>
 
 
-   
+
+
+<script>
+        $(document).ready(function() {
+            // Disparaître après 2 minutes (120000 millisecondes)
+            setTimeout(function() {
+                $('.alert').fadeOut('slow', function() {
+                    $(this).remove();
+                });
+            }, 50000); // 120000 ms = 2 minutes
+        });
+    </script>
+    <script data-cfasync="false"
+        src="https://templates.hibootstrap.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('assets/js/form-validator.min.js') }}"></script>
+    <script src="{{ asset('assets/js/contact-form-script.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+
+

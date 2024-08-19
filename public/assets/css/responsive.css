@@ -111,7 +111,7 @@
   }
   .mobile-nav-two .navbar-option-icon span {
     color: #2647c8;
-    background: linear-gradient(90deg, #2647c8 0%, #142d99 42%, #02126a 100%);
+    background: linear-gradient(90deg, #2647c8 0%, #2647c8 42%, #02126a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -130,7 +130,7 @@
     font-size: 23px;
   }
   .mobile-nav-two .navbar-option-icon .shopping-cart-tooltip {
-    background: linear-gradient(90deg, #2647c8 0%, #142d99 42%, #02126a 100%);
+    background: linear-gradient(90deg, #2647c8 0%, #2647c8 42%, #02126a 100%);
     color: #fff !important;
     -webkit-text-fill-color: #fff;
   }
