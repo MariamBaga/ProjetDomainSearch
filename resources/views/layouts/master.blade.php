@@ -3,7 +3,6 @@
 
 @include('layouts.headLink')
 
-
 <body>
 
     <div class="preloader blue-gradient">
@@ -13,7 +12,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="topbar bg-white">
         <div class="custom-container-fluid container-fluid">
@@ -42,10 +40,11 @@
                             <i class="flaticon-chat"></i>
                         </div>
                         <div class="topbar-list-content">
-                            <a
-                                href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#97fef9f1f8d7f5fbfefab9f4f8fa"><span
-                                    class="__cf_email__"
-                                    data-cfemail="563f38303916343a3f3b7835393b">[email&#160;protected]</span></a>
+                            <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#97fef9f1f8d7f5fbfefab9f4f8fa">
+                                <span class="__cf_email__" data-cfemail="563f38303916343a3f3b7835393b">
+                                    [email&#160;protected]
+                                </span>
+                            </a>
                         </div>
                     </div>
                     <div class="topbar-item-list">
@@ -61,15 +60,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
     <header class="header-banner header-page blue-gradient header-padding">
 
         <div class="fixed-top">
@@ -77,23 +67,17 @@
 
                 <div class="mobile-nav">
                     <a href="{{ route('home') }}" class="mobile-logo">
-                        <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo"
-                            class="blue-logo logo1">
+                        <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo logo1">
                         <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo logo2">
-
                     </a>
 
                     <div class="navbar-option">
-
-
                         <div class="navbar-option-item navbar-option-dots dropdown">
                             <button type="button" id="dot" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-dots-horizontal-rounded"></i>
                             </button>
-                             <ul class="dropdown-menu navbar-dots-dropdown">
-
+                            <ul class="dropdown-menu navbar-dots-dropdown">
                                 <li class="dropdown-item">
-
                                     <div class="navbar-option-item">
                                         <a href="{{ route('cart') }}" target="_blank"
                                             class="shopping-cart navbar-option-icon">
@@ -106,19 +90,11 @@
                                                 @endphp
                                                 {{ $cartCount }}
                                             </span>
-
-
                                         </a>
                                     </div>
                                 </li>
-                              </ul>
-
-
-
-
+                            </ul>
                         </div>
-
-
 
                         <div class="navbar-option-item navbar-option-cart mobile-hide">
                             <a href="{{ route('cart') }}" target="_blank" class="shopping-cart navbar-option-icon">
@@ -135,21 +111,10 @@
 
                         <div class="navbar-option-item navbar-option-account">
                             <ul class="navbar-nav ">
-                                <!-- Other nav items... -->
                                 @auth
-                                    <li class="navbar-option-item">
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            style="display: none;">
-                                            @csrf
-                                        </form>
-                                        <a href="{{ route('logout') }}" class="nav-link"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                    </li>
-
                                     <li class="nav-item">
-                                        <a href="{{ route('profile.show') }}" class="nav-link">
-                                            <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}"
-                                                alt="User Photo" class="user-photo">
+                                        <a href="{{ auth()->user()->hasRole('admin') || auth()->user()->hasRole('super-admin') ? route('admin.dashboard') : route('user.Dashbaord') }}" class="btn btn-blue btn-pill text-nowrap">
+                                            Mon Compte
                                         </a>
                                     </li>
                                 @else
@@ -164,93 +129,60 @@
                     </div>
                 </div>
 
-
                 <div class="main-nav">
                     <div class="custom-container-fluid container-fluid">
                         <nav class="navbar navbar-expand-md navbar-light">
                             <a class="navbar-brand" href="{{ route('home') }}">
                                 <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo" width="120">
-                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo"
-                                    class="blue-logo"  width="120">
+                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo" width="120">
                             </a>
 
                             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
-
                                     <li class="nav-item">
                                         <a href="{{ route('home') }}" class="nav-link active">Domain Name</a>
-
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('about') }}" class="nav-link dropdown-toggle">Abous Us</a>
+                                        <a href="{{ route('about') }}" class="nav-link dropdown-toggle">About Us</a>
                                         <ul class="dropdown-menu">
-
-
-
-
-
                                             <li class="nav-item">
-                                                <a href="terms-conditions.html" class="nav-link">Terms &
-                                                    Conditions</a>
+                                                <a href="{{ route('condition') }}" class="nav-link">Terms & Conditions</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+                                                <a href="{{ route('politique') }}" class="nav-link">Privacy Policy</a>
                                             </li>
-
                                         </ul>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('pricing') }}" class="nav-link">Pricing</a>
                                     </li>
-
                                     <li class="nav-item">
                                         <a href="{{ route('contact') }}" class="nav-link">Contact Us</a>
                                     </li>
                                 </ul>
                             </div>
 
-
-
-
-
                             <div class="navbar-option">
-                             <div class="navbar-option-item">
-                                <a href="{{ route('cart') }}" target="_blank"
-                                    class="shopping-cart navbar-option-icon">
-                                    <span><i class="flaticon-shopping-bags"></i></span>
-                                    <span class="shopping-cart-tooltip">
-                                        @php
-                                            $cart = session()->get('cart');
-                                            $cartCount =
-                                                is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
-                                        @endphp
-                                        {{ $cartCount }}
-                                    </span>
-                                </a>
+                                <div class="navbar-option-item">
+                                    <a href="{{ route('cart') }}" target="_blank" class="shopping-cart navbar-option-icon">
+                                        <span><i class="flaticon-shopping-bags"></i></span>
+                                        <span class="shopping-cart-tooltip">
+                                            @php
+                                                $cart = session()->get('cart');
+                                                $cartCount = is_array($cart) || $cart instanceof Countable ? count($cart) : 0;
+                                            @endphp
+                                            {{ $cartCount }}
+                                        </span>
+                                    </a>
                                 </div>
-                                </div>
-
-
-
-
+                            </div>
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
-                                    <!-- Other nav items... -->
                                     @auth
                                         <li class="nav-item">
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                            </form>
-                                            <a href="{{ route('logout') }}" class="nav-link"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="{{ route('profile.show') }}" class="nav-link">
-                                                <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('default-user-photo.png') }}"
-                                                    alt="User Photo" class="user-photo">
+                                            <a href="{{ auth()->user()->hasRole('admin') || auth()->user()->hasRole('super-admin') ? route('admin.dashboard') : route('user.Dashbaord') }}" class="btn btn-blue btn-pill text-nowrap">
+                                                Mon Compte
                                             </a>
                                         </li>
                                     @else
@@ -263,53 +195,22 @@
                                 </ul>
                             </div>
                         </nav>
-
-
-
-
-
-
                     </div>
                 </div>
-
             </div>
         </div>
-        </div>
-
-        <div class="container">
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-
-
-        </div>
         @yield('beforecontent')
-
     </header>
 
-
-
+    <div class="container">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
 
     @yield('content')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @include('layouts.footerLink')
 
@@ -318,8 +219,6 @@
             <span><i class="flaticon-up-arrow"></i></span>
         </div>
     </div>
-
-
 
 </body>
 

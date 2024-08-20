@@ -32,7 +32,15 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DomainSearchApiController;
 
-Route::POST('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
+Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
+
+// Route pour renouveler un domaine
+Route::post('/renew', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
+
+// Route pour transférer un domaine
+Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
+Route::GET('/transfer', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
+Route::GET('/renew', [DomainController::class, 'indexRenew'])->name('domain.Renew.view');
 
 
 // Route::get('/', function () {
@@ -47,16 +55,21 @@ Route::POST('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains']
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/Politique', [HomeController::class, 'Politique'])->name('politique');
+Route::get('/Condition', [HomeController::class, 'Condition'])->name('condition');
 
-Route::get('/User/Dashbaord', [UserController::class, 'userCompte'])->name('User.Dashbaord');
+Route::get('/User/Dashbaord', [UserController::class, 'userCompte'])->name('user.Dashbaord');
 
-Route::get('/profil', [UserController::class, 'profil'])->name('profil');
+Route::get('/Userprofil', [UserController::class, 'profil'])->name('Userprofil');
 
 
 Route::get('/pricing', [PriceController::class, 'index'])->name('pricing');
 
 
-Route::post('/home', [DomainController::class, 'search'])->name('search.domain');
+Route::GET('/DomainSearch', [DomainController::class, 'search'])->name('search.domain');
+
+Route::GET('/User/domain_list', [DomainController::class, 'User_domains_list'])->name('User.domain.list');
+
 
 Route::get('/contact', [ContactController::class, 'view'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendmessage'])->name('contact.post');
@@ -79,7 +92,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'Dashbaord'])->name('admin.dashboard');
     // Route::put('/admin/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.updateRole');
     Route::put('/admin/users/{user}/permissions', [AdminController::class, 'updatePermissions'])->name('admin.users.updatePermissions');
 });

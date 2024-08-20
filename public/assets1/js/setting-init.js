@@ -6,7 +6,7 @@
         "storeKey": "quisetting-html",
         "setting": {
             "app_name": {
-                "value": "Qompac UI"
+                "value": "Domaine"
             },
             "theme_scheme_direction": {
                 "value": "ltr"
@@ -264,7 +264,7 @@
 //             return {
 //             "setting": {
 //                 "app_name": {
-//                     "value": "Qompac UI"
+//                     "value": "Domaine"
 //                 },
 //                 "theme_scheme_direction": {
 //                     "value": "ltr"
@@ -312,7 +312,7 @@
 //             return {
 //             "setting": {
 //                 "app_name": {
-//                     "value": "Qompac UI"
+//                     "value": "Domaine"
 //                 },
 //                 "theme_scheme_direction": {
 //                     "value": "ltr"
@@ -357,7 +357,7 @@
 //             return {
 //             "setting": {
 //                 "app_name": {
-//                     "value": "Qompac UI"
+//                     "value": "Domaine"
 //                 },
 //                 "theme_scheme_direction": {
 //                     "value": "ltr"

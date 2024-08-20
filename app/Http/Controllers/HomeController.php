@@ -16,6 +16,18 @@ class HomeController extends Controller
         $domainPrices =DomainPrice::all();
         return view('homes.index', compact('domainPrices'));
     }
+  public function Politique()
+    {
+
+
+        return view('homes.Politique');
+    }
+  public function Condition()
+    {
+
+
+        return view('homes.Termes_Conditions');
+    }
 
 
    // app/Http/Controllers/DomainController.php

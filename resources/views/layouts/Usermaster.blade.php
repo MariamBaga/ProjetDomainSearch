@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en" class="theme-fs-sm" data-bs-theme="light" data-bs-theme-color="default" dir="ltr">
 
-<!-- Mirrored from templates.iqonic.design/qompacui-dist/html/crypto-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Aug 2024 11:05:11 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title data-setting="app_name" data-rightJoin=" Responsive Bootstrap 5 Admin Dashboard Template">@yield('title')</title>
+    <title data-setting="app_name" >@yield('title')</title>
     <meta name="description"
         content="Qompac UI is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules.">
     <meta name="keywords"
@@ -108,7 +106,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="{{route('User.Dashbaord')}}">
+                        <a class="nav-link " aria-current="page" href="{{route('user.Dashbaord')}}">
                             <i class="icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">
                                 <svg width="20" class="icon-20" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -172,7 +170,7 @@
                         </a>
                         <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a class="nav-link " href="app/user-profile.html">
+                                <a class="nav-link " href="{{route('Userprofil')}}">
                                     <i class="icon">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -240,7 +238,7 @@
                             </a>
                             <ul class="sub-nav collapse" id="utilities-error" data-bs-parent="#sidebar-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="errors/error404.html">
+                                    <a class="nav-link " href="{{route('User.domain.list')}}">
                                         <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Error 404" data-bs-original-title="Error 404">
                                             <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <g>
@@ -809,42 +807,27 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="py-0 nav-link d-flex align-items-center ps-3" href="#"
-                                    id="profile-setting" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <img src="{{ asset('assets1/images/avatars/01.png') }}" alt="User-Profile"
-                                        class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded"
-                                        loading="lazy">
-                                    <img src="{{ asset('assets1/images/avatars/avtar_1.png') }}" alt="User-Profile"
-                                        class="theme-color-purple-img img-fluid avatar avatar-50 avatar-rounded"
-                                        loading="lazy">
-                                    <img src="{{ asset('assets1/images/avatars/avtar_2.png') }}" alt="User-Profile"
-                                        class="theme-color-blue-img img-fluid avatar avatar-50 avatar-rounded"
-                                        loading="lazy">
-                                    <img src="{{ asset('assets1/images/avatars/avtar_3.png') }}" alt="User-Profile"
-                                        class="theme-color-green-img img-fluid avatar avatar-50 avatar-rounded"
-                                        loading="lazy">
-                                    <img src="{{ asset('assets1/images/avatars/avtar_4.png') }}" alt="User-Profile"
-                                        class="theme-color-yellow-img img-fluid avatar avatar-50 avatar-rounded"
-                                        loading="lazy">
-                                    <img src="{{ asset('assets1/images/avatars/avtar_5.png') }}" alt="User-Profile"
-                                        class="theme-color-pink-img img-fluid avatar avatar-50 avatar-rounded"
-                                        loading="lazy">
-                                    <div class="caption ms-3 d-none d-md-block">
-                                        <h6 class="mb-0 caption-title">Austin Robertson</h6>
-                                        <p class="mb-0 caption-sub-title">Marketing Administrator</p>
-                                    </div>
-                                </a>
+                            <a class="py-0 nav-link d-flex align-items-center ps-3" href="#" id="profile-setting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('assets1/images/avatars/default.png') }}" alt="User-Profile" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
+    <div class="caption ms-3 d-none d-md-block">
+        <h6 class="mb-0 caption-title">{{ Auth::user()->name }}</h6>
+
+    </div>
+</a>
+
 
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-setting">
-                                    <li><a class="dropdown-item" href="app/user-profile.html">Profile</a></li>
-                                    <li><a class="dropdown-item" href="app/user-privacy-setting.html">Privacy
-                                            Setting</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="auth/sign-in.html">Logout</a></li>
-                                </ul>
+    <li><a class="dropdown-item" href="{{ route('Userprofil') }}">Profile</a></li>
+    <li><a class="dropdown-item" href="app/user-privacy-setting.html">Privacy Setting</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+    </li>
+</ul>
+
                             </li>
                         </ul>
                     </div>

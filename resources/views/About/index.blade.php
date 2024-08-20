@@ -10,7 +10,7 @@
 <div class="row align-items-center">
 <div class="col-sm-12 col-lg-6">
 <div class="header-page-content text-center text-lg-start">
-<h1>About Blim</h1>
+<h1>About </h1>
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
 <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
@@ -38,7 +38,7 @@
 <div class="row align-items-center">
 <div class="col-sm-12 col-lg-6 pb-30">
 <div class="section-title section-title-two section-title-left desk-pad-right-10 m-0">
-<small>About Blim</small>
+<small>About </small>
 <h2>Meet With Our Exceptional Services For Involvement Of Development</h2>
 <button class="btn btn-gradient btn-pill">Get Started</button>
 </div>

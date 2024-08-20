@@ -136,23 +136,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group mb-20">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-user"></i></span>
-                                            </div>
-                                            <input type="file" class="form-control" id="photo"
-                                                name="photo" placeholder="Photo">
-
-                                            @if ($errors->has('photo'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('photo') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+                               
 
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <button class="btn btn-gradient full-width mb-20">Sign Up</button>

@@ -19,6 +19,10 @@ class AdminController extends Controller
         return view('Admin.admin', compact('users', 'roles', 'permissions'));
     }
 
+    public function Dashbaord(){
+        return view('Admin.Dashbaord');
+    }
+
     // public function updateRole(Request $request, $id)
     // {
     //     $user = User::findOrFail($id);

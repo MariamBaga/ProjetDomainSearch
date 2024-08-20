@@ -10,6 +10,17 @@ class DomainController extends Controller
     //
 
 
+    public function indexTransfer(){
+        return view("Domain.Transfer");
+    }
+ public function indexRenew(){
+        return view("Domain.Renew");
+    }
+
+public function User_domains_list(){
+
+    return view("User.Domaine_liste"    );
+}
 
 
     // DomainController.php
