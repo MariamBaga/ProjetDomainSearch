@@ -54,8 +54,8 @@
                                             <h3>Solutions</h3>
                                         </div>
                                         <ul class="footer-details footer-list">
-                                            <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                            <li><a href="{{ route('condition') }}">Terms & Conditions</a></li>
+                                            <li><a href="{{ route('politique') }}">Privacy Policy</a></li>
                                             <li><a href="{{ route('login') }}">Authentication</a></li>
                                             <li><a href="pricing.html">Pricing</a></li>
                                             <li><a href="faqs.html">FAQ's</a></li>

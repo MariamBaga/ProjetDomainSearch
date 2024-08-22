@@ -41,7 +41,7 @@ $user->assignRole('user');
 return redirect()->route('login')->with('success', 'Inscrit avec succès! Connectez-vous s\'il vous plaît.');
 } catch (Exception $e) {
 Log::error('Registration failed: ' . $e->getMessage());
-return redirect()->back()->with('error', 'Registration failed. Please try again.');
+return redirect()->back()->with('error', 'Inscription échouée. Veuillez réessayer..');
 }
 }
 }

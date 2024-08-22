@@ -51,7 +51,7 @@
     <div id="loading">
         <div class="loader simple-loader">
             <div class="loader-body ">
-                <img src="{{ asset('assets1/images/loader.html') }}" alt="loader" class="image-loader img-fluid">
+                <img  alt="loader" class="image-loader img-fluid">
 
             </div>
         </div>

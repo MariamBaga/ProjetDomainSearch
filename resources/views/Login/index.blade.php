@@ -26,11 +26,22 @@
                     @endif
 
                     <div class="authentication-account-access-item">
-                                    <div class="authentication-link">
-                                        <a href="{{ route('register') }}">Creer un compte</a>
-                                    </div>
-                                </div>
+                        <div class="authentication-link">
+                            <a href="{{ route('register') }}">Creer un compte</a>
+                        </div>
+                    </div>
+
                     <div class="authentication-form">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <form action="{{ route('login.post') }}" method="POST">
                             @csrf
                             <div class="row">
@@ -41,8 +52,9 @@
                                                 <span class="input-group-text"><i class="flaticon-user"></i></span>
                                             </div>
                                             <input type="text" class="form-control" id="email" name="email"
-                                                placeholder="Email Address*" required />
+                                                placeholder="Addresse Email*" required />
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -50,11 +62,14 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-user"></i></span>
+                                                <span class="input-group-text"><i class="flaticon-password"></i></span>
                                             </div>
-                                            <input type="password" class="form-control" id="password"
-                                                name="password" placeholder="Password*" required />
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Mot de passe*" required />
                                         </div>
+                                        @error('password')
+                                            <div class="text-danger mt-2">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 

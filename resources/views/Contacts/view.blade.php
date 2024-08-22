@@ -46,8 +46,8 @@
                                 <div class="box-card-details">
                                     <h3>Envoyer un mail</h3>
                                     <ul class="box-card-list">
-                                        <li><i class="flaticon-chat"></i><a class="link-us" href="mailto:info.blim.com">[email&#160;protected]</a></li>
-                                        <li><i class="flaticon-email"></i><a class="link-us" href="https://www.info.blim.com/">info.blim.com</a></li>
+                                        <li><i class="flaticon-chat"></i><a class="link-us" href="mailto: hello@ibracilinks.com">[email&#160;protected]</a></li>
+                                        <li><i class="flaticon-email"></i><a class="link-us" href="https://www.info.blim.com/"> hello@ibracilinks.com</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                 <div class="box-card-details">
                                     <h3>Passer un appel</h3>
                                     <ul class="box-card-list">
-                                        <li><i class="flaticon-phone"></i><a href="tel:678-215-7765">+678-215-7765</a></li>
+                                        <li><i class="flaticon-phone"></i><a href="tel:+22378616194">+22378616194</a></li>
                                         <li><i class="flaticon-email"></i>1123-567-55795</li>
                                     </ul>
                                 </div>

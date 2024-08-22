@@ -63,9 +63,10 @@
 
 </div>
 <div class="authentication-info-title section-title section-title-two">
-<h2>Build Your Hosting Plans</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+    <h2>Choisissez Votre Nom de Domaine</h2>
+    <p>Un nom de domaine est essentiel pour établir votre présence en ligne. Sélectionnez le domaine parfait pour votre site web et commencez à bâtir votre identité numérique dès aujourd'hui.</p>
 </div>
+
 </div>
 </div>
 </div>

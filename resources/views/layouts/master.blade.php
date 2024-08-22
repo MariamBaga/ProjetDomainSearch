@@ -22,7 +22,7 @@
                             <i class="flaticon-chat"></i>
                         </div>
                         <div class="topbar-list-content">
-                            <a href="#">Chat With A Consultant</a>
+                            <a href="{{route('contact')}}">Chat With A Consultant</a>
                         </div>
                     </div>
                     <div class="topbar-item-list">
@@ -30,7 +30,7 @@
                             <i class="flaticon-phone"></i>
                         </div>
                         <div class="topbar-list-content">
-                            <a href="tel:678-215-7765">+678-215-7765</a>
+                            <a href="tel:+22378616194"> +22378616194</a>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <i class="flaticon-chat"></i>
                         </div>
                         <div class="topbar-list-content">
-                            <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#97fef9f1f8d7f5fbfefab9f4f8fa">
+                            <a href="mailto: hello@ibracilinks.com">
                                 <span class="__cf_email__" data-cfemail="563f38303916343a3f3b7835393b">
                                     [email&#160;protected]
                                 </span>
@@ -140,24 +140,15 @@
                             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item">
-                                        <a href="{{ route('home') }}" class="nav-link active">Domain Name</a>
+                                        <a href="{{ route('home') }}" class="nav-link ">Nom de Domaine</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('about') }}" class="nav-link dropdown-toggle">About Us</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="{{ route('condition') }}" class="nav-link">Terms & Conditions</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="{{ route('politique') }}" class="nav-link">Privacy Policy</a>
-                                            </li>
-                                        </ul>
+                                        <a href="{{ route('about') }}" class="nav-link ">À propos de nous</a>
+
                                     </li>
+
                                     <li class="nav-item">
-                                        <a href="{{ route('pricing') }}" class="nav-link">Pricing</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('contact') }}" class="nav-link">Contact Us</a>
+                                        <a href="{{ route('contact') }}" class="nav-link">Contactez-Nous</a>
                                     </li>
                                 </ul>
                             </div>
@@ -188,7 +179,7 @@
                                     @else
                                         <li class="nav-item">
                                             <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
-                                                Login / Register
+                                                Connection/Inscription
                                             </a>
                                         </li>
                                     @endauth

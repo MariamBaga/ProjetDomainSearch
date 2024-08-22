@@ -36,7 +36,7 @@
                                                 <span class="input-group-text"><i class="flaticon-user"></i></span>
                                             </div>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="Username*" required value="{{ old('name') }}" />
+                                                placeholder="Nom*" required value="{{ old('name') }}" />
 
                                             @if ($errors->has('name'))
                                                 <span class="help-block">
@@ -53,7 +53,7 @@
                                                 <span class="input-group-text"><i class="flaticon-user"></i></span>
                                             </div>
                                             <input type="text" class="form-control" id="email"
-                                                name="email" placeholder="Email Address *" required
+                                                name="email" placeholder="Addresse Email *" required
                                                 value="{{ old('email') }}" />
 
                                             @if ($errors->has('email'))
@@ -69,10 +69,10 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-user"></i></span>
+                                                <span class="input-group-text"><i class="flaticon-phone-call"></i></span>
                                             </div>
                                             <input type="tel" class="form-control" id="phone"
-                                                name="phone" placeholder="+000 123 456 00"
+                                                name="phone" placeholder="+223 00 00 00 00"
                                                 value="{{ old('phone') }}">
 
                                             @if ($errors->has('phone'))
@@ -88,10 +88,10 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-user"></i></span>
+                                                <span class="input-group-text"><i class="flaticon-password"></i></span>
                                             </div>
                                             <input type="password" class="form-control" id="password"
-                                                name="password" placeholder="Password *" required />
+                                                name="password" placeholder="Mot de passe *" required />
 
                                             @if ($errors->has('password'))
                                                 <span class="help-block">
@@ -106,11 +106,11 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-user"></i></span>
+                                                <span class="input-group-text"><i class="flaticon-password"></i></span>
                                             </div>
                                             <input type="password" class="form-control"
                                                 id="password_confirmation" name="password_confirmation"
-                                                placeholder="Confirm Password *" required />
+                                                placeholder="Confirmer le mot de passe *" required />
 
                                             @if ($errors->has('password_confirmation'))
                                                 <span class="help-block">
@@ -125,7 +125,7 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-user"></i></span>
+                                                <span class="input-group-text"><i class="flaticon-country"></i></span>
                                             </div>
                                             <select name="country" class="form-control">
                                                     @foreach ($countries as $country)
@@ -136,10 +136,10 @@
                                     </div>
                                 </div>
 
-                               
+
 
                                 <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <button class="btn btn-gradient full-width mb-20">Sign Up</button>
+                                    <button class="btn btn-gradient full-width mb-20">S'inscrire</button>
                                 </div>
                             </div>
                         </form>

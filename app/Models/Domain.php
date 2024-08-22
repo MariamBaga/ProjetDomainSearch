@@ -40,4 +40,8 @@ class Domain extends Model
     {
         return $this->status === self::STATUS_RESERVED;
     }
+    public function domains()
+    {
+        return $this->hasMany(Domain::class);
+    }
 }

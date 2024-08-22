@@ -28,9 +28,14 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Vos informations ont été mises à jour avec succès.');
     }
 
+    public function domains()
+    {
+        return $this->hasMany(Domain::class);
+    }
 
     public function userCompte()
     {
+        
         return view('User.index');
 
     }
