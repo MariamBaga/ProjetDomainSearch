@@ -16,16 +16,30 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        // Vérifier si l'utilisateur est authentifié
+        if (!Auth::check()) {
+            // Stocker l'URL de la page actuelle dans la session
+            session()->put('url.intended', url()->current());
+
+            // Rediriger vers la page de connexion avec un message
+            return redirect()->route('login')->with('error', 'Veuillez vous connecter pour accéder à votre panier.');
+        }
+
+        // Récupérer le panier depuis la session
         $cart = session()->get('cart', []);
+
+        // Vérifier si le panier est vide
         if (empty($cart)) {
             return redirect()->route('cart')->with('error', 'Votre panier est vide.');
         }
 
-        // Récupère la liste des pays (exemple pour une fonctionnalité future)
+        // Récupérer la liste des pays pour une fonctionnalité future (exemple)
         $countries = Country::all();
 
+        // Passer les données à la vue
         return view('Checkout.view', compact('cart', 'countries'));
     }
+
 
     /**
      * Traite la commande et le paiement.

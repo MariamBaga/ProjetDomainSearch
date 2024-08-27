@@ -165,7 +165,7 @@
                                     </a>
                                 </li>
 
-                                
+
                             </ul>
                         </li>
 
@@ -323,90 +323,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0 ">
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link" id="search-drop" data-bs-toggle="dropdown">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"
-                                            height="2" rx="1" transform="rotate(45 17.0365 15.1223)"
-                                            fill="currentColor"></rect>
-                                        <path
-                                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                            fill="currentColor"></path>
-                                    </svg>
-                                </a>
-                                <ul class="p-0 sub-drop dropdown-menu dropdown-menu-end shadow"
-                                    aria-labelledby="search-drop">
-                                    <li class="">
-                                        <div
-                                            class="p-3 card-header justify-content-between border-bottom rounded-top">
-                                            <div class="header-title">
-                                                <div class="iq-search-bar device-search  position-relative">
-                                                    <form action="#" class="searchbox">
-                                                        <input type="text"
-                                                            class="text search-input form-control bg-primary-subtle"
-                                                            placeholder="Search here...">
-                                                        <a class="d-lg-none d-flex" href="javascript:void(0);">
-                                                        </a>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-0 card-body all-notification">
-                                            <div
-                                                class="d-flex align-items-center border-bottom search-hover py-2 px-3">
-                                                <div class="flex-shrink-0">
-                                                    <img src="{{ asset('assets1/images/avatars/01.png') }}"
-                                                        alt="Avatar Image">
-
-                                                    class="align-self-center img-fluid avatar-50 rounded-pill"
-                                                    alt="#">
-                                                </div>
-                                                <div class="d-flex flex-column ms-3 w-100">
-                                                    <a href="javascript:void(0);" class="h5">Paige Turner</a>
-                                                    <span>Paige001</span>
-                                                </div>
-                                                <div
-                                                    class="d-flex align-items-center border-bottom search-hover py-2 px-3">
-                                                    <div class="flex-shrink-0">
-                                                        <img src="{{ asset('assets1/images/avatars/02.png') }}"
-                                                            class="align-self-center img-fluid avatar-50 rounded-pill"
-                                                            alt="#">
-                                                    </div>
-                                                    <div class="d-flex flex-column ms-3 w-100">
-                                                        <a href="javascript:void(0);" class="h5">Monty Carlo</a>
-                                                        <span>Carlo.m</span>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="d-flex align-items-center search-hover py-2 px-3 border-bottom">
-                                                    <div class="flex-shrink-0">
-                                                        <img src="{{ asset('assets1/images/avatars/03.png') }}"
-                                                            class="align-self-center img-fluid avatar-50 rounded-pill"
-                                                            alt="#">
-                                                    </div>
-                                                    <div class="d-flex flex-column ms-3 w-100">
-                                                        <a href="javascript:void(0);" class="h5">Paul Molive</a>
-                                                        <span>Paul.45</span>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="d-flex align-items-center border-bottom search-hover py-2 px-3">
-                                                    <div class="flex-shrink-0">
-                                                        <img src="{{ asset('assets1/images/avatars/04.png') }}"
-                                                            class="align-self-center img-fluid avatar-50 rounded-pill"
-                                                            alt="#">
-                                                    </div>
-                                                    <div class="d-flex flex-column ms-3 w-100">
-                                                        <a href="javascript:void(0);" class="h5">Monty Carlo</a>
-                                                        <span>Carlo.m</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                    </li>
-                                </ul>
-                            </li>
+                            
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link" id="langues-drop" data-bs-toggle="dropdown">
                                     <svg class="icon-24" width="24" xmlns="http://www.w3.org/2000/svg"

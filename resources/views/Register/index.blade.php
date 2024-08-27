@@ -12,6 +12,16 @@
                 <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo1" alt="logo" width="80"></a>
                     <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo2" alt="logo" width="80"></a>
                 </div>
+
+
+                </div>
+
+                {{-- Connexion heading --}}
+                <div class="authentication-connection-header text-center">
+                    <h2>Inscription</h2>
+                </div>
+
+
                 <div class="authentication-user-body">
                     @if (session('success'))
                         <div class="alert alert-success">

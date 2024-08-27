@@ -45,6 +45,12 @@ class LoginController extends Controller
 
 
     }
+    protected function authenticated(Request $request, $user)
+{
+    // Rediriger vers l'URL stockée dans la session, ou vers `/home` si aucune URL n'est trouvée
+    return redirect()->intended('/');
+}
+
 
 
 }
