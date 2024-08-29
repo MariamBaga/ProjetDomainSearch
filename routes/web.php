@@ -37,6 +37,9 @@ Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])
 // Route pour renouveler un domaine
 Route::post('/renew', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
 
+// Route pour l'enregistrement du domaine
+Route::post('/register', [DomainSearchApiController::class, 'register'])->name('domain.register');
+
 // Route pour transférer un domaine
 Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
 Route::GET('/transfer', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');

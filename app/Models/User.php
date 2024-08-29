@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->photo ? asset('storage/' . $this->photo) : asset('default-profile.png');
     }
+
+    public function domains()
+    {
+        return $this->hasMany(Domain::class);
+    }
 }

@@ -16,7 +16,9 @@ class Domain extends Model
          'extension',
           'price',
           'duration',
-          'status'];
+          'status',
+        'user_id',
+        ];
     // Si vous avez d'autres attributs que vous voulez ajouter ou des relations
 
     // Si vous avez d'autres attributs que vous voulez ajouter ou des relations

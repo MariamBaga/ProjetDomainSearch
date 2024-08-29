@@ -29,7 +29,7 @@ class DomainSearchApiController extends Controller
             ]);
 
             if ($response->successful()) {
-                $domains = $response->json()['results'];
+                $domains = $response->json()['data']['results'];
 
                 // Adapter la structure des données si nécessaire
                 $formattedDomains = collect($domains)->map(function ($domain) {
@@ -85,6 +85,38 @@ class DomainSearchApiController extends Controller
             return response()->json(['error' => $errorMessage], 500);
         }
     }
+
+
+    public function register(Request $request)
+{
+    // Récupérer les données du formulaire
+    $domainName = $request->input('domain_name');
+    $purchasePrice = $request->input('purchase_price', 12.99); // Par défaut, fixer le prix d'achat à 12.99 si non fourni
+
+    try {
+        // URL pour enregistrer un domaine
+        $apiUrl = 'http://localhost:8001/register'; // Assurez-vous que cette URL est correcte pour l'API d'enregistrement
+
+        // Appel API pour enregistrer le domaine
+        $response = Http::post($apiUrl, [
+            'domain_name' => $domainName,
+            'purchase_price' => $purchasePrice,
+        ]);
+
+        if ($response->successful()) {
+            return response()->json(['success' => 'Domaine enregistré avec succès.']);
+        } else {
+            $statusCode = $response->status();
+            $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
+            Log::error($errorMessage);
+            return response()->json(['error' => $errorMessage], $statusCode);
+        }
+    } catch (\Throwable $th) {
+        $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
+        Log::error('Exception Error: ' . $errorMessage);
+        return response()->json(['error' => $errorMessage], 500);
+    }
+}
 
 
 
