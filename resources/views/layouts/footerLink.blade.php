@@ -20,20 +20,7 @@
                     <div class="col-sm-12 col-md-12 col-lg-8">
                         <div class="footer-right pl-80">
                             <div class="row">
-                                <div class="col-sm-6 col-md-4 col-lg-4">
-                                    <div class="footer-content-list footer-content-item">
-                                        <div class="footer-content-title">
-                                            <h3>Get Support</h3>
-                                        </div>
-                                        <ul class="footer-details footer-list">
-                                            <li><a href="shared-hosting.html">Shared Hosting</a></li>
-                                            <li><a href="wordpress-hosting.html">WordPress Hosting</a></li>
-                                            <li><a href="cloud-hosting.html">Cloud Hosting</a></li>
-                                            <li><a href="vps-hosting.html">VPS Hosting</a></li>
-                                            <li><a href="dedicated-hosting.html">Dedicated Hosting</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+
                                 <div class="col-sm-6 col-md-4 col-lg-4">
                                     <div class="footer-content-list footer-content-item">
                                         <div class="footer-content-title">
@@ -76,7 +63,7 @@
                         <div class="footer-lower-item-inner footer-lower-item-left">
 
                             <div class="footer-lower-content">
-                                <h3>@Blim</h3>
+                                <h3>@IbraciLinks</h3>
                                 <div class="footer-social-logo">
                                     <ul class="footer-social-list">
                                         <li class="social-btn social-btn-fb"><a href="#"><i

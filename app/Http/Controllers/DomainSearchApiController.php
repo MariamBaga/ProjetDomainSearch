@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -86,18 +82,14 @@ class DomainSearchApiController extends Controller
         }
     }
 
-
-    public function register(Request $request)
+    public function registerDomains(Request $request)
 {
-    // Récupérer les données du formulaire
     $domainName = $request->input('domain_name');
-    $purchasePrice = $request->input('purchase_price', 12.99); // Par défaut, fixer le prix d'achat à 12.99 si non fourni
+    $purchasePrice = $request->input('purchase_price', 12.99);
 
     try {
-        // URL pour enregistrer un domaine
-        $apiUrl = 'http://localhost:8001/register'; // Assurez-vous que cette URL est correcte pour l'API d'enregistrement
+        $apiUrl = 'http://localhost:8001/register';
 
-        // Appel API pour enregistrer le domaine
         $response = Http::post($apiUrl, [
             'domain_name' => $domainName,
             'purchase_price' => $purchasePrice,
@@ -117,8 +109,6 @@ class DomainSearchApiController extends Controller
         return response()->json(['error' => $errorMessage], 500);
     }
 }
-
-
 
 
     // Méthode pour renouveler un domaine
@@ -180,5 +170,4 @@ class DomainSearchApiController extends Controller
             return response()->json(['error' => $errorMessage], 500);
         }
     }
-
 }

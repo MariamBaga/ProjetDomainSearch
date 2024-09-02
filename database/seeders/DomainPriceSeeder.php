@@ -21,5 +21,7 @@ class DomainPriceSeeder extends Seeder
             ['name' => 'int', 'transfer_price' => 17250, 'register_price' => 27420, 'renew_price' => 37350, 'currency' => 'FCFA'],
             ['name' => 'edu', 'transfer_price' => 9120, 'register_price' => 19720, 'renew_price' => 29450, 'currency' => 'FCFA'],
         ]);
+
+        
     }
 }

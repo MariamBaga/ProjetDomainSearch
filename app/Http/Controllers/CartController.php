@@ -103,7 +103,7 @@ class CartController extends Controller
             Cart::updateOrCreate(['user_id' => Auth::id()], ['items' => $cart]);
         }
 
-        return redirect()->route('domain.fetch')->with('success', 'Domaine ajouté au panier avec succès!');
+        return redirect()->back()->with('success', 'Domaine ajouté au panier avec succès!');
     }
 
     public function remove($domainId)

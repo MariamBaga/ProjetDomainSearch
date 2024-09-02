@@ -32,13 +32,17 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DomainSearchApiController;
 
+
+
+
 Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
 
 // Route pour renouveler un domaine
-Route::post('/renew', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
+Route::POST('/renew-domains', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
 
 // Route pour l'enregistrement du domaine
-Route::post('/register', [DomainSearchApiController::class, 'register'])->name('domain.register');
+// Route pour l'enregistrement du domaine
+Route::GET('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
 
 // Route pour transférer un domaine
 Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
@@ -128,8 +132,3 @@ Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->nam
     // Route pour réinitialiser le mot de passe (généralement gérée par Laravel)
     Route::get('/password/reset/{token}', [\App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');
-// Route pour le callback de paiement d'Orange Money
-Route::post('/paiement/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
-
-// Route pour le webhook de paiement d'Orange Money
-Route::post('/paiement/webhook', [PaymentController::class, 'handleWebhook'])->name('payment.webhook');

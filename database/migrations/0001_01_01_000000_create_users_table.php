@@ -21,7 +21,7 @@ return new class extends Migration
 
 
 
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->string('country')->nullable();
             $table->string('photo')->nullable();
 
