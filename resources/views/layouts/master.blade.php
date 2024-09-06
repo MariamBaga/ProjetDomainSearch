@@ -41,20 +41,11 @@
                         </div>
                         <div class="topbar-list-content">
                             <a href="mailto: hello@ibracilinks.com">
-                                <span class="__cf_email__" data-cfemail="563f38303916343a3f3b7835393b">
-                                    [email&#160;protected]
-                                </span>
+                                hello@ibracilinks.com
                             </a>
                         </div>
                     </div>
-                    <div class="topbar-item-list">
-                        <div class="topbar-list-thumb">
-                            <i class="flaticon-news-paper"></i>
-                        </div>
-                        <div class="topbar-list-content">
-                            <a href="news-default.html">News Feeds</a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

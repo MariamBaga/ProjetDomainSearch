@@ -59,7 +59,7 @@
 <div class="authentication-item authentication-img-bg blue-gradient">
 <div class="authentication-info">
 <div class="authentication-info-img">
-<img src="{{ asset('assets/images/authentication.png') }}" alt="shape">
+<img src="{{ asset('assets/images/domainimg1.png') }}" alt="shape">
 
 </div>
 <div class="authentication-info-title section-title section-title-two">

@@ -17,6 +17,11 @@
                 </div>
 
                 {{-- Connexion heading --}}
+                <div class="authentication-account-access-item ">
+                                    <div class="authentication-link">
+                                        <p>J'ai déjà un compte...<a href="{{ route('login') }}"> Connectez-vous!</a> </p>
+                                    </div>
+                                </div>
                 <div class="authentication-connection-header text-center">
                     <h2>Inscription</h2>
                 </div>
@@ -98,7 +103,9 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-password"></i></span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+</svg>
                                             </div>
                                             <input type="password" class="form-control" id="password"
                                                 name="password" placeholder="Mot de passe *" required />
@@ -116,7 +123,10 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-password"></i></span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+</svg>
                                             </div>
                                             <input type="password" class="form-control"
                                                 id="password_confirmation" name="password_confirmation"
@@ -135,7 +145,10 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="flaticon-country"></i></span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-square" viewBox="0 0 16 16">
+  <path d="M3.626 6.832A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0z"/>
+  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+</svg>
                                             </div>
                                             <select name="country" class="form-control">
                                                     @foreach ($countries as $country)
@@ -155,11 +168,7 @@
                         </form>
                     </div>
 
-                    <div class="authentication-account-access-item">
-                                    <div class="authentication-link">
-                                        <a href="{{ route('login') }}">Connectez-vous!</a>
-                                    </div>
-                                </div>
+
                 </div>
             </div>
         </div>

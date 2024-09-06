@@ -89,7 +89,7 @@ Route::post('/login', [LoginController::class, 'loginpost'])->name('login.post')
 Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::post('/checkout/process', [CheckoutController::class, 'checkoutprocess'])->name('checkout.process');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
@@ -132,3 +132,15 @@ Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->nam
     // Route pour réinitialiser le mot de passe (généralement gérée par Laravel)
     Route::get('/password/reset/{token}', [\App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');
+
+
+
+
+    // web.php ou un autre fichier de routes
+Route::get('paiement/success', [CheckoutController::class, 'makePaymentSuccess'])->name('payment.success');
+Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+
+
+Route::get('paiement/echec', [CheckoutController::class, 'makePaymentEchec'])->name('checkout.error');
+Route::get('paiement/cancel', [CheckoutController::class, 'makePaymentCancel'])->name('payment.cancel');
+

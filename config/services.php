@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'vitepay' => [
+    'api_key' => env('VITEPAY_API_KEY'),
+    'api_secret' => env('VITEPAY_API_SECRET'),
+    'sandbox_mode' => env('VITEPAY_SANDBOX_MODE', false), // false pour production
+],
+
 ];

@@ -16,7 +16,7 @@ class DomainSearchApiController extends Controller
 
         try {
             // URL de l'API locale
-            $apiUrl = 'http://localhost:8001/search'; // URL correcte de l'API locale
+            $apiUrl = 'http://localhost:8001/api/search'; // URL correcte de l'API locale
 
             // Appel à l'API pour obtenir les domaines
             $response = Http::get($apiUrl, [
@@ -88,7 +88,7 @@ class DomainSearchApiController extends Controller
     $purchasePrice = $request->input('purchase_price', 12.99);
 
     try {
-        $apiUrl = 'http://localhost:8001/register';
+        $apiUrl = 'http://localhost:8001/api/register';
 
         $response = Http::post($apiUrl, [
             'domain_name' => $domainName,
@@ -118,7 +118,7 @@ class DomainSearchApiController extends Controller
         $purchasePrice = $request->input('purchase_price', 12.99);
 
         try {
-            $apiUrl = 'http://localhost:8001/renew';
+            $apiUrl = 'http://localhost:8001/api/renew';
 
             $response = Http::post($apiUrl, [
                 'domain_name' => $domainName,
@@ -148,7 +148,7 @@ class DomainSearchApiController extends Controller
         $purchasePrice = $request->input('purchase_price', 12.99);
 
         try {
-            $apiUrl = 'http://localhost:8001/transfer';
+            $apiUrl = 'http://localhost:8001/api/transfer';
 
             $response = Http::post($apiUrl, [
                 'domain_name' => $domainName,

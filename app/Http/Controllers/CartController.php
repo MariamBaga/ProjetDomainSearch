@@ -11,12 +11,23 @@ class CartController extends Controller
 {
     public function view()
     {
+        // Récupérer le panier de la session
         $cart = session()->get('cart', []);
 
         if (Auth::check()) {
             $userCart = Cart::where('user_id', Auth::id())->first();
             if ($userCart) {
-                $cart = $userCart->items;
+                // Vérifier si les données sont déjà un tableau
+                $items = $userCart->items;
+                if (is_string($items)) {
+                    $cart = json_decode($items, true); // Décoder le JSON uniquement si c'est une chaîne
+                    if (!is_array($cart)) {
+                        $cart = []; // Assurez-vous que le panier est toujours un tableau
+                    }
+                } else {
+                    // Si ce n'est pas une chaîne, traiter comme un tableau directement
+                    $cart = is_array($items) ? $items : [];
+                }
                 session(['cart' => $cart]);
             }
         }
@@ -24,86 +35,37 @@ class CartController extends Controller
         return view('Cart.view', compact('cart'));
     }
 
-    // public function add(Request $request)
-    // {
-    //     $request->validate([
-    //         'domain_id' => 'required|exists:domains,id',
-    //     ]);
-
-    //     $domain = Domain::findOrFail($request->input('domain_id'));
-
-    //     if ($domain->status != 'available') { // Correct status check
-    //         return redirect()->back()->with('error', 'Le domaine n\'est pas disponible.');
-    //     }
-
-    //     $cart = session()->get('cart', []);
-
-    //     $cart[$domain->id] = [
-    //         "name" => $domain->name,
-    //         "extension" => $domain->extension,
-    //         "price" => $domain->price,
-    //         "duration" => 1, // Exemple, 1 an
-    //     ];
-
-    //     session()->put('cart', $cart);
-
-    //     if (Auth::check()) {
-    //         Cart::updateOrCreate(
-    //             ['user_id' => Auth::id()],
-    //             ['items' => $cart]
-    //         );
-    //     }
-
-    //     return redirect()->route('search.domain')->with('success', 'Domaine ajouté au panier avec succès!');
-    // }
-
-
-
-
-
     public function add(Request $request)
     {
-        // Valider que l'ID du domaine est fourni
         $request->validate([
-            'domain_id' => 'required',
+            'domain_id' => 'required|exists:domains,id',
         ]);
 
-        // Récupérer les domaines recherchés stockés en session
-        $searchedDomains = session()->get('searched_domains', []);
+        $domain = Domain::findOrFail($request->input('domain_id'));
 
-        // Débogage : voir ce qui est stocké dans la session
-        if (empty($searchedDomains)) {
-            return redirect()->back()->with('error', 'Aucun domaine trouvé dans la session. Veuillez effectuer une recherche.');
-        }
-
-        $domainId = $request->input('domain_id');
-        $domain = collect($searchedDomains)->firstWhere('id', $domainId);
-
-        if (!$domain) {
-            return redirect()->back()->with('error', 'Domaine non trouvé dans les résultats de recherche.');
-        }
-
-        // Vérifier si le domaine est disponible
-        if ($domain['status'] != 'available') {
+        if ($domain->status != 'available') { // Vérification correcte du statut
             return redirect()->back()->with('error', 'Le domaine n\'est pas disponible.');
         }
 
-        // Ajouter le domaine au panier
         $cart = session()->get('cart', []);
-        $cart[$domainId] = [
-            'name' => $domain['name'],
-            'extension' => $domain['extension'],
-            'price' => $domain['price'],
-            'duration' => 1,
+
+        $cart[$domain->id] = [
+            "name" => $domain->name,
+            "extension" => $domain->extension,
+            "price" => $domain->price,
+            "duration" => 1, // Exemple, 1 an
         ];
 
         session()->put('cart', $cart);
 
         if (Auth::check()) {
-            Cart::updateOrCreate(['user_id' => Auth::id()], ['items' => $cart]);
+            Cart::updateOrCreate(
+                ['user_id' => Auth::id()],
+                ['items' => json_encode($cart)] // Encoder le panier en JSON
+            );
         }
 
-        return redirect()->back()->with('success', 'Domaine ajouté au panier avec succès!');
+        return redirect()->route('search.domain')->with('success', 'Domaine ajouté au panier avec succès!');
     }
 
     public function remove($domainId)
@@ -125,7 +87,7 @@ class CartController extends Controller
             if (Auth::check()) {
                 $userCart = Cart::where('user_id', Auth::id())->first();
                 if ($userCart) {
-                    $userCart->items = $cart;
+                    $userCart->items = json_encode($cart); // Encoder les données du panier en JSON
                     $userCart->save();
                 }
             }
@@ -161,7 +123,7 @@ class CartController extends Controller
             if (Auth::check()) {
                 $userCart = Cart::where('user_id', Auth::id())->first();
                 if ($userCart) {
-                    $userCart->items = $cart;
+                    $userCart->items = json_encode($cart); // Encoder les données du panier en JSON
                     $userCart->save();
                 }
             }

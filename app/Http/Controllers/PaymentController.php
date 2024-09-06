@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Domain;
 use App\Models\Webhook;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
+use App\Models\OrderItem;
+use  Illuminate\Support\Facades\Hash;
 
 class PaymentController extends Controller
 {
@@ -17,14 +23,15 @@ class PaymentController extends Controller
         // Vérifie si le callback est valide
         if ($this->verifyCallback($request)) {
             // Trouve la commande par ID
-            $order = Order::where('id', $request->input('order_id'))->first();
+            $order = Order::find($request->input('order_id'));
 
             if ($order) {
                 // Met à jour le statut de la commande en fonction du résultat du paiement
-                if ($request->input('status') == 'success') {
-                    $order->status = 'completed';
+                $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
+                $order->save();
 
-                    // Met à jour le statut des domaines associés à la commande
+                // Met à jour le statut des domaines associés à la commande si le paiement a réussi
+                if ($order->status === 'completed') {
                     foreach ($order->orderItems as $item) {
                         $domain = Domain::find($item->domain_id);
                         if ($domain) {
@@ -32,21 +39,17 @@ class PaymentController extends Controller
                             $domain->save();
                         }
                     }
-                } else {
-                    $order->status = 'failed';
                 }
-                $order->save();
-            }
 
-            // Enregistre les détails du callback dans la base de données
-            Webhook::create([
-                'event' => 'payment_callback',
-                'payload' => $request->all(),
-                'status' => 'processed',
-                'domain_id' => $request->input('domain_id'),
-                'order_id' => $request->input('order_id'),
-                'received_at' => now(),
-            ]);
+                // Enregistre les détails du callback dans la base de données
+                Webhook::create([
+                    'event' => 'payment_callback',
+                    'payload' => $request->all(),
+                    'status' => 'processed',
+                    'order_id' => $order->id,
+                    'received_at' => now(),
+                ]);
+            }
         }
 
         return response()->json(['message' => 'Callback traité'], 200);
@@ -61,15 +64,15 @@ class PaymentController extends Controller
             // Vérifie si le webhook est valide
             if ($this->verifyWebhook($request)) {
                 // Trouve la commande par ID
-                $order = Order::where('id', $request->input('order_id'))->first();
+                $order = Order::find($request->input('order_id'));
 
                 if ($order) {
                     // Met à jour le statut de la commande en fonction du résultat du paiement
-                    if ($request->input('status') == 'success') {
-                        $order->status = 'completed';
-                        $order->save();
+                    $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
+                    $order->save();
 
-                        // Met à jour le statut des domaines associés à la commande
+                    // Met à jour le statut des domaines associés à la commande si le paiement a réussi
+                    if ($order->status === 'completed') {
                         foreach ($order->orderItems as $item) {
                             $domain = Domain::find($item->domain_id);
                             if ($domain) {
@@ -77,9 +80,6 @@ class PaymentController extends Controller
                                 $domain->save();
                             }
                         }
-                    } else {
-                        $order->status = 'failed';
-                        $order->save();
                     }
 
                     // Enregistre les détails du webhook dans la base de données
@@ -87,8 +87,7 @@ class PaymentController extends Controller
                         'event' => 'payment_webhook',
                         'payload' => $request->all(),
                         'status' => 'processed',
-                        'domain_id' => $request->input('domain_id'),
-                        'order_id' => $request->input('order_id'),
+                        'order_id' => $order->id,
                         'received_at' => now(),
                     ]);
                 }
@@ -99,11 +98,9 @@ class PaymentController extends Controller
                 'event' => 'payment_webhook',
                 'payload' => $request->all(),
                 'status' => 'failed',
-                'domain_id' => $request->input('domain_id'),
                 'order_id' => $request->input('order_id'),
                 'received_at' => now(),
             ]);
-            // Rejette l'exception pour le journal de l'application
             throw $th;
         }
 
@@ -115,7 +112,6 @@ class PaymentController extends Controller
      */
     private function verifyCallback(Request $request)
     {
-        // Compare la clé API envoyée avec celle stockée dans l'environnement
         $apiKey = env('ORANGE_MONEY_API_KEY');
         return $request->input('api_key') === $apiKey;
     }
@@ -125,8 +121,23 @@ class PaymentController extends Controller
      */
     private function verifyWebhook(Request $request)
     {
-        // Compare le secret du webhook envoyé avec celui stocké dans l'environnement
         $webhookSecret = env('ORANGE_MONEY_WEBHOOK_SECRET');
         return $request->input('webhook_secret') === $webhookSecret;
     }
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
 }

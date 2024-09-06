@@ -118,9 +118,9 @@
                         <p>{{ array_sum(array_map(fn($domain) => $domain['price'] * $domain['duration'], $cart)) }} FCFA</p>
                     </div>
                     <!-- Bouton "Passer à la caisse" seulement si le panier n'est pas vide -->
-                    <!-- <a href="{{ route('checkout') }}" class="btn btn-gradient">Passer à la caisse</a> -->
+                     <a href="{{ route('checkout') }}" class="btn btn-gradient">Passer à la caisse</a>
 
-                    <a href="{{ route('domain.register') }}" class="btn btn-gradient">Passer à la caisse</a>
+                    <!--<a href="{{ route('domain.register') }}" class="btn btn-gradient">Passer à la caisse</a>-->
 
 
                 @else

@@ -20,9 +20,12 @@ class DatabaseSeeder extends Seeder
                 RolePermissionSeeder::class,
                 UserRoleSeeder::class,
                 UserSeeder::class,
+                
                 DomainSeeder::class,
+                CountriesTableSeeder::class,
                 DomainPriceSeeder::class,
                 CountriesTableSeeder::class,
+                DomainSeeder::class,
             ]);
 
         User::factory()->create([

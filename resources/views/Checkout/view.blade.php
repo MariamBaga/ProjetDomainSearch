@@ -28,21 +28,27 @@
 @endsection
 
 @section('content')
-@if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
     <div class="checkout-section pt-100 pb-70">
         <div class="container">
@@ -78,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-sm-12 col-lg-6">
                                         <div class="form-group mb-20">
                                             <div class="input-group">
@@ -187,8 +193,9 @@
 
                             <div class="col-sm-12">
                                 <div class="form-check mb-20">
-                                    <input type="checkbox" class="form-check-input" id="check4">
-                                    <label class="form-check-label" for="check4">Orange Money</label>
+                                    <input type="radio" class="form-check-input" id="payment-method-orange"
+                                        name="payment_method" value="orange_money" required>
+                                    <label class="form-check-label" for="payment-method-orange">Orange Money</label>
                                 </div>
                             </div>
                             <div class="col-sm-12">
