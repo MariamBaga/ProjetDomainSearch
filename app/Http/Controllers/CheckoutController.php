@@ -97,12 +97,13 @@ class CheckoutController extends Controller
                 'duration' => $domain['duration'],
             ]);
 
-           
+
         }
 
         // Optionnel : Vous pouvez vider le panier après la commande
         session()->forget('cart');
 
+        session()->forget('user');
         // Appeler la méthode pour initier le paiement
         return $this->makePayment($order);
     }

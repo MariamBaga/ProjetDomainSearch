@@ -19,45 +19,77 @@ class PaymentController extends Controller
      * Gère le callback de paiement d'Orange Money.
      */
     public function handleCallback(Request $request)
-    {
-        // Vérifie si le callback est valide
-        if ($this->verifyCallback($request)) {
-            // Trouve la commande par ID
-            $order = Order::find($request->input('order_id'));
+{
+    // Vérifie si le callback est valide
+    if ($this->verifyCallback($request)) {
+        // Trouve la commande par ID
+        $order = Order::find($request->input('order_id'));
 
-            if ($order) {
-                // Met à jour le statut de la commande en fonction du résultat du paiement
-                $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
-                $order->save();
+        if ($order) {
+            // Met à jour le statut de la commande en fonction du résultat du paiement
+            $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
+            $order->save();
 
-                // Si le paiement a réussi, met à jour les domaines associés
-                if ($order->status === 'completed') {
-                    foreach ($order->orderItems as $item) {
-                        $domain = Domain::find($item->domain_id);
-                        if ($domain) {
-                            $domain->status = 'unavailable';
-                            $domain->save();
-                        }
+            // Si le paiement a réussi, enregistre les domaines associés
+            if ($order->status === 'completed') {
+                foreach ($order->orderItems as $item) {
+                    $domain = Domain::find($item->domain_id);
+                    if ($domain) {
+                        // Enregistrer le domaine au nom de l'utilisateur
+                        $this->registerDomain($domain, Auth::user());
                     }
                 }
-
-                // Enregistre les détails du callback dans la table des webhooks
-                Webhook::create([
-                    'event' => 'payment_callback',
-                    'payload' => $request->all(),
-                    'status' => 'processed',
-                    'order_id' => $order->id,
-                    'received_at' => now(),
-                ]);
-            } else {
-                Log::error("Commande non trouvée pour le callback");
             }
-        } else {
-            Log::warning("Callback invalide");
-        }
 
-        return response()->json(['message' => 'Callback traité'], 200);
+            // Enregistre les détails du callback dans la table des webhooks
+            Webhook::create([
+                'event' => 'payment_callback',
+                'payload' => $request->all(),
+                'status' => 'processed',
+                'order_id' => $order->id,
+                'received_at' => now(),
+            ]);
+        } else {
+            Log::error("Commande non trouvée pour le callback");
+        }
+    } else {
+        Log::warning("Callback invalide");
     }
+
+    return response()->json(['message' => 'Callback traité'], 200);
+}
+
+/**
+ * Enregistre le domaine au nom de l'utilisateur.
+ */
+private function registerDomain($domain, $user)
+{
+    $apiUrl = 'http://localhost:8001/api/register';
+
+    try {
+        $response = Http::post($apiUrl, [
+            'domain_name' => $domain->name . '.' . $domain->extension,
+            'purchase_price' => $domain->price,
+            'user_id' => $user->id, // Assurez-vous que l'API accepte cette information
+        ]);
+
+        if ($response->successful()) {
+            // Si l'enregistrement est réussi, marque le domaine comme non disponible
+            $domain->status = 'unavailable';
+            $domain->save();
+
+            Log::info('Domaine enregistré avec succès pour l\'utilisateur ' . $user->id);
+        } else {
+            $statusCode = $response->status();
+            $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
+            Log::error($errorMessage);
+        }
+    } catch (\Throwable $th) {
+        $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
+        Log::error('Exception Error: ' . $errorMessage);
+    }
+}
+
 
 
 

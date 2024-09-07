@@ -42,7 +42,7 @@ Route::POST('/renew-domains', [DomainSearchApiController::class, 'renewDomain'])
 
 // Route pour l'enregistrement du domaine
 // Route pour l'enregistrement du domaine
-Route::GET('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
+Route::POST('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
 
 // Route pour transférer un domaine
 Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
