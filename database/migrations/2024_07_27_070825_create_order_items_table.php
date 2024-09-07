@@ -10,14 +10,16 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('domain_id');
-            $table->decimal('price', 8, 2);
-            $table->integer('duration'); // Durée en années
-            $table->timestamps();
+        $table->unsignedBigInteger('order_id');
+        $table->string('domain_name'); // Stocker le nom du domaine
+        $table->string('domain_extension'); // Stocker l'extension du domaine
+        $table->decimal('price', 8, 2);
+        $table->integer('duration'); // Durée en années
+        $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('domain_id')->references('id')->on('domains')->onDelete('cascade');
+
+
         });
     }
 

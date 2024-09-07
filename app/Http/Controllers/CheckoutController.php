@@ -69,6 +69,8 @@ class CheckoutController extends Controller
          $cart = session()->get('cart', []);
          $totalAmount = array_sum(array_map(fn($item) => $item['price'] * $item['duration'], $cart));
 
+
+
          // Créer une nouvelle commande
          $order = Order::create([
              'user_id' => Auth::id(),
@@ -85,25 +87,25 @@ class CheckoutController extends Controller
          ]);
 
          // Enregistrer les éléments de la commande
-         foreach ($cart as $domain) {
-             if (isset($domain['id'])) {
-                 OrderItem::create([
-                     'order_id' => $order->id,
-                     'domain_id' => $domain['id'],
-                     'price' => $domain['price'],
-                     'duration' => $domain['duration'],
-                 ]);
-             } else {
-                 Log::error('Clé "id" manquante dans l\'élément du panier:', ['domain' => $domain]);
-             }
-         }
+         foreach ($cart as $domainName => $domain) {
+            // Créer l'élément de commande sans utiliser `domain_id`
+            $orderItem = OrderItem::create([
+                'order_id' => $order->id,
+                'domain_name' => $domain['name'], // Utiliser le nom du domaine
+                'domain_extension' => $domain['extension'], // Utiliser l'extension du domaine
+                'price' => $domain['price'],
+                'duration' => $domain['duration'],
+            ]);
 
-         // Optionnel : Vous pouvez vider le panier après la commande
-         session()->forget('cart');
+           
+        }
 
-         // Appeler la méthode pour initier le paiement
-         return $this->makePayment($order);
-     }
+        // Optionnel : Vous pouvez vider le panier après la commande
+        session()->forget('cart');
+
+        // Appeler la méthode pour initier le paiement
+        return $this->makePayment($order);
+    }
 
      private function makePayment(Order $order)
 {
@@ -115,6 +117,7 @@ class CheckoutController extends Controller
 
     $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
     $hash = sha1($upped);
+
 
     $payload = [
         'api_key' => $api_key,

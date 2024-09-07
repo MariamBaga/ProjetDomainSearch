@@ -30,7 +30,7 @@ class PaymentController extends Controller
                 $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
                 $order->save();
 
-                // Met à jour le statut des domaines associés à la commande si le paiement a réussi
+                // Si le paiement a réussi, met à jour les domaines associés
                 if ($order->status === 'completed') {
                     foreach ($order->orderItems as $item) {
                         $domain = Domain::find($item->domain_id);
@@ -41,7 +41,7 @@ class PaymentController extends Controller
                     }
                 }
 
-                // Enregistre les détails du callback dans la base de données
+                // Enregistre les détails du callback dans la table des webhooks
                 Webhook::create([
                     'event' => 'payment_callback',
                     'payload' => $request->all(),
@@ -49,11 +49,17 @@ class PaymentController extends Controller
                     'order_id' => $order->id,
                     'received_at' => now(),
                 ]);
+            } else {
+                Log::error("Commande non trouvée pour le callback");
             }
+        } else {
+            Log::warning("Callback invalide");
         }
 
         return response()->json(['message' => 'Callback traité'], 200);
     }
+
+
 
     /**
      * Gère les notifications webhook de paiement d'Orange Money.
@@ -71,7 +77,7 @@ class PaymentController extends Controller
                     $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
                     $order->save();
 
-                    // Met à jour le statut des domaines associés à la commande si le paiement a réussi
+                    // Si le paiement a réussi, met à jour les domaines associés
                     if ($order->status === 'completed') {
                         foreach ($order->orderItems as $item) {
                             $domain = Domain::find($item->domain_id);
@@ -90,10 +96,14 @@ class PaymentController extends Controller
                         'order_id' => $order->id,
                         'received_at' => now(),
                     ]);
+                } else {
+                    Log::error('Commande non trouvée pour le webhook');
                 }
+            } else {
+                Log::warning('Webhook invalide');
             }
         } catch (\Throwable $th) {
-            // Enregistre les erreurs de traitement dans la base de données
+            Log::error('Erreur lors du traitement du webhook: ' . $th->getMessage());
             Webhook::create([
                 'event' => 'payment_webhook',
                 'payload' => $request->all(),
@@ -101,7 +111,6 @@ class PaymentController extends Controller
                 'order_id' => $request->input('order_id'),
                 'received_at' => now(),
             ]);
-            throw $th;
         }
 
         return response()->json(['message' => 'Webhook traité'], 200);
@@ -133,7 +142,7 @@ class PaymentController extends Controller
 
 
 
-    
+
 
 
 

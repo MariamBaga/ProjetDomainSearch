@@ -26,6 +26,8 @@ $table->string('last_name')->nullable();
             $table->string('city');
             $table->enum('payment_method', ['orange_money']); // Ajouter d'autres méthodes de paiement si nécessaire
             $table->decimal('total_amount', 10, 2);
+            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending'); // Ajout du statut
+            
             $table->timestamps();
         });
     }
