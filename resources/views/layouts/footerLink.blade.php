@@ -11,9 +11,10 @@
                                 </a>
                             </div>
                             <div class="footer-details">
-                                <p>Lorem ipsum dolor sit amet, consectetur adiisicing elit, sed do eiusmod tempor inc
-                                    Neque porro quisquam est, qui dolorem magnam quaerat luptatemd do eiusmod tempor inc
-                                    Neque porro quisquam.</p>
+                                <p> Ibraci Links est une start-up de développement de logiciels qui travaille avec des entreprises et des organisations locales, nationales et internationales, grandes et petites, pour fournir des solutions techniques et créatives adaptées aux entreprises.
+
+Avec Ibraci Links, vous n’avez pas à embaucher, former, nourrir et orchestrer une équipe IT.
+ Vous apportez votre vision, elle le réalise. </p>
                             </div>
                         </div>
                     </div>
@@ -66,15 +67,15 @@
                                 <h3>@IbraciLinks</h3>
                                 <div class="footer-social-logo">
                                     <ul class="footer-social-list">
-                                        <li class="social-btn social-btn-fb"><a href="#"><i
+                                        <li class="social-btn social-btn-fb"><a href="https://facebook.com/ibracilinks"><i
                                                     class="bx bxl-facebook"></i></a></li>
-                                        <li class="social-btn social-btn-tw"><a href="#"><i
+                                        <li class="social-btn social-btn-tw"><a href="https://twitter.com/ibracilinks"><i
                                                     class="bx bxl-twitter"></i></a></li>
-                                        <li class="social-btn social-btn-ins"><a href="#"><i
+                                        <li class="social-btn social-btn-ins"><a href="https://instagram.com/ibracilinks"><i
                                                     class="bx bxl-instagram"></i></a></li>
-                                        <li class="social-btn social-btn-pin"><a href="#"><i
+                                        <li class="social-btn social-btn-pin"><a href="https://pinterest.com/ibracilinks"><i
                                                     class="bx bxl-pinterest-alt"></i></a></li>
-                                        <li class="social-btn social-btn-yt"><a href="#"><i
+                                        <li class="social-btn social-btn-yt"><a href="https://www.youtube.com/channel/UC8f3FPwtYGPfbjTRuewr9bg"><i
                                                     class="bx bxl-youtube"></i></a></li>
                                     </ul>
                                 </div>

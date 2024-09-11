@@ -4,13 +4,35 @@
     Domain
 @endsection
 
+@section('beforecontent')
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-lg-6">
+                <div class="header-page-content text-center text-lg-start">
+                    <h1>Resultats</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Résultats de recherche {{ $domainName . '.' . $extension }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-sm-12 offset-lg-3 col-lg-3">
+                <div class="header-page-image">
+                    <img src="{{ asset('assets/images/about-us-shape.png') }}" alt="shape">
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
 @section('content')
 <div class="container">
     <section class="pricing-section p-tb-100">
         <div class="container">
             <div class="section-title section-title-two">
-                <small>Résultats de recherche</small>
-                <h2>Domaines pour {{ $domainName . '.' . $extension }}</h2>
+
                 <p>Trouvez le domaine parfait parmi les résultats ci-dessous.</p>
             </div>
             <div class="pricing-table-default">

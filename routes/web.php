@@ -61,6 +61,8 @@ Route::GET('/renew', [DomainController::class, 'indexRenew'])->name('domain.Rene
 // });
 
 
+
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/Politique', [HomeController::class, 'Politique'])->name('politique');
 Route::get('/Condition', [HomeController::class, 'Condition'])->name('condition');

@@ -47,8 +47,11 @@ class UserController extends Controller
 
 
     public function profil()
+
     {
-        return view('User.profil');
+        // Récupérer la liste des pays (pour une fonctionnalité future)
+        $countries = Country::all();
+        return view('User.profil',compact('countries'));
 
     }
 }
