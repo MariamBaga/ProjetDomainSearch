@@ -114,7 +114,7 @@ class CheckoutController extends Controller
     $api_secret = '93f0003d4dc2a6a8eb1de3b331133b29';
     $amount_100 = $order->total_amount * 100;
     $order_id = 'ORD' . $order->id;
-    
+
     $callback_url = 'https://b65f-2001-42c0-82d1-e500-709e-8e58-4890-8f7d.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
 
     $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
@@ -191,7 +191,7 @@ public function makePaymentEchec()
 
             return view('Checkout.error', compact('logErrors'));
         } else {
-            return view('Checkout.error')->with('logErrors', ['Aucun fichier de log trouvé.']);
+            return view('Checkout.success')->with('logErrors', ['Aucun fichier de log trouvé.']);
         }
     }
 

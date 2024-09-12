@@ -77,25 +77,53 @@ class PaymentController extends Controller
         Log::info('Callback reçu de VitePay', $request->all());
 
         try {
-            // Récupérer l'ID de commande et d'autres données du callback
+            // Récupérer les données du callback
             $orderId = $request->input('order_id');
             $success = $request->input('success');
             $failure = $request->input('failure');
+            $transactionId = $request->input('transaction_id');
+            $amount = $request->input('amount'); // Si l'API retourne le montant
 
             if (!$orderId) {
                 Log::error('ID de commande manquant dans le callback');
                 return response()->json(['error' => 'ID de commande manquant'], 400);
             }
 
-            // Rechercher le paiement correspondant dans la base de données
+            // Supprimer le préfixe 'ORD' pour trouver l'ID réel de la commande
+            $cleanOrderId = substr($orderId, 3);
+
+            // Rechercher la commande dans la table 'orders'
+            $order = Order::find($cleanOrderId);
+
+            if (!$order) {
+                Log::error('Commande non trouvée pour l\'ID: ' . $orderId);
+                return response()->json(['error' => 'Commande non trouvée'], 404);
+            }
+
+             // Utiliser le montant de la commande et le multiplier par 100 si nécessaire
+        $amount_100 = $order->total_amount;
+
+
+            // Vérifier si un paiement pour cet ordre existe déjà
             $payment = Payment::where('order_id', $orderId)->first();
 
             if (!$payment) {
-                Log::error('Paiement non trouvé pour l\'ID de commande: ' . $orderId);
-                return response()->json(['error' => 'Paiement non trouvé'], 404);
+                // Si le montant est manquant ou incorrect, utiliser le montant de la commande * 100
+            if (!$amount || $amount != $amount_100) {
+                $amount = $amount_100;
             }
 
-            // Mettre à jour le statut du paiement en fonction des données du callback
+                // Créer un nouveau paiement si aucun n'existe
+                $payment = Payment::create([
+                    'order_id' => $orderId,
+                    'transaction_id' => $transactionId ?? 'N/A', // Si 'transaction_id' est manquant
+                    'amount' => $amount,
+                    'status' => 'pending', // Mettre à jour après selon les données reçues
+                ]);
+                Log::info('Nouveau paiement créé pour la commande ID: ' . $orderId);
+            }
+
+            // Mettre à jour le statut du paiement en fonction du succès/échec
             if ($success) {
                 $payment->status = 'completed';
             } elseif ($failure) {
@@ -104,15 +132,16 @@ class PaymentController extends Controller
                 $payment->status = 'pending';
             }
 
-            $payment->callback_data = $request->all();
+            // Sauvegarder les données du callback dans la colonne callback_data (format JSON)
+            $payment->callback_data = json_encode($request->all());
             $payment->save();
 
-            // Enregistrement des données du callback dans la table des webhooks
+            // Enregistrer le webhook
             Webhook::create([
                 'event' => 'payment_callback',
                 'payload' => $request->all(),
                 'status' => 'processed',
-                'order_id' => $orderId,
+                'order_id' => $cleanOrderId,
                 'received_at' => now(),
             ]);
 
@@ -121,10 +150,13 @@ class PaymentController extends Controller
             return response()->json(['message' => 'Callback traité avec succès'], 200);
 
         } catch (\Exception $e) {
-            Log::error('Erreur lors de la création du webhook : ' . $e->getMessage());
+            Log::error('Erreur lors du traitement du callback : ' . $e->getMessage());
             return response()->json(['error' => 'Erreur serveur'], 500);
         }
     }
+
+
+
 
     /**
      * Gère les notifications webhook de paiement d'Orange Money.
