@@ -19,47 +19,7 @@ class PaymentController extends Controller
     /**
      * Gère le callback de paiement d'Orange Money.
      */
-//     public function handleCallback(Request $request)
-// {
 
-//    // Vérifie si le callback est valide
-//     if ($this->verifyCallback($request)) {
-//         // Trouve la commande par ID
-//         $order = Order::find($request->input('order_id'));
-
-//         if ($order) {
-//             // Met à jour le statut de la commande en fonction du résultat du paiement
-//             $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
-//             $order->save();
-
-//             // Si le paiement a réussi, enregistre les domaines associés
-//             if ($order->status === 'completed') {
-//                 foreach ($order->orderItems as $item) {
-//                     $domain = Domain::find($item->domain_id);
-//                     if ($domain) {
-//                         // Enregistrer le domaine au nom de l'utilisateur
-//                         $this->registerDomain($domain, Auth::user());
-//                     }
-//                 }
-//             }
-
-//             // Enregistre les détails du callback dans la table des webhooks
-//             Webhook::create([
-//                 'event' => 'payment_callback',
-//                 'payload' => $request->all(),
-//                 'status' => 'processed',
-//                 'order_id' => $order->id,
-//                 'received_at' => now(),
-//             ]);
-//         } else {
-//             Log::error("Commande non trouvée pour le callback");
-//         }
-//     } else {
-//         Log::warning("Callback invalide");
-//     }
-
-//     return response()->json(['message' => 'Callback traité'], 200);
-// }
 
 
 
@@ -126,8 +86,17 @@ class PaymentController extends Controller
             // Mettre à jour le statut du paiement en fonction du succès/échec
             if ($success) {
                 $payment->status = 'completed';
+
+                 // Mise à jour du statut de la commande
+            $order->status = 'completed';
+            $order->save();
+
+
             } elseif ($failure) {
                 $payment->status = 'failed';
+
+                $order->status = 'failed';
+            $order->save();
             } else {
                 $payment->status = 'pending';
             }
@@ -146,6 +115,15 @@ class PaymentController extends Controller
             ]);
 
             Log::info('Webhook créé avec succès pour la commande ID: ' . $orderId);
+
+
+             // **Enregistrer le domaine juste après la création du webhook**
+        if ($order->domain_id) {
+            $domain = Domain::find($order->domain_id);
+            if ($domain && $domain->status === 'available') {
+                $this->registerDomain($domain, $order->user);
+            }
+        }
 
             return response()->json(['message' => 'Callback traité avec succès'], 200);
 
@@ -258,57 +236,7 @@ private function registerDomain($domain, $user)
     /**
      * Gère les notifications webhook de paiement d'Orange Money.
      */
-    // public function handleWebhook(Request $request)
-    // {
-    //     try {
-    //         // Vérifie si le webhook est valide
-    //         if ($this->verifyWebhook($request)) {
-    //             // Trouve la commande par ID
-    //             $order = Order::find($request->input('order_id'));
 
-    //             if ($order) {
-    //                 // Met à jour le statut de la commande en fonction du résultat du paiement
-    //                 $order->status = $request->input('status') === 'success' ? 'completed' : 'failed';
-    //                 $order->save();
-
-    //                 // Si le paiement a réussi, met à jour les domaines associés
-    //                 if ($order->status === 'completed') {
-    //                     foreach ($order->orderItems as $item) {
-    //                         $domain = Domain::find($item->domain_id);
-    //                         if ($domain) {
-    //                             $domain->status = 'unavailable';
-    //                             $domain->save();
-    //                         }
-    //                     }
-    //                 }
-
-    //                 // Enregistre les détails du webhook dans la base de données
-    //                 Webhook::create([
-    //                     'event' => 'payment_webhook',
-    //                     'payload' => $request->all(),
-    //                     'status' => 'processed',
-    //                     'order_id' => $order->id,
-    //                     'received_at' => now(),
-    //                 ]);
-    //             } else {
-    //                 Log::error('Commande non trouvée pour le webhook');
-    //             }
-    //         } else {
-    //             Log::warning('Webhook invalide');
-    //         }
-    //     } catch (\Throwable $th) {
-    //         Log::error('Erreur lors du traitement du webhook: ' . $th->getMessage());
-    //         Webhook::create([
-    //             'event' => 'payment_webhook',
-    //             'payload' => $request->all(),
-    //             'status' => 'failed',
-    //             'order_id' => $request->input('order_id'),
-    //             'received_at' => now(),
-    //         ]);
-    //     }
-
-    //     return response()->json(['message' => 'Webhook traité'], 200);
-    // }
 
     /**
      * Vérifie la validité du callback.
