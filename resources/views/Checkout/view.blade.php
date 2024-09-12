@@ -69,7 +69,7 @@
                                                     <span class="input-group-text"><i class="flaticon-envelope"></i></span>
                                                 </div>
                                                 <input type="email" name="email" class="form-control" required
-                                                    placeholder="Email Address*" />
+                                                    placeholder="Email Address*" value="bagayokom2003@gmail.com"/>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                                     <span class="input-group-text"><i class="flaticon-envelope"></i></span>
                                                 </div>
                                                 <input type="text" name="phone" class="form-control" required
-                                                    placeholder="Phone Number*" />
+                                                    placeholder="Phone Number*" value="78777800" />
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                                     <span class="input-group-text"><i class="flaticon-user"></i></span>
                                                 </div>
                                                 <input type="text" name="first_name" class="form-control" required
-                                                    placeholder="First Name*" />
+                                                    placeholder="First Name*" value="Mariam" />
                                             </div>
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@
                                                     <span class="input-group-text"><i class="flaticon-user"></i></span>
                                                 </div>
                                                 <input type="text" name="last_name" class="form-control" required
-                                                    placeholder="Last Name*" />
+                                                    placeholder="Last Name*" value="Bagayoko"/>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                         <div class="form-group mb-20">
                                             <div class="input-group">
                                                 <input type="text" name="company_name" class="form-control"
-                                                    placeholder="Company Name" />
+                                                    placeholder="Company Name" value="Ibraci" />
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                                         <div class="form-group mb-20">
                                             <div class="input-group">
                                                 <input type="text" name="address" class="form-control" required
-                                                    placeholder="Address*" />
+                                                    placeholder="Address*" value="senon" />
                                             </div>
                                         </div>
                                     </div>

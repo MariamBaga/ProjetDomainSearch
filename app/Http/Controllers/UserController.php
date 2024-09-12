@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Domain;
-
+use App\Models\Country;
 class UserController extends Controller
 {
     public function userDashboard()
