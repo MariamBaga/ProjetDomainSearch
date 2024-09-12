@@ -132,8 +132,8 @@ class CheckoutController extends Controller
         'payment[order_id]' => $order_id,
         'payment[description]' => "Achat de domaine",
         'payment[amount_100]' => $amount_100,
-        'payment[return_url]' => url('/paiement/success'),
-        'payment[decline_url]' => url('/paiement/echec'),
+        'payment[return_url]' => url('/paiement/echec'),
+        'payment[decline_url]' => route('payment.success', ['order' => $order->id]),
         'payment[cancel_url]' => url('/paiement/echec'),
         'payment[callback_url]' => $callback_url,
         'payment[email]' => $order->email,
@@ -169,31 +169,13 @@ public function makePaymentEchec()
 
 
 
-        public function success()
-        {
-            return view('Checkout.success');
-        }
 
 
 
 
 
-    public function showErrors()
-    {
-        $logFile = storage_path('logs/laravel.log');
 
-        if (File::exists($logFile)) {
-            $logContent = File::get($logFile);
-            $logErrors = explode("\n", $logContent);
 
-            // Vous pouvez filtrer ou limiter les erreurs si nécessaire
-            $logErrors = array_slice(array_filter($logErrors), -10); // Dernières 10 erreurs
-
-            return view('Checkout.error', compact('logErrors'));
-        } else {
-            return view('Checkout.success')->with('logErrors', ['Aucun fichier de log trouvé.']);
-        }
-    }
 
 
 }

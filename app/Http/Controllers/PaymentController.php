@@ -125,6 +125,9 @@ class PaymentController extends Controller
             }
         }
 
+        // Si succès, rediriger vers la page de succès
+
+
             return response()->json(['message' => 'Callback traité avec succès'], 200);
 
         } catch (\Exception $e) {
@@ -265,6 +268,18 @@ private function registerDomain($domain, $user)
 
 
 
+
+
+
+
+    public function makePaymentSuccess($orderId)
+    {
+
+        // Récupérer la commande par ID
+        $order = Order::with('items')->findOrFail($orderId);
+
+        return view('Checkout.success',compact('order'));
+    }
 
 
 

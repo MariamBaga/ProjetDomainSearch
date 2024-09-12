@@ -139,7 +139,7 @@ Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->nam
 
 
     // web.php ou un autre fichier de routes
-Route::get('paiement/success', [CheckoutController::class, 'makePaymentSuccess'])->name('payment.success');
+Route::get('/paiement/success/{order}', [PaymentController::class, 'makePaymentSuccess'])->name('payment.success');
 Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
 
