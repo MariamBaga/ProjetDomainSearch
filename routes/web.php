@@ -102,6 +102,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'Dashbaord'])->name('admin.dashboard');
+
+    Route::get('/admin/user_list', [UserController::class, 'index'])->name('admin.user.list');
+
+    Route::get('/admin/user_role_permission', [AdminController::class, 'rolepermission'])->name('admin.user.role.permission');
+
+
     // Route::put('/admin/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.updateRole');
     Route::put('/admin/users/{user}/permissions', [AdminController::class, 'updatePermissions'])->name('admin.users.updatePermissions');
 });

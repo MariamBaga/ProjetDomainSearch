@@ -20,6 +20,13 @@ class UserController extends Controller
         return view('Admin.users', compact('users', 'roles', 'permissions'));
     }
 
+
+
+    public function index()
+    {
+        $users = User::all(); // Récupère tous les utilisateurs
+        return view('Admin.userlist', compact('users'));
+    }
     public function updateInfo(Request $request)
     {
         $user = auth()->user();

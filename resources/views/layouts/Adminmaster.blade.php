@@ -203,7 +203,24 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="app/user-list.html">
+                                <a class="nav-link " href="{{ route('admin.user.role.permission') }}">
+                                    <i class="icon">
+                                        <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor">
+                                                </circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="User List"
+                                        data-bs-placement="right"> RP </i>
+                                    <span class="item-name">User role.permission</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{ route('admin.user.list') }}">
                                     <i class="icon">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -218,6 +235,8 @@
                                     <span class="item-name">User List</span>
                                 </a>
                             </li>
+
+
                         </ul>
                     </li>
 
@@ -294,6 +313,12 @@
                             </li>
                         </ul>
                     </li>
+
+
+
+
+
+
 
 
                     <li>
@@ -449,7 +474,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0 ">
-                            
+
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link" id="langues-drop" data-bs-toggle="dropdown">
                                     <svg class="icon-24" width="24" xmlns="http://www.w3.org/2000/svg"

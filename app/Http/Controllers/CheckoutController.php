@@ -115,7 +115,7 @@ class CheckoutController extends Controller
     $amount_100 = $order->total_amount * 100;
     $order_id = 'ORD' . $order->id;
 
-    $callback_url = 'https://b65f-2001-42c0-82d1-e500-709e-8e58-4890-8f7d.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
+    $callback_url = 'https://1c83-41-73-109-133.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
 
     $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
     $hash = sha1($upped);

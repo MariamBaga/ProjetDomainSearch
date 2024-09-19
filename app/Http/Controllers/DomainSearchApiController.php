@@ -90,10 +90,18 @@ class DomainSearchApiController extends Controller
     try {
         $apiUrl = 'http://localhost:8001/api/register';
 
+        // Log du payload pour vérification
+        Log::info('Payload: ', ['domain_name' => $domainName, 'purchase_price' => $purchasePrice]);
+
+
         $response = Http::post($apiUrl, [
             'domain_name' => $domainName,
             'purchase_price' => $purchasePrice,
         ]);
+
+         // Log la réponse complète
+         Log::info('API Response Status: ' . $response->status());
+         Log::info('API Response Body: ' . $response->body());
 
         if ($response->successful()) {
             return response()->json(['success' => 'Domaine enregistré avec succès.']);

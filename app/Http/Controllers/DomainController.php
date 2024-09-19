@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Domain;
-
+use Illuminate\Support\Facades\Auth;
 
 class DomainController extends Controller
 {
@@ -21,7 +21,11 @@ class DomainController extends Controller
 
 public function User_domains_list(){
 
-    return view("User.Domaine_liste"    );
+    // Récupérer les domaines achetés par l'utilisateur
+    $domains = Domain::where('user_id', Auth::id())->get(); // Assure-toi que la table Domain a bien un champ user_id
+
+    return view("User.Domaine_liste", compact('domains'));
+
 }
 
 

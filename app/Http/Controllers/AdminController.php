@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function rolepermission()
     {
         // Récupérer les utilisateurs avec le rôle 'user'
         $users = User::role('user')->get();
@@ -19,9 +19,13 @@ class AdminController extends Controller
         return view('Admin.admin', compact('users', 'roles', 'permissions'));
     }
 
+
     public function Dashbaord(){
         return view('Admin.Dashbaord');
     }
+    public function index(){
+            return view('Admin.userlist');
+        }
 
     // public function updateRole(Request $request, $id)
     // {

@@ -1,21 +1,29 @@
-<!-- resources/views/success.blade.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paiement Réussi</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
-    <div class="container">
-        <div class="alert alert-success mt-5">
-            <h1 class="display-4">Paiement Réussi</h1>
-            <p class="lead">Merci pour votre achat. Votre commande a été passée avec succès.</p>
-            <hr>
-            <p>Vous pouvez voir les détails de votre commande dans votre <a href="{{ route('orders') }}">historique de commandes</a>.</p>
-            <a class="btn btn-primary" href="{{ route('home') }}">Retour à l'accueil</a>
-        </div>
-    </div>
-</body>
-</html>
+@extends('layouts.master')
+
+@section('title', 'Paiement Réussi')
+
+@section('content')
+<div class="container mt-5">
+    <h2>Paiement Réussi</h2>
+    <p>Votre paiement a été traité avec succès. Merci pour votre achat !</p>
+
+    <h4>Détails de la commande</h4>
+    <ul>
+        <li><strong>Nom :</strong> {{ $order->first_name }} {{ $order->last_name }}</li>
+        <li><strong>Email :</strong> {{ $order->email }}</li>
+        <li><strong>Téléphone :</strong> {{ $order->phone }}</li>
+
+        <li><strong>Adresse :</strong> {{ $order->address }}, {{ $order->city }}</li>
+        <li><strong>Montant Total :</strong> {{ $order->total_amount }} FCFA</li>
+        <li><strong>Méthode de paiement :</strong> {{ ucfirst($order->payment_method) }}</li>
+        <li><strong>Statut de la commande :</strong> {{ ucfirst($order->status) }}</li>
+    </ul>
+
+    <h4>Éléments de la commande</h4>
+    <ul>
+        @foreach($order->items as $item)
+            <li>{{ $item->domain_name }}.{{ $item->domain_extension }} - {{ $item->duration }} an(s) - {{ $item->price }} €</li>
+        @endforeach
+    </ul>
+</div>
+@endsection

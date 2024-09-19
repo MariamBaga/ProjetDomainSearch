@@ -12,22 +12,15 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
 use App\Models\OrderItem;
-use  Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+
+use Illuminate\Support\Facades\Hash;
 
 class PaymentController extends Controller
 {
     /**
      * Gère le callback de paiement d'Orange Money.
      */
-
-
-
-
-
-
-
-
-
 
     /**
      * Gère le callback de paiement d'Orange Money.
@@ -60,18 +53,17 @@ class PaymentController extends Controller
                 return response()->json(['error' => 'Commande non trouvée'], 404);
             }
 
-             // Utiliser le montant de la commande et le multiplier par 100 si nécessaire
-        $amount_100 = $order->total_amount;
-
+            // Utiliser le montant de la commande et le multiplier par 100 si nécessaire
+            $amount_100 = $order->total_amount;
 
             // Vérifier si un paiement pour cet ordre existe déjà
             $payment = Payment::where('order_id', $orderId)->first();
 
             if (!$payment) {
                 // Si le montant est manquant ou incorrect, utiliser le montant de la commande * 100
-            if (!$amount || $amount != $amount_100) {
-                $amount = $amount_100;
-            }
+                if (!$amount || $amount != $amount_100) {
+                    $amount = $amount_100;
+                }
 
                 // Créer un nouveau paiement si aucun n'existe
                 $payment = Payment::create([
@@ -87,16 +79,24 @@ class PaymentController extends Controller
             if ($success) {
                 $payment->status = 'completed';
 
-                 // Mise à jour du statut de la commande
-            $order->status = 'completed';
-            $order->save();
+                // Mise à jour du statut de la commande
+                $order->status = 'completed';
+                $order->save();
 
-
+               // Enregistrer le domaine
+                if ($order->domain_id) {
+                    $domain = Domain::find($order->domain_id);
+                    if ($domain && $domain->status === 'available') {
+                        Log::info('Tentative d\'enregistrement du domaine pour la commande ID: ' . $orderId);
+                        $registerDomainSuccess = $this->registerDomain($domain, $order->user);
+                        Log::info('Enregistrement du domaine terminé avec le statut: ' . ($registerDomainSuccess ? 'succès' : 'échec'));
+                    }
+    }
             } elseif ($failure) {
                 $payment->status = 'failed';
 
                 $order->status = 'failed';
-            $order->save();
+                $order->save();
             } else {
                 $payment->status = 'pending';
             }
@@ -117,27 +117,15 @@ class PaymentController extends Controller
             Log::info('Webhook créé avec succès pour la commande ID: ' . $orderId);
 
 
-             // **Enregistrer le domaine juste après la création du webhook**
-        if ($order->domain_id) {
-            $domain = Domain::find($order->domain_id);
-            if ($domain && $domain->status === 'available') {
-                $this->registerDomain($domain, $order->user);
-            }
-        }
 
-        // Si succès, rediriger vers la page de succès
-
+            // Si succès, rediriger vers la page de succès
 
             return response()->json(['message' => 'Callback traité avec succès'], 200);
-
         } catch (\Exception $e) {
             Log::error('Erreur lors du traitement du callback : ' . $e->getMessage());
             return response()->json(['error' => 'Erreur serveur'], 500);
         }
     }
-
-
-
 
     /**
      * Gère les notifications webhook de paiement d'Orange Money.
@@ -154,7 +142,6 @@ class PaymentController extends Controller
                 Log::error('ID de commande manquant dans le webhook');
                 return response()->json(['error' => 'ID de commande manquant'], 400);
             }
-
 
             $order = Order::find($orderId);
 
@@ -175,45 +162,24 @@ class PaymentController extends Controller
             Log::info('Webhook créé avec succès pour la commande ID: ' . $order->id);
 
             return response()->json(['message' => 'Webhook traité avec succès'], 200);
-
         } catch (\Exception $e) {
             Log::error('Erreur lors du traitement du webhook : ' . $e->getMessage());
             return response()->json(['error' => 'Erreur serveur'], 500);
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Enregistre le domaine au nom de l'utilisateur.
- */
-private function registerDomain($domain, $user)
+    /**
+     * Enregistre le domaine au nom de l'utilisateur.
+     */
+    private function registerDomain($domain, $user)
 {
-    $apiUrl = 'http://localhost:8001/api/register';
+    $apiUrl = 'http://localhost:8001/api/registe';
 
     try {
         $response = Http::post($apiUrl, [
             'domain_name' => $domain->name . '.' . $domain->extension,
             'purchase_price' => $domain->price,
-            'user_id' => $user->id, // Assurez-vous que l'API accepte cette information
+            'user_id' => $user->id,
         ]);
 
         if ($response->successful()) {
@@ -222,24 +188,24 @@ private function registerDomain($domain, $user)
             $domain->save();
 
             Log::info('Domaine enregistré avec succès pour l\'utilisateur ' . $user->id);
+            return true; // Indique un succès
         } else {
             $statusCode = $response->status();
             $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
             Log::error($errorMessage);
+            return false; // Indique un échec
         }
     } catch (\Throwable $th) {
         $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
         Log::error('Exception Error: ' . $errorMessage);
+        return false; // Indique un échec
     }
 }
-
-
 
 
     /**
      * Gère les notifications webhook de paiement d'Orange Money.
      */
-
 
     /**
      * Vérifie la validité du callback.
@@ -259,31 +225,11 @@ private function registerDomain($domain, $user)
         return $request->input('webhook_secret') === $webhookSecret;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function makePaymentSuccess($orderId)
     {
-
         // Récupérer la commande par ID
         $order = Order::with('items')->findOrFail($orderId);
 
-        return view('Checkout.success',compact('order'));
+        return view('Checkout.success', compact('order'));
     }
-
-
-
-
-
-
 }
