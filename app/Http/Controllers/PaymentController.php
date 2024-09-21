@@ -56,6 +56,9 @@ class PaymentController extends Controller
             // Utiliser le montant de la commande et le multiplier par 100 si nécessaire
             $amount_100 = $order->total_amount;
 
+            // Utiliser l'email de l'utilisateur si disponible
+        $userEmail = $order->user_email ?? 'N/A';
+
             // Vérifier si un paiement pour cet ordre existe déjà
             $payment = Payment::where('order_id', $orderId)->first();
 
@@ -71,6 +74,7 @@ class PaymentController extends Controller
                     'transaction_id' => $transactionId ?? 'N/A', // Si 'transaction_id' est manquant
                     'amount' => $amount,
                     'status' => 'pending', // Mettre à jour après selon les données reçues
+                    'user_email' => $userEmail, // Ajouter l'email de l'utilisateur
                 ]);
                 Log::info('Nouveau paiement créé pour la commande ID: ' . $orderId);
             }
@@ -179,7 +183,7 @@ class PaymentController extends Controller
         $response = Http::post($apiUrl, [
             'domain_name' => $domain->name . '.' . $domain->extension,
             'purchase_price' => $domain->price,
-            'user_id' => $user->id,
+            'user_email' => $userEmail, // Utiliser l'email de l'utilisateur
         ]);
 
         if ($response->successful()) {

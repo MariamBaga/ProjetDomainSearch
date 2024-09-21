@@ -18,10 +18,12 @@ return new class extends Migration
             $table->decimal('amount', 10, 2); // Montant du paiement
             $table->string('status')->default('pending'); // Statut : pending, completed, failed
             $table->json('callback_data')->nullable(); // Données du callback sous forme JSON
+            
+
             $table->timestamps();
 
             // Clé étrangère vers la table 'orders'
-            
+
        });
     }
 

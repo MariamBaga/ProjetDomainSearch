@@ -46,8 +46,8 @@ Route::POST('/register-domains', [DomainSearchApiController::class, 'registerDom
 
 // Route pour transférer un domaine
 Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
-Route::GET('/transfer', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
-Route::GET('/renew', [DomainController::class, 'indexRenew'])->name('domain.Renew.view');
+Route::GET('/transfer/{domainId}', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
+Route::GET('/renew/{domainId}', [DomainController::class, 'indexRenew'])->name('domain.Renew.view');
 
 
 // Route::get('/', function () {
@@ -104,6 +104,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'Dashbaord'])->name('admin.dashboard');
 
     Route::get('/admin/user_list', [UserController::class, 'index'])->name('admin.user.list');
+    Route::GET('/admin/domain_list', [AdminController::class, 'admin_domains_list'])->name('admin.domain.list');
 
     Route::get('/admin/user_role_permission', [AdminController::class, 'rolepermission'])->name('admin.user.role.permission');
 

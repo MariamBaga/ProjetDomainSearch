@@ -10,16 +10,13 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-2 align-items-center">
                             <div class="d-flex align-items-center">
-                                <!-- Icone pour le total des domaines -->
-                                <svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <!-- SVG path ici -->
                                 </svg>
                                 <h6 class="mb-0">Total des Domaines</h6>
                             </div>
                             <div class="dropdown">
-                                <a href="#" class="text-gray " id="dropdownMenuButton36" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <a href="#" class="text-gray" id="dropdownMenuButton36" data-bs-toggle="dropdown" aria-expanded="false">
                                     <!-- SVG pour le dropdown -->
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton36">
@@ -32,7 +29,6 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 <h3>{{ $totalDomains }}</h3> <!-- Utilise la variable $totalDomains -->
-                                <small class="text-success">+ 0.8%</small><small class="ms-2">(BTC/USDT)</small>
                             </div>
                         </div>
                     </div>
@@ -44,16 +40,13 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-2 align-items-center">
                             <div class="d-flex align-items-center">
-                                <!-- Icone pour les transactions -->
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <!-- SVG path ici -->
                                 </svg>
                                 <h6 class="mb-0">Transactions</h6>
                             </div>
                             <div class="dropdown">
-                                <a href="#" class="text-gray " id="dropdownMenuButton35" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <a href="#" class="text-gray" id="dropdownMenuButton35" data-bs-toggle="dropdown" aria-expanded="false">
                                     <!-- SVG pour le dropdown -->
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton35">
@@ -65,8 +58,7 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <div>
-                                <h3>{{ $totalDomains }}</h3> <!-- Utilise la variable $totalTransactions -->
-                                <small class="text-danger">-0.8%</small>
+                                <h3>{{ $totalTransactions }} FCFA</h3> <!-- Utilise la variable $totalTransactions -->
                             </div>
                         </div>
                     </div>

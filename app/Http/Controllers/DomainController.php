@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Domain;
-use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Auth;
 
 class DomainController extends Controller
 {
@@ -12,17 +12,41 @@ class DomainController extends Controller
 
 
 
-    public function indexTransfer(){
-        return view("Domain.Transfer");
+    public function indexTransfer($domainId){
+         // Récupérer le domaine par ID
+    $domain = Domain::where('id', $domainId)
+    ->where('user_id', Auth::id())
+    ->first();
+
+// Vérifier si le domaine existe et appartient à l'utilisateur
+if (!$domain) {
+return redirect()->route('user.domains.list')->with('error', 'Domaine non trouvé ou vous n\'avez pas accès à ce domaine.');
+}
+
+// Passer le domaine à la vue
+return view("Domain.Transfer", compact('domain'));
     }
- public function indexRenew(){
-        return view("Domain.Renew");
+ public function indexRenew($domainId){
+         // Récupérer le domaine à renouveler
+    $domain = Domain::where('id', $domainId)
+    ->where('user_id', Auth::id())
+    ->first();
+
+// Vérifier si le domaine existe et appartient à l'utilisateur
+if (!$domain) {
+return redirect()->route('user.domains.list')->with('error', 'Domaine non trouvé ou vous n\'avez pas accès à ce domaine.');
+}
+
+return view("Domain.Renew", compact('domain'));
     }
 
 public function User_domains_list(){
 
-    // Récupérer les domaines achetés par l'utilisateur
-    $domains = Domain::where('user_id', Auth::id())->get(); // Assure-toi que la table Domain a bien un champ user_id
+    // Récupérer l'utilisateur connecté
+    $userEmail = Auth::user()->email;
+
+    // Récupérer les domaines achetés par l'utilisateur en utilisant son email
+    $domains = Domain::where('user_email', $userEmail)->get();
 
     return view("User.Domaine_liste", compact('domains'));
 

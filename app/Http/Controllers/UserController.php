@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Domain;
+use App\Models\Payment;
+
 
 class UserController extends Controller
 {
@@ -37,19 +39,19 @@ class UserController extends Controller
     }
 
 
-
     public function userCompte()
     {
-
         $user = auth()->user(); // Récupérer l'utilisateur connecté
 
         // Récupérer le nombre de domaines achetés par l'utilisateur connecté
-        $totalDomains = Domain::where('user_id', $user->id)->count(); // Compte le nombre de domaines de l'utilisateur connecté
-        //$totalTransactions = Transaction::where('user_id', $user->id)->count(); // Compte le nombre de transactions de l'utilisateur connecté
+        $totalDomains = Domain::where('user_email', $user->email)->count(); // Compte le nombre de domaines de l'utilisateur connecté
 
-        return view('User.index', compact('totalDomains'));
+        // Récupérer le total des paiements effectués par l'utilisateur
+        $totalTransactions = Payment::where('user_email', $user->email)->sum('amount'); // Assurez-vous que le champ user_id existe dans la table payments
 
+        return view('User.index', compact('totalDomains', 'totalTransactions'));
     }
+
 
 
 

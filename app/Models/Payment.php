@@ -15,7 +15,8 @@ class Payment extends Model
         'transaction_id',
         'amount',
         'status',
-        'callback_data'
+        'callback_data',
+        'user_email', // Ajoutez 'user_email' ici''
     ];
 
     // Relation avec le modèle Order (une commande peut avoir plusieurs paiements)

@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="flex-wrap d-flex justify-content-between align-items-center">
                         <div>
-                            <h1>Hello Qompac!</h1>
+                            <h1>Salut!</h1>
                             <p>Experience a simple yet powerful way to build Dashboards with "Domaine".</p>
                         </div>
                         <div>

@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('domains', function (Blueprint $table) {
-            //
-
-            // Ajouter la colonne user_id comme clé étrangère
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade')->after('status');
-       
+            // Ajouter la colonne user_email après 'status'
+            $table->string('user_email')->nullable()->after('status');
         });
     }
 
@@ -26,11 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('domains', function (Blueprint $table) {
-            //
-
-                // Supprimer la colonne user_id
-                $table->dropForeign(['user_id']);
-                $table->dropColumn('user_id');
+            // Supprimer la colonne user_email
+            $table->dropColumn('user_email');
         });
     }
 };

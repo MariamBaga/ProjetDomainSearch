@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title data-setting="app_name" >@yield('title')</title>
+    <title data-setting="app_name">@yield('title')</title>
     <meta name="description"
         content="Qompac UI is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules.">
     <meta name="keywords"
@@ -51,7 +51,7 @@
     <div id="loading">
         <div class="loader simple-loader">
             <div class="loader-body ">
-                <img  alt="loader" class="image-loader img-fluid">
+                <img alt="loader" class="image-loader img-fluid">
 
             </div>
         </div>
@@ -60,12 +60,13 @@
     <aside class="sidebar sidebar-base sidebar-white sidebar-default navs-rounded-all " id="first-tour"
         data-toggle="main-sidebar" data-sidebar="responsive">
         <div class="sidebar-header d-flex align-items-center justify-content-start">
-            <a href="{{route('home')}}" class="navbar-brand">
+            <a href="{{ route('home') }}" class="navbar-brand">
 
                 <!--Logo start-->
                 <div class="logo-main">
                     <div class="logo-normal">
-                    <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo" width="40">
+                        <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo"
+                            width="40">
                     </div>
                     <div class="logo-mini">
                         <svg class=" icon-30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,7 +107,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="{{route('user.Dashbaord')}}">
+                        <a class="nav-link " aria-current="page" href="{{ route('user.Dashbaord') }}">
                             <i class="icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">
                                 <svg width="20" class="icon-20" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -137,37 +138,49 @@
 
 
                     <li class="nav-item">
-                            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#utilities-error" role="button" aria-expanded="false" aria-controls="utilities-error">
-                                <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Utilities" data-bs-original-title="Utilities">
-                                    <svg width="20" class="icon-20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.4" d="M11.9912 18.6215L5.49945 21.864C5.00921 22.1302 4.39768 21.9525 4.12348 21.4643C4.0434 21.3108 4.00106 21.1402 4 20.9668V13.7087C4 14.4283 4.40573 14.8725 5.47299 15.37L11.9912 18.6215Z" fill="currentColor"></path>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.89526 2H15.0695C17.7773 2 19.9735 3.06605 20 5.79337V20.9668C19.9989 21.1374 19.9565 21.3051 19.8765 21.4554C19.7479 21.7007 19.5259 21.8827 19.2615 21.9598C18.997 22.0368 18.7128 22.0023 18.4741 21.8641L11.9912 18.6215L5.47299 15.3701C4.40573 14.8726 4 14.4284 4 13.7088V5.79337C4 3.06605 6.19625 2 8.89526 2ZM8.22492 9.62227H15.7486C16.1822 9.62227 16.5336 9.26828 16.5336 8.83162C16.5336 8.39495 16.1822 8.04096 15.7486 8.04096H8.22492C7.79137 8.04096 7.43991 8.39495 7.43991 8.83162C7.43991 9.26828 7.79137 9.62227 8.22492 9.62227Z" fill="currentColor"></path>
-                                    </svg>
-                                </i>
-                                <span class="item-name">Domaine</span>
-                                <i class="right-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" class="icon-18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </i>
-                            </a>
-                            <ul class="sub-nav collapse" id="utilities-error" data-bs-parent="#sidebar-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link " href="{{route('User.domain.list')}}">
-                                        <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Error 404" data-bs-original-title="Error 404">
-                                            <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                                </g>
-                                            </svg>
-                                        </i>
-                                        <span class="item-name">Liste de Domaine</span>
-                                    </a>
-                                </li>
+                        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#utilities-error"
+                            role="button" aria-expanded="false" aria-controls="utilities-error">
+                            <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right"
+                                aria-label="Utilities" data-bs-original-title="Utilities">
+                                <svg width="20" class="icon-20" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4"
+                                        d="M11.9912 18.6215L5.49945 21.864C5.00921 22.1302 4.39768 21.9525 4.12348 21.4643C4.0434 21.3108 4.00106 21.1402 4 20.9668V13.7087C4 14.4283 4.40573 14.8725 5.47299 15.37L11.9912 18.6215Z"
+                                        fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M8.89526 2H15.0695C17.7773 2 19.9735 3.06605 20 5.79337V20.9668C19.9989 21.1374 19.9565 21.3051 19.8765 21.4554C19.7479 21.7007 19.5259 21.8827 19.2615 21.9598C18.997 22.0368 18.7128 22.0023 18.4741 21.8641L11.9912 18.6215L5.47299 15.3701C4.40573 14.8726 4 14.4284 4 13.7088V5.79337C4 3.06605 6.19625 2 8.89526 2ZM8.22492 9.62227H15.7486C16.1822 9.62227 16.5336 9.26828 16.5336 8.83162C16.5336 8.39495 16.1822 8.04096 15.7486 8.04096H8.22492C7.79137 8.04096 7.43991 8.39495 7.43991 8.83162C7.43991 9.26828 7.79137 9.62227 8.22492 9.62227Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name">Domaine</span>
+                            <i class="right-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" class="icon-18"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="sub-nav collapse" id="utilities-error" data-bs-parent="#sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{ route('User.domain.list') }}">
+                                    <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right"
+                                        aria-label="Error 404" data-bs-original-title="Error 404">
+                                        <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor">
+                                                </circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name">Liste de Domaine</span>
+                                </a>
+                            </li>
 
 
-                            </ul>
-                        </li>
+                        </ul>
+                    </li>
 
 
                     <li>
@@ -208,8 +221,8 @@
                             <li class="nav-item">
                                 <a class="nav-link " href="maps/google.html">
                                     <i class="icon">
-                                        <svg class="icon-10" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <g>
                                                 <circle cx="12" cy="12" r="8" fill="currentColor">
                                                 </circle>
@@ -224,8 +237,8 @@
                             <li class="nav-item">
                                 <a class="nav-link " href="maps/vector.html">
                                     <i class="icon">
-                                        <svg class="icon-10" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <g>
                                                 <circle cx="12" cy="12" r="8" fill="currentColor">
                                                 </circle>
@@ -253,12 +266,13 @@
             <!--Nav Start-->
             <nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
                 <div class="container-fluid navbar-inner">
-                    <a href="{{route('home')}}" class="navbar-brand">
+                    <a href="{{ route('home') }}" class="navbar-brand">
 
                         <!--Logo start-->
                         <div class="logo-main">
                             <div class="logo-normal">
-                            <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo" width="25">
+                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo"
+                                    class="white-logo" width="25">
                             </div>
                             <div class="logo-mini">
                                 <svg class="text-primary icon-30" viewBox="0 0 32 32" fill="none"
@@ -291,7 +305,7 @@
                                 <ul class="iq-nav-menu list-unstyled">
                                     <li class="nav-item ">
                                         <a class="nav-link menu-arrow justify-content-start active"
-                                            data-bs-toggle="collapse" href="{{route('home')}}" role="button"
+                                            data-bs-toggle="collapse" href="{{ route('home') }}" role="button"
                                             aria-expanded="false" aria-controls="homeData">
                                             <svg class="icon-20" width="20" viewBox="0 0 24 24"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -310,10 +324,9 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
-                        <button id="navbar-toggle" class="navbar-toggler" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                        <button id="navbar-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon">
                                 <span class="navbar-toggler-bar bar1 mt-1"></span>
                                 <span class="navbar-toggler-bar bar2"></span>
@@ -323,56 +336,10 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0 ">
-                            
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link" id="langues-drop" data-bs-toggle="dropdown">
-                                    <svg class="icon-24" width="24" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802">
-                                        </path>
-                                    </svg>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li data-setting="attribute">
-                                        <div class="dropdown-item d-flex align-items-center">
-                                            <input type="radio" value="ltr" class="btn-check"
-                                                name="theme_scheme_direction" data-prop="dir"
-                                                id="theme-scheme-direction-ltr" checked>
-                                            <label class="d-block" for="theme-scheme-direction-ltr">
-                                                <svg width="20" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M18.9702 19.757L15.3502 5.27201C15.1884 4.62224 14.8136 4.04541 14.2856 3.63359C13.7576 3.22177 13.1068 2.99871 12.4372 3.00001H11.5602C10.8911 2.99938 10.2411 3.22275 9.71368 3.63452C9.18629 4.04628 8.81191 4.62274 8.65022 5.27201L5.03022 19.757C4.9679 20.0135 5.00954 20.2843 5.14605 20.5102C5.28257 20.7362 5.50288 20.899 5.75895 20.9631C6.01502 21.0273 6.28606 20.9875 6.51297 20.8527C6.73988 20.7178 6.90424 20.4986 6.97022 20.243L8.28022 15H15.7202L17.0302 20.243C17.0962 20.4986 17.2606 20.7178 17.4875 20.8527C17.7144 20.9875 17.9854 21.0273 18.2415 20.9631C18.4976 20.899 18.7179 20.7362 18.8544 20.5102C18.9909 20.2843 19.0325 20.0135 18.9702 19.757V19.757ZM8.78022 13L10.5912 5.75801C10.6449 5.5414 10.7696 5.34903 10.9454 5.21163C11.1213 5.07423 11.3381 4.99972 11.5612 5.00001H12.4392C12.6624 4.99972 12.8792 5.07423 13.055 5.21163C13.2308 5.34903 13.3556 5.5414 13.4092 5.75801L15.2192 13H8.78022Z"
-                                                        fill="currentColor" />
-                                                </svg>
-                                                <span class="ms-2 mb-0"> LTR </span>
-                                            </label>
 
-                                        </div>
-                                    </li>
-                                    <li data-setting="attribute">
-                                        <div class="dropdown-item d-flex align-items-center">
-                                            <input type="radio" value="rtl" class="btn-check"
-                                                name="theme_scheme_direction" data-prop="dir"
-                                                id="theme-scheme-direction-rtl">
-                                            <label class=" d-block" for="theme-scheme-direction-rtl">
-                                                <svg width="20" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12 4C10.08 4 8.5 5.58 8.5 7.5C8.5 8.43 8.88 9.28 9.5 9.91C7.97 10.91 7 12.62 7 14.5C7 17.53 9.47 20 12.5 20C14.26 20 16 19.54 17.5 18.66L16.5 16.93C15.28 17.63 13.9 18 12.5 18C10.56 18 9 16.45 9 14.5C8.99823 13.7298 9.2513 12.9806 9.71978 12.3692C10.1883 11.7578 10.8458 11.3186 11.59 11.12L16.8 9.72L16.28 7.79L11.83 9C11.08 8.9 10.5 8.28 10.5 7.5C10.5 6.66 11.16 6 12 6C12.26 6 12.5 6.07 12.75 6.2L13.75 4.47C13.22 4.16 12.61 4 12 4Z"
-                                                        fill="currentColor" />
-                                                </svg>
-                                                <span class="ms-2 mb-0"> RTL </span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
+
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link" id="notification-drop"
-                                    data-bs-toggle="dropdown">
+                                <a href="#" class="nav-link" id="notification-drop" data-bs-toggle="dropdown">
                                     <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -401,8 +368,7 @@
                                                         alt="" loading="lazy">
                                                     <div class="ms-3 w-100">
                                                         <h6 class="mb-0 ">Emma Watson Bni</h6>
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-center">
+                                                        <div class="d-flex justify-content-between align-items-center">
                                                             <p class="mb-0">95 MB</p>
                                                             <small class="float-end font-size-12">Just Now</small>
                                                         </div>
@@ -418,8 +384,7 @@
                                                     </div>
                                                     <div class="ms-3 w-100">
                                                         <h6 class="mb-0 ">New customer is join</h6>
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-center">
+                                                        <div class="d-flex justify-content-between align-items-center">
                                                             <p class="mb-0">Cyst Bni</p>
                                                             <small class="float-end font-size-12">5 days ago</small>
                                                         </div>
@@ -433,8 +398,7 @@
                                                         alt="" loading="lazy">
                                                     <div class="ms-3 w-100">
                                                         <h6 class="mb-0 ">Two customer is left</h6>
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-center">
+                                                        <div class="d-flex justify-content-between align-items-center">
                                                             <p class="mb-0">Cyst Bni</p>
                                                             <small class="float-end font-size-12">2 days ago</small>
                                                         </div>
@@ -448,8 +412,7 @@
                                                         alt="" loading="lazy">
                                                     <div class="w-100 ms-3">
                                                         <h6 class="mb-0 ">New Mail from Fenny</h6>
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-center">
+                                                        <div class="d-flex justify-content-between align-items-center">
                                                             <p class="mb-0">Cyst Bni</p>
                                                             <small class="float-end font-size-12">3 days ago</small>
                                                         </div>
@@ -597,9 +560,8 @@
                                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                                 stroke-linejoin="round"></path>
                                         </svg>
-                                        <svg class="full-normal-screen icon-32 d-none" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="full-normal-screen icon-32 d-none" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.7542 10.1932L18.1867 5.79319" stroke="white"
                                                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                             </path>
@@ -617,26 +579,36 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                            <a class="py-0 nav-link d-flex align-items-center ps-3" href="#" id="profile-setting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('assets1/images/avatars/default.png') }}" alt="User-Profile" class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
-    <div class="caption ms-3 d-none d-md-block">
-        <h6 class="mb-0 caption-title">{{ Auth::user()->name }}</h6>
+                                <a class="py-0 nav-link d-flex align-items-center ps-3" href="#"
+                                    id="profile-setting" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="{{ Auth::user()->photo ? Storage::url(Auth::user()->photo) : asset('assets1/images/avatars/default.png') }}"
+                                        alt="User-Profile"
+                                        class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded"
+                                        loading="lazy">
+                                    <div class="caption ms-3 d-none d-md-block">
+                                        <h6 class="mb-0 caption-title">{{ Auth::user()->name }}</h6>
 
-    </div>
-</a>
+                                    </div>
+                                </a>
 
 
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-setting">
-    <li><a class="dropdown-item" href="{{ route('Userprofil') }}">Profile</a></li>
-    <li><a class="dropdown-item" href="app/user-privacy-setting.html">Privacy Setting</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-    </li>
-</ul>
+                                    <li><a class="dropdown-item" href="{{ route('Userprofil') }}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="app/user-privacy-setting.html">Privacy
+                                            Setting</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                        <a class="dropdown-item" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    </li>
+                                </ul>
 
                             </li>
                         </ul>
@@ -716,8 +688,7 @@
                                 <div class=" mb-3" data-setting="radio">
                                     <div class="form-check mb-0 w-100">
                                         <input class="form-check-input custom-redio-btn mt-2" type="radio"
-                                            value="light" name="theme_scheme" id="color-mode-light"
-                                            checked="">
+                                            value="light" name="theme_scheme" id="color-mode-light" checked="">
                                         <label
                                             class="form-check-label d-flex align-items-center justify-content-between"
                                             for="color-mode-light">
@@ -731,8 +702,8 @@
                                                     </circle>
                                                     <rect x="16.5" y="8.25" width="37.5" height="3"
                                                         rx="1.5" fill="#DADCE0"></rect>
-                                                    <rect x="6" y="18" width="48" height="3"
-                                                        rx="1.5" fill="currentColor"></rect>
+                                                    <rect x="6" y="18" width="48" height="3" rx="1.5"
+                                                        fill="currentColor"></rect>
                                                     <rect x="0.375" y="0.375" width="59.25" height="26.25"
                                                         rx="4.125" stroke="#DADCE0" stroke-width="0.75">
                                                     </rect>
@@ -758,8 +729,8 @@
                                                     </circle>
                                                     <rect x="16.5" y="8.25" width="37.5" height="3"
                                                         rx="1.5" fill="#DADCE0"></rect>
-                                                    <rect x="6" y="18" width="48" height="3"
-                                                        rx="1.5" fill="currentColor"></rect>
+                                                    <rect x="6" y="18" width="48" height="3" rx="1.5"
+                                                        fill="currentColor"></rect>
                                                     <rect x="0.375" y="0.375" width="59.25" height="26.25"
                                                         rx="4.125" stroke="currentColor" stroke-width="0.75">
                                                     </rect>
@@ -786,8 +757,8 @@
                                                     </circle>
                                                     <rect x="16.5" y="8.25" width="37.5" height="3"
                                                         rx="1.5" fill="#DADCE0"></rect>
-                                                    <rect x="6" y="18" width="48" height="3"
-                                                        rx="1.5" fill="currentColor"></rect>
+                                                    <rect x="6" y="18" width="48" height="3" rx="1.5"
+                                                        fill="currentColor"></rect>
                                                     <g clip-path="url(#clip0_507_92)">
                                                         <rect width="30" height="27" fill="white"></rect>
                                                         <circle cx="9.75" cy="9.75" r="3.75"
@@ -862,8 +833,8 @@
                                 <h5 class="mt-4 mb-3">Active Menu Style</h5>
                                 <div class="d-grid gap-3 grid-cols-2">
                                     <div data-setting="radio" class="text-center">
-                                        <input type="radio" value="sidebar-default navs-rounded"
-                                            class="btn-check" name="sidebar_menu_style" id="navs-rounded">
+                                        <input type="radio" value="sidebar-default navs-rounded" class="btn-check"
+                                            name="sidebar_menu_style" id="navs-rounded">
                                         <label class="btn btn-border btn-setting-panel d-block overflow-hidden"
                                             for="navs-rounded">
                                             Rounded One
@@ -886,8 +857,8 @@
                                         </label>
                                     </div>
                                     <div data-setting="radio" class="text-center">
-                                        <input type="radio" value="sidebar-default navs-pill-all"
-                                            class="btn-check" name="sidebar_menu_style" id="navs-pill-all">
+                                        <input type="radio" value="sidebar-default navs-pill-all" class="btn-check"
+                                            name="sidebar_menu_style" id="navs-pill-all">
                                         <label class="btn btn-border btn-setting-panel d-block overflow-hidden"
                                             for="navs-pill-all">
                                             Pill All
@@ -907,9 +878,8 @@
                                             <input type="radio" value="default" class="btn-check"
                                                 name="theme_color" id="theme-color-default"
                                                 data-colors='{"primary": "#2647c8", "secondary": "aca4bc"}'>
-                                            <label class="btn bg-transparent px-2 border-0"
-                                                for="theme-color-default" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Reset Color"
+                                            <label class="btn bg-transparent px-2 border-0" for="theme-color-default"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Reset Color"
                                                 data-bs-original-title="Reset color">
                                                 <svg width="18" height="18" viewBox="0 0 24 24"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -927,9 +897,8 @@
                                 <div class="collapse" id="custom-color">
                                     <div class="form-group d-flex justify-content-between align-items-center">
                                         <label class="" for="custom-primary-color">Primary</label>
-                                        <input class="" name="theme_color" data-extra="primary"
-                                            type="color" id="custom-primary-color" value="#2647c8"
-                                            data-setting="color">
+                                        <input class="" name="theme_color" data-extra="primary" type="color"
+                                            id="custom-primary-color" value="#2647c8" data-setting="color">
                                     </div>
                                     <div class="form-group d-flex d-flex justify-content-between align-items-center">
                                         <label class="" for="custom-secondary-color">Secondary</label>
@@ -939,33 +908,29 @@
                                     </div>
                                     <div class="form-group d-flex d-flex justify-content-between align-items-center">
                                         <label class="" for="custom-success-color">Success</label>
-                                        <input class="" name="theme_color" data-extra="success"
-                                            type="color" id="custom-success-color" value="#91969E"
-                                            data-setting="color">
+                                        <input class="" name="theme_color" data-extra="success" type="color"
+                                            id="custom-success-color" value="#91969E" data-setting="color">
                                     </div>
                                     <div class="form-group d-flex d-flex justify-content-between align-items-center">
                                         <label class="" for="custom-danger-color">Danger</label>
-                                        <input class="" name="theme_color" data-extra="danger"
-                                            type="color" id="custom-danger-color" value="#DB5363"
-                                            data-setting="color">
+                                        <input class="" name="theme_color" data-extra="danger" type="color"
+                                            id="custom-danger-color" value="#DB5363" data-setting="color">
                                     </div>
                                     <div class="form-group d-flex d-flex justify-content-between align-items-center">
                                         <label class="" for="custom-warning-color">Warning</label>
-                                        <input class="" name="theme_color" data-extra="warning"
-                                            type="color" id="custom-warning-color" value="#EA6A12"
-                                            data-setting="color">
+                                        <input class="" name="theme_color" data-extra="warning" type="color"
+                                            id="custom-warning-color" value="#EA6A12" data-setting="color">
                                     </div>
                                     <div class="form-group d-flex d-flex justify-content-between align-items-center">
                                         <label class="" for="custom-info-color">Info</label>
-                                        <input class="" name="theme_color" data-extra="info"
-                                            type="color" id="custom-info-color" value="#E586B3"
-                                            data-setting="color">
+                                        <input class="" name="theme_color" data-extra="info" type="color"
+                                            id="custom-info-color" value="#E586B3" data-setting="color">
                                     </div>
                                 </div>
                                 <div class="grid-cols-5 mb-4 d-grid gap-3">
                                     <div data-setting="radio">
-                                        <input type="radio" value="color-1" class="btn-check"
-                                            name="theme_color" id="theme-color-1">
+                                        <input type="radio" value="color-1" class="btn-check" name="theme_color"
+                                            id="theme-color-1">
                                         <label class="btn btn-border d-block bg-transparent" for="theme-color-1"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Theme-1"
                                             data-bs-original-title="Theme-1">
@@ -977,8 +942,8 @@
                                         </label>
                                     </div>
                                     <div data-setting="radio">
-                                        <input type="radio" value="color-2" class="btn-check"
-                                            name="theme_color" id="theme-color-2">
+                                        <input type="radio" value="color-2" class="btn-check" name="theme_color"
+                                            id="theme-color-2">
                                         <label class="btn btn-border d-block bg-transparent" for="theme-color-2"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Theme-2"
                                             data-bs-original-title="Theme-2">
@@ -990,8 +955,8 @@
                                         </label>
                                     </div>
                                     <div data-setting="radio">
-                                        <input type="radio" value="color-3" class="btn-check"
-                                            name="theme_color" id="theme-color-3">
+                                        <input type="radio" value="color-3" class="btn-check" name="theme_color"
+                                            id="theme-color-3">
                                         <label class="btn btn-border d-block bg-transparent" for="theme-color-3"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Theme-3"
                                             data-bs-original-title="Theme-3">

@@ -4,7 +4,6 @@
 
 @section('beforecontente')
     <div class="position-relative iq-banner">
-        <!-- Nav Header Component Start -->
         <div class="iq-navbar-header" style="height: 215px;">
             <div class="container-fluid iq-container">
                 <div class="row">
@@ -19,10 +18,9 @@
                 </div>
             </div>
             <div class="iq-header-img" style="background: #1d1db0";>
-                
-                <!-- Add additional theme color images here as needed -->
+                <!-- Ajoutez des images ou styles supplémentaires si nécessaire -->
             </div>
-        </div> <!-- Nav Header Component End -->
+        </div>
     </div>
 @endsection
 
@@ -39,15 +37,11 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('domain.Renew') }}">
                             @csrf
+                            <input type="hidden" name="domain_id" value="{{ $domain->id }}">
 
                             <div class="mb-3">
                                 <label for="domainName" class="form-label">Nom du domaine</label>
-                                <input type="text" class="form-control @error('domainName') is-invalid @enderror" id="domainName" name="domainName" value="{{ old('domainName') }}" required>
-                                @error('domainName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input type="text" class="form-control" id="domainName" name="domainName" value="{{ $domain->name . '.' . $domain->extension }}" readonly>
                             </div>
 
                             <div class="mb-3">
@@ -68,17 +62,12 @@
 
                             <div class="mb-3">
                                 <label for="currentExpiration" class="form-label">Date d'expiration actuelle</label>
-                                <input type="date" class="form-control @error('currentExpiration') is-invalid @enderror" id="currentExpiration" name="currentExpiration" value="{{ old('currentExpiration') }}" required>
-                                @error('currentExpiration')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input type="text" class="form-control" id="currentExpiration" name="currentExpiration" value="{{ $domain->expiration_date }}" readonly>
                             </div>
 
                             <div class="mb-3">
                                 <label for="price" class="form-label">Prix de renouvellement</label>
-                                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}" step="0.01" required>
+                                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" step="0.01" value="{{ old('price') ?? 0 }}" required>
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

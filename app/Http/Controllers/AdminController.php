@@ -6,6 +6,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\Domain;
+use Illuminate\Support\Facades\DB;
+use App\Models\Payment;
+
+
 
 class AdminController extends Controller
 {
@@ -20,9 +25,16 @@ class AdminController extends Controller
     }
 
 
-    public function Dashbaord(){
-        return view('Admin.Dashbaord');
+    public function Dashbaord() {
+        // Récupérer le nombre total de domaines
+        $totalDomains = Domain::whereNotNull('user_email')->count();
+
+        // Récupérer le total des montants des transactions
+        $totalTransactions = Payment::sum('amount'); // Assurez-vous d'importer le modèle Payment
+
+        return view('Admin.Dashbaord', compact('totalDomains', 'totalTransactions'));
     }
+
     public function index(){
             return view('Admin.userlist');
         }
@@ -48,4 +60,19 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Les permissions de l\'utilisateur ont été mises à jour avec succès.');
     }
+
+  public function admin_domains_list()
+{
+    // Récupérer les domaines en utilisant le champ user_email
+    $domainsDirect = DB::table('domains')
+        ->select('domains.*', 'domains.user_email') // Sélectionner les colonnes nécessaires
+        ->get();
+
+    return view('Admin.Domain_list', compact('domainsDirect'));
 }
+
+
+
+
+    }
+

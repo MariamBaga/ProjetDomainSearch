@@ -73,7 +73,7 @@ class CheckoutController extends Controller
 
          // Créer une nouvelle commande
          $order = Order::create([
-             'user_id' => Auth::id(),
+            'user_email' => Auth::user()->email, // Stocke l'email de l'utilisateur
              'email' => $request->input('email'),
              'phone' => $request->input('phone'),
              'first_name' => $request->input('first_name'),
@@ -115,7 +115,7 @@ class CheckoutController extends Controller
     $amount_100 = $order->total_amount * 100;
     $order_id = 'ORD' . $order->id;
 
-    $callback_url = 'https://1c83-41-73-109-133.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
+    $callback_url = 'https://dda3-41-221-189-84.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
 
     $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
     $hash = sha1($upped);

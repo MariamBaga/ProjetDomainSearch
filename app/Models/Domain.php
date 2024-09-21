@@ -17,7 +17,13 @@ class Domain extends Model
           'price',
           'duration',
           'status',
-        'user_id',
+
+        'user_email',
+        'purchase_date',
+        'expiration_date',
+        'api_response'
+
+
         ];
     // Si vous avez d'autres attributs que vous voulez ajouter ou des relations
 
@@ -42,5 +48,10 @@ class Domain extends Model
     {
         return $this->status === self::STATUS_RESERVED;
     }
-    
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+
 }

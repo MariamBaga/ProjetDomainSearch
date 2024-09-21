@@ -42,7 +42,7 @@
 
                             <div class="mb-3">
                                 <label for="domainName" class="form-label">Nom du domaine</label>
-                                <input type="text" class="form-control @error('domainName') is-invalid @enderror" id="domainName" name="domainName" value="{{ old('domainName') }}" required>
+                                <input type="text" class="form-control @error('domainName') is-invalid @enderror" id="domainName" name="domainName" value="{{ $domain->name . '.' . $domain->extension }}" readonly>
                                 @error('domainName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
