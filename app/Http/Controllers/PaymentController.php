@@ -87,15 +87,26 @@ class PaymentController extends Controller
                 $order->status = 'completed';
                 $order->save();
 
-               // Enregistrer le domaine
-                if ($order->domain_id) {
-                    $domain = Domain::find($order->domain_id);
-                    if ($domain && $domain->status === 'available') {
-                        Log::info('Tentative d\'enregistrement du domaine pour la commande ID: ' . $orderId);
-                        $registerDomainSuccess = $this->registerDomain($domain, $order->user);
-                        Log::info('Enregistrement du domaine terminé avec le statut: ' . ($registerDomainSuccess ? 'succès' : 'échec'));
-                    }
-    }
+
+            // Enregistrer le domaine dans la base de données
+            foreach ($order->items as $item) {
+                Log::info('Enregistrement du domaine pour la commande ID: ' . $orderId);
+
+                $domain =  Domain::create([
+                    'name' => $item->domain_name,
+                    'extension' => $item->domain_extension,
+                    'price' => $item->price,
+                    'duration' => $item->duration,
+                    'status' => 'unavailable', // Marquer le domaine comme non disponible
+                    'user_email' => $userEmail,
+                ]);
+
+                // Appeler la méthode pour enregistrer le domaine
+               // Bon code
+$this->registerDomain($domain, $userEmail);
+
+                Log::info('Domaine enregistré dans la base de données pour l\'utilisateur: ' . $userEmail);
+            }
             } elseif ($failure) {
                 $payment->status = 'failed';
 
@@ -175,7 +186,7 @@ class PaymentController extends Controller
     /**
      * Enregistre le domaine au nom de l'utilisateur.
      */
-    private function registerDomain($domain, $user)
+    private function registerDomain($domain, $userEmail)
 {
     $apiUrl = 'http://localhost:8001/api/registe';
 

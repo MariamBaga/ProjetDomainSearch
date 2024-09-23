@@ -32,9 +32,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DomainSearchApiController;
 
-
-
-
 Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
 
 // Route pour renouveler un domaine
@@ -49,7 +46,6 @@ Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->
 Route::GET('/transfer/{domainId}', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
 Route::GET('/renew/{domainId}', [DomainController::class, 'indexRenew'])->name('domain.Renew.view');
 
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -60,8 +56,6 @@ Route::GET('/renew/{domainId}', [DomainController::class, 'indexRenew'])->name('
 //     return 'Role assigned!';
 // });
 
-
-
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/Politique', [HomeController::class, 'Politique'])->name('politique');
@@ -71,14 +65,11 @@ Route::get('/User/Dashbaord', [UserController::class, 'userCompte'])->name('user
 
 Route::get('/Userprofil', [UserController::class, 'profil'])->name('Userprofil');
 
-
 Route::get('/pricing', [PriceController::class, 'index'])->name('pricing');
-
 
 Route::GET('/DomainSearch', [DomainController::class, 'search'])->name('search.domain');
 
 Route::GET('/User/domain_list', [DomainController::class, 'User_domains_list'])->name('User.domain.list');
-
 
 Route::get('/contact', [ContactController::class, 'view'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendmessage'])->name('contact.post');
@@ -96,18 +87,33 @@ Route::post('/checkout/process', [CheckoutController::class, 'checkoutprocess'])
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
-   });
-
+});
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'Dashbaord'])->name('admin.dashboard');
+    Route::get('/admin/transaction-history', [AdminController::class, 'transactionHistory'])->name('admin.transaction.history');
+    Route::get('/admin/transaction/{id}', [AdminController::class, 'transactionDetails'])->name('admin.transaction.details');
+    Route::delete('/admin/transaction/{id}', [AdminController::class, 'destroyTransaction'])->name('admin.transaction.destroy');
+    // Route pour afficher le formulaire de création d'utilisateur
+    Route::get('admin/user_list/create', [AdminController::class, 'create'])->name('admin.users.create');
 
+    // Route pour stocker un nouvel utilisateur
+    Route::post('admin/user_list', [AdminController::class, 'store'])->name('admin.users.store');
+
+    // Route pour afficher le formulaire d'édition d'un utilisateur
+    Route::get('admin/user_list/{id}/edit', [AdminController::class, 'edit'])->name('admin.users.edit');
+
+    // Route pour mettre à jour un utilisateur
+    Route::put('admin/user_list/{id}', [AdminController::class, 'update'])->name('admin.users.update');
+
+    // Route pour supprimer un utilisateur
+    Route::delete('admin/user_list/{id}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
+
+    Route::get('/admin/dashboard', [AdminController::class, 'Dashbaord'])->name('admin.dashboard');
+    Route::put('/superadmin/users/{user}/role', [SuperAdminController::class, 'updateRole'])->name('superadmin.users.updateRole');
     Route::get('/admin/user_list', [UserController::class, 'index'])->name('admin.user.list');
     Route::GET('/admin/domain_list', [AdminController::class, 'admin_domains_list'])->name('admin.domain.list');
 
     Route::get('/admin/user_role_permission', [AdminController::class, 'rolepermission'])->name('admin.user.role.permission');
-
 
     // Route::put('/admin/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.updateRole');
     Route::put('/admin/users/{user}/permissions', [AdminController::class, 'updatePermissions'])->name('admin.users.updatePermissions');
@@ -115,7 +121,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
-    Route::put('/superadmin/users/{user}/role', [SuperAdminController::class, 'updateRole'])->name('superadmin.users.updateRole');
+
     Route::put('/superadmin/users/{user}/permissions', [SuperAdminController::class, 'updatePermissions'])->name('superadmin.users.updatePermissions');
 });
 
@@ -132,24 +138,18 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{domainId}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
-
 // Route pour afficher le formulaire de réinitialisation du mot de passe
 Route::get('/passwordforget', [PasswordController::class, 'showResetForm'])->name('password.forget');
- // Route pour traiter la demande de réinitialisation du mot de passe
-    Route::post('/passwordforget', [PasswordController::class, 'sendResetLink'])->name('password.email');
+// Route pour traiter la demande de réinitialisation du mot de passe
+Route::post('/passwordforget', [PasswordController::class, 'sendResetLink'])->name('password.email');
 
-    // Route pour réinitialiser le mot de passe (généralement gérée par Laravel)
-    Route::get('/password/reset/{token}', [\App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-    Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');
+// Route pour réinitialiser le mot de passe (généralement gérée par Laravel)
+Route::get('/password/reset/{token}', [\App\Http\Controllers\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::class, 'reset'])->name('password.update');
 
-
-
-
-    // web.php ou un autre fichier de routes
+// web.php ou un autre fichier de routes
 Route::get('/paiement/success/{order}', [PaymentController::class, 'makePaymentSuccess'])->name('payment.success');
 Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
-
 Route::get('paiement/echec', [CheckoutController::class, 'makePaymentEchec'])->name('checkout.error');
 Route::get('paiement/cancel', [CheckoutController::class, 'makePaymentCancel'])->name('payment.cancel');
-

@@ -21,7 +21,11 @@
                                         xmlns="http://www.w3.org/2000/svg">
                                         <!-- SVG content here -->
                                     </svg>
-                                    Announcements
+                                    @if (session('error'))
+        <div class="alert alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
                                 </a>
                             </div>
                         </div>

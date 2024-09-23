@@ -282,7 +282,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="errors/error500.html">
+                                <a class="nav-link " href="{{route('admin.transaction.history')}}">
                                     <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right"
                                         aria-label="Error 500" data-bs-original-title="Error 500">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
@@ -293,7 +293,7 @@
                                             </g>
                                         </svg>
                                     </i>
-                                    <span class="item-name">Error 500</span>
+                                    <span class="item-name">Historique des transaction</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -475,7 +475,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0 ">
 
-                            
+
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link" id="notification-drop" data-bs-toggle="dropdown">
                                     <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"

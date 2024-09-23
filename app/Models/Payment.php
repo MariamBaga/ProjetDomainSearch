@@ -20,9 +20,10 @@ class Payment extends Model
     ];
 
     // Relation avec le modèle Order (une commande peut avoir plusieurs paiements)
+   
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id'); // Assurez-vous que 'order_id' est bien le champ qui relie les deux tables
     }
 
     /**

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Domain;
+use App\Models\Order;
+use App\Models\OrderItem;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
 
@@ -61,17 +64,142 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Les permissions de l\'utilisateur ont été mises à jour avec succès.');
     }
 
-  public function admin_domains_list()
-{
-    // Récupérer les domaines en utilisant le champ user_email
-    $domainsDirect = DB::table('domains')
-        ->select('domains.*', 'domains.user_email') // Sélectionner les colonnes nécessaires
-        ->get();
+    public function admin_domains_list(){
 
-    return view('Admin.Domain_list', compact('domainsDirect'));
+            $domainsDirect = DB::table('domains')
+            ->join('users', 'domains.user_email', '=', 'users.email') // Utiliser 'user_email' pour la jointure
+            ->select('domains.*', 'users.email')
+            ->get();
+
+
+                //dd($domainsDirect);
+            return view('Admin.Domain_list', compact('domainsDirect'));
+        }
+
+        public function create()
+        {
+            return view('Admin.creerutilisateur'); // Créez une vue pour le formulaire
+        }
+
+
+        public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'phone' => 'nullable|string',
+        'country' => 'nullable|string',
+        'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $user = User::create([
+        'name' => $validatedData['name'],
+        'email' => $validatedData['email'],
+        'password' => bcrypt($validatedData['password']),
+        'phone' => $validatedData['phone'],
+        'country' => $validatedData['country'],
+        'photo' => $validatedData['photo'] ? $validatedData['photo']->store('photos') : null,
+    ]);
+
+    return redirect()->route('admin.user.list')->with('success', 'Utilisateur ajouté avec succès.');
 }
 
 
+
+
+
+
+public function edit($id)
+{
+    $user = User::findOrFail($id);
+    return view('Admin.modifierutilisateur', compact('user')); // Créez une vue pour le formulaire d'édition
+}
+
+
+
+
+
+
+public function update(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        'password' => 'nullable|string|min:8|confirmed',
+        'phone' => 'nullable|string',
+        'country' => 'nullable|string',
+        'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $user->name = $validatedData['name'];
+    $user->email = $validatedData['email'];
+
+    if (isset($validatedData['password']) && $validatedData['password']) {
+        $user->password = bcrypt($validatedData['password']);
+    }
+
+    $user->phone = $validatedData['phone'];
+    $user->country = $validatedData['country'];
+
+    if (isset($validatedData['photo'])) {
+        $user->photo = $validatedData['photo']->store('photos');
+    }
+
+    $user->save();
+
+    return redirect()->route('admin.user.list')->with('success', 'Utilisateur modifié avec succès.');
+}
+
+
+
+
+
+
+public function destroy($id)
+{
+    $user = User::findOrFail($id);
+    $user->delete();
+
+    return redirect()->route('admin.user.list')->with('success', 'Utilisateur supprimé avec succès.');
+}
+public function transactionHistory()
+{
+    $transactions = DB::table('payments')->get(); // Récupérer toutes les transactions
+    return view('Admin.transaction.historique', compact('transactions'));
+}
+
+
+public function transactionDetails($id)
+{
+    // Récupérer la transaction par son ID
+    $transaction = Payment::find($id);
+
+    if (!$transaction) {
+        return redirect()->route('admin.transaction.history')->with('error', 'Transaction non trouvée.');
+    }
+
+    // Vérifiez si la commande associée existe et récupérez les éléments de commande
+    $orderItems = $transaction->order ? $transaction->order->items : collect(); // Utiliser 'items' au lieu de 'orderItems'
+
+    // Affichez les détails pour vérifier
+    dd($transaction, $transaction->order, $orderItems); // Debug pour vérifier les données
+
+    return view('Admin.transaction.details', compact('transaction', 'orderItems'));
+}
+
+
+
+
+
+public function destroyTransaction($id)
+{
+
+    DB::table('payments')->where('id', $id)->delete();
+    return redirect()->route('admin.transaction.history')->with('success', 'Transaction supprimée avec succès.');
+}
 
 
     }

@@ -27,7 +27,7 @@ class DomainSearchApiController extends Controller
             if ($response->successful()) {
                 $domains = $response->json()['data']['results'];
 
-                // Adapter la structure des données si nécessaire
+                // Adapter la structure des données et filtrer les domaines disponibles
                 $formattedDomains = collect($domains)->map(function ($domain) {
                     return [
                         'id' => $domain['domainName'] ?? 'N/A', // Utiliser `domainName` comme identifiant
@@ -37,9 +37,12 @@ class DomainSearchApiController extends Controller
                         'price' => $domain['purchasePrice'] ?? 'N/A',
                         'duration' => 1, // Fixé à 1 an pour cet exemple
                     ];
+                })->filter(function ($domain) {
+                    return $domain['status'] === 'available'; // Filtrer pour garder seulement les disponibles
                 });
 
                 session()->put('searched_domains', $formattedDomains);
+
                 // Passer les domaines formatés à la vue Blade
                 return view('Domain.indexApii', [
                     'domains' => $formattedDomains,
@@ -81,6 +84,7 @@ class DomainSearchApiController extends Controller
             return response()->json(['error' => $errorMessage], 500);
         }
     }
+
 
     public function registerDomains(Request $request)
 {

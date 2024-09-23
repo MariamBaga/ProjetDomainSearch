@@ -20,7 +20,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <form action="{{ route('superadmin.users.updateRole', $user->id) }}" method="POST">
+                    <form action="{{ route('admin.users.updateRole', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <select name="role" class="form-control">
