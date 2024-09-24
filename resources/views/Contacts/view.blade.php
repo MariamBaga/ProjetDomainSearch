@@ -44,7 +44,7 @@
                                     <i class="flaticon-email"></i>
                                 </div>
                                 <div class="box-card-details">
-                                    <h3>Envoyer un mail</h3>
+                                    <h3 style="text-transform: none;">Envoyer un mail</h3>
                                     <ul class="box-card-list">
                                         <li><i class="flaticon-chat"></i><a class="link-us" href="mailto: hello@ibracilinks.com">[email&#160;protected]</a></li>
                                         <li><i class="flaticon-email"></i><a class="link-us" href="https://www.info.blim.com/"> hello@ibracilinks.com</a></li>
@@ -62,7 +62,7 @@
                                     <i class="flaticon-phone-call-1"></i>
                                 </div>
                                 <div class="box-card-details">
-                                    <h3>Passer un appel</h3>
+                                    <h3 style="text-transform: none;">Passer un appel</h3>
                                     <ul class="box-card-list">
                                         <li><i class="flaticon-phone"></i><a href="tel:+22378616194">+22378616194</a></li>
                                         <li><i class="flaticon-email"></i>1123-567-55795</li>
@@ -80,8 +80,8 @@
                                     <i class="flaticon-pin"></i>
                                 </div>
                                 <div class="box-card-details">
-                                    <h3>Nous trouver</h3>
-                                    <p>RT11- 12, 0998 Avenue, NY 90001 États-Unis</p>
+                                    <h3 style="text-transform: none;">Nous trouver</h3>
+                                    <p>Hall de Bamako Rue ..</p>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                     <div class="comment-content-item">
                         <div class="comment-area bg-white">
                             <div class="sub-section-title">
-                                <h3>Laissez un message</h3>
+                                <h3 style="text-transform: none;">Laissez un message</h3>
                                 <p>Votre adresse e-mail ne sera pas publiée. Les champs requis sont indiqués *</p>
                             </div>
                             <div class="comment-input-area mt-30">

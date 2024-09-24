@@ -186,15 +186,15 @@ $this->registerDomain($domain, $userEmail);
     /**
      * Enregistre le domaine au nom de l'utilisateur.
      */
-    private function registerDomain($domain, $userEmail)
+    private function registerDomain($domain)
 {
-    $apiUrl = 'http://localhost:8001/api/registe';
+    $apiUrl = 'http://localhost:8001/api/register';
 
     try {
         $response = Http::post($apiUrl, [
             'domain_name' => $domain->name . '.' . $domain->extension,
             'purchase_price' => $domain->price,
-            'user_email' => $userEmail, // Utiliser l'email de l'utilisateur
+            // 'user_email' => $userEmail, // Supprimé
         ]);
 
         if ($response->successful()) {
@@ -202,12 +202,12 @@ $this->registerDomain($domain, $userEmail);
             $domain->status = 'unavailable';
             $domain->save();
 
-            Log::info('Domaine enregistré avec succès pour l\'utilisateur ' . $user->id);
+            Log::info('Domaine enregistré avec succès pour le domaine ' . $domain->name);
             return true; // Indique un succès
         } else {
             $statusCode = $response->status();
             $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
-            Log::error($errorMessage);
+            Log::error($errorMessage, ['response' => $response->body(), 'domain_name' => $domain->name]);
             return false; // Indique un échec
         }
     } catch (\Throwable $th) {
@@ -216,6 +216,7 @@ $this->registerDomain($domain, $userEmail);
         return false; // Indique un échec
     }
 }
+
 
 
     /**

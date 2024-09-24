@@ -1,4 +1,4 @@
-@extends('layouts.Usermaster')
+@extends('layouts.Adminmaster')
 
 @section('title', 'Profil')
 
@@ -58,7 +58,7 @@
         </div>
         <div class="d-flex flex-column">
             <h4 class="mb-1">{{ Auth::user()->name }}</h4>
-           <span class="text-muted">{{ Auth::user()->getRoleNames()->first() ?? 'Utilisateurs' }}</span>
+            <span class="text-muted">{{ Auth::user()->getRoleNames()->first() ?? 'Utilisateurs' }}</span>
 
         </div>
     </div>
@@ -68,7 +68,7 @@
             <h4 class="card-title">Détails du Profil</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            <form action="{{ route('admin.users.updateRole') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 @method('PUT')
 

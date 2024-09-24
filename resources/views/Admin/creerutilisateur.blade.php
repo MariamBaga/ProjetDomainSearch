@@ -1,4 +1,4 @@
-@extends('layouts.Usermaster')
+@extends('layouts.Adminmaster')
 
 @section('title', 'Ajouter un Utilisateur')
 

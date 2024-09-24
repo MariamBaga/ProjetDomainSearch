@@ -109,14 +109,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('admin/user_list/{id}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
 
     Route::get('/admin/dashboard', [AdminController::class, 'Dashbaord'])->name('admin.dashboard');
+ Route::get('/admin/profil', [AdminController::class, 'profil_Admin'])->name('admin.profil');
+
+
     Route::put('/superadmin/users/{user}/role', [SuperAdminController::class, 'updateRole'])->name('superadmin.users.updateRole');
     Route::get('/admin/user_list', [UserController::class, 'index'])->name('admin.user.list');
     Route::GET('/admin/domain_list', [AdminController::class, 'admin_domains_list'])->name('admin.domain.list');
 
     Route::get('/admin/user_role_permission', [AdminController::class, 'rolepermission'])->name('admin.user.role.permission');
 
-    // Route::put('/admin/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.updateRole');
-    Route::put('/admin/users/{user}/permissions', [AdminController::class, 'updatePermissions'])->name('admin.users.updatePermissions');
+    Route::put('/admin/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.updateRole');
+   
 });
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {

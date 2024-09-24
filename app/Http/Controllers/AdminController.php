@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
 use App\Models\Domain;
 use App\Models\Order;
 use App\Models\OrderItem;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Models\Payment;
 
@@ -20,11 +20,11 @@ class AdminController extends Controller
     public function rolepermission()
     {
         // Récupérer les utilisateurs avec le rôle 'user'
-        $users = User::role('user')->get();
-        $roles = Role::all();
-        $permissions = Permission::all();
+       // Récupérer tous les utilisateurs
+    $users = User::all(); // Remplacez `User::role('user')->get();` par `User::all();`
+    $roles = Role::all();
 
-        return view('Admin.admin', compact('users', 'roles', 'permissions'));
+        return view('Admin.admin', compact('users', 'roles'));
     }
 
 
@@ -41,17 +41,20 @@ class AdminController extends Controller
     public function index(){
             return view('Admin.userlist');
         }
+ public function profil_Admin(){
+            return view('Admin.profil_admin');
+        }
 
-    // public function updateRole(Request $request, $id)
-    // {
-    //     $user = User::findOrFail($id);
-    //     $role = $request->input('role');
+     public function updateRole(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $role = $request->input('role');
 
-    //     // Supprimer tous les rôles actuels et attribuer le rôle sélectionné
-    //     $user->syncRoles([$role]);
+        // Supprimer tous les rôles actuels et attribuer le rôle sélectionné
+        $user->syncRoles([$role]);
 
-    //     return redirect()->back()->with('success', 'Le rôle de l\'utilisateur a été mis à jour avec succès.');
-    // }
+        return redirect()->back()->with('success', 'Le rôle de l\'utilisateur a été mis à jour avec succès.');
+    }
 
     public function updatePermissions(Request $request, $id)
     {
@@ -174,21 +177,21 @@ public function transactionHistory()
 
 public function transactionDetails($id)
 {
-    // Récupérer la transaction par son ID
-    $transaction = Payment::find($id);
+    $transaction = Payment::with('order.items')->find($id); // Inclure les items de la commande
+
+    Log::info('Transaction récupérée : ', ['transaction' => $transaction]);
 
     if (!$transaction) {
         return redirect()->route('admin.transaction.history')->with('error', 'Transaction non trouvée.');
     }
 
-    // Vérifiez si la commande associée existe et récupérez les éléments de commande
-    $orderItems = $transaction->order ? $transaction->order->items : collect(); // Utiliser 'items' au lieu de 'orderItems'
-
-    // Affichez les détails pour vérifier
-    dd($transaction, $transaction->order, $orderItems); // Debug pour vérifier les données
+    // Récupérer les éléments de la commande
+    $orderItems = $transaction->order ? $transaction->order->items : collect();
 
     return view('Admin.transaction.details', compact('transaction', 'orderItems'));
 }
+
+
 
 
 

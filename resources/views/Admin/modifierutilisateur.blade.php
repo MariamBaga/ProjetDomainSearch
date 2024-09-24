@@ -1,4 +1,4 @@
-@extends('layouts.Usermaster')
+@extends('layouts.Adminmaster')
 
 @section('title', 'Modifier un Utilisateur')
 

@@ -63,4 +63,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Domain::class);
     }
+    public function userRole()
+    {
+        return $this->hasOne(UserRole::class, 'user_id');
+    }
 }

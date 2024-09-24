@@ -10,7 +10,7 @@
         <div class="col-sm-12 col-lg-6">
             <div class="header-page-content text-center text-lg-start">
                 {{-- Titre principal de la page --}}
-                <h1>Nom de Domaine</h1>
+                <h1 style="text-transform: none;">Nom de domaine</h1>
                 {{-- Description du service de noms de domaine --}}
                 <p>Découvrez notre service d'achat de noms de domaine. Protégez votre marque en ligne avec un domaine
                     personnalisé, adapté à vos besoins professionnels ou personnels.</p>
@@ -36,7 +36,7 @@
 <section id="domain-search-section" class="domain-search-section-two default-box-shadow max-1000 bg-white margin-minus-box pt-100 pb-80 border-radius-3">
     <div class="container">
         <div class="section-title section-title-two text-center">
-            <h2>Trouvez le domaine parfait</h2>
+            <h2 style="text-transform: none;">Trouvez le domaine parfait</h2>
         </div>
         <div class="domain-search domain-search-two">
             <form id="domain-search-form" method="GET" action="{{ route('domain.fetch') }}">
@@ -57,7 +57,7 @@
                             <option value="io">IO</option>
                         </select>
                     </div>
-                    <button class="btn btn-gradient">Search Now</button>
+                    <button class="btn btn-gradient">Search now</button>
                 </div>
             </form>
 
@@ -97,7 +97,7 @@
             <div class="section-title section-title-two">
                 <small>Plan tarifaire</small>
                 {{-- Titre de la section --}}
-                <h2>Tarification des domaines</h2>
+                <h2 style="text-transform: none;">Tarification des domaines</h2>
                 {{-- Paragraphe d'introduction sur les tarifs des domaines --}}
                 <p>Découvrez nos tarifs compétitifs pour l'achat de noms de domaine. Nous offrons des options flexibles pour
                     répondre à tous vos besoins, que vous soyez un particulier ou une entreprise. Choisissez la durée qui
@@ -109,7 +109,7 @@
     <table>
         <thead>
             <tr>
-                <th class="th-bg text-center th-lg">Name</th>
+                <th class="th-bg text-center th-lg">Nom</th>
                 <th>
                     <span class="d-flex flex-column align-items-center">
                         <i class="flaticon-forward"></i>
@@ -119,13 +119,13 @@
                 <th>
                     <span class="d-flex flex-column align-items-center">
                         <i class="flaticon-login"></i>
-                        Register
+                        Enregistrement
                     </span>
                 </th>
                 <th>
                     <span class="d-flex flex-column align-items-center">
                         <i class="flaticon-renewable-energy"></i>
-                        Renew
+                        Renouvellement
                     </span>
                 </th>
             </tr>
@@ -146,9 +146,9 @@
             @endforeach
             <tr>
                 <td class="td-main td-bg"></td>
-                <td><a href="{{ route('cart') }}" class="btn btn-gradient">Buy Now</a></td>
-                <td><a href="{{ route('cart') }}" class="btn btn-gradient">Buy Now</a></td>
-                <td><a href="{{ route('cart') }}" class="btn btn-gradient">Buy Now</a></td>
+                <td><a href="{{ route('cart') }}" class="btn btn-gradient">Voir panier</a></td>
+                <td><a href="{{ route('cart') }}" class="btn btn-gradient">Voir panier</a></td>
+                <td><a href="{{ route('cart') }}" class="btn btn-gradient">Voir panier</a></td>
             </tr>
         </tbody>
     </table>

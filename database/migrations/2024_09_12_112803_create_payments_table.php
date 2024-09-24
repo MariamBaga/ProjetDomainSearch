@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id'); // Stocke l'ID avec le préfixe 'ORD'
+            $table->unsignedBigInteger('order_id'); // Stocke l'ID avec le préfixe 'ORD'
             $table->string('transaction_id')->nullable(); // ID de transaction fourni par l'API de paiement
             $table->decimal('amount', 10, 2); // Montant du paiement
             $table->string('status')->default('pending'); // Statut : pending, completed, failed
             $table->json('callback_data')->nullable(); // Données du callback sous forme JSON
-            
+
+
+             // Clé étrangère vers la table 'orders'
+        $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+
 
             $table->timestamps();
 

@@ -20,8 +20,7 @@ class RolePermissionSeeder extends Seeder
         // Créez les permissions
         $permissions = [
             'view home',
-            'manage users',
-            'manage domains',
+
             'update-role', // Ajoutez cette permission spécifique pour les rôles
 
             'update-user-info',
@@ -35,7 +34,7 @@ class RolePermissionSeeder extends Seeder
 
         // Attribuez les permissions aux rôles
         $userRole->givePermissionTo('view home');
-        $adminRole->givePermissionTo(['view home', 'manage users', 'manage domains']);
+        $adminRole->givePermissionTo(Permission::all());
         $superAdminRole->givePermissionTo(Permission::all());
     }
 }

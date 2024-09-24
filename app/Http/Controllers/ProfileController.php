@@ -39,6 +39,12 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('Userprofil')->with('success', 'Profile updated successfully!');
+       // Redirection conditionnelle en fonction du rôle de l'utilisateur
+    if ($user->hasRole('admin')) {
+        return redirect()->route('admin.profil')->with('success', 'Profile mise à jour avec succès!');
+     } else {
+            return redirect()->route('Userprofil')->with('success', 'Profile mise à jour avec succès!');
+        }
     }
+
 }

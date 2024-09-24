@@ -20,24 +20,25 @@ class Payment extends Model
     ];
 
     // Relation avec le modèle Order (une commande peut avoir plusieurs paiements)
-   
+
     public function order()
     {
-        return $this->belongsTo(Order::class, 'order_id'); // Assurez-vous que 'order_id' est bien le champ qui relie les deux tables
+        return $this->belongsTo(Order::class, 'order_id');
     }
+
 
     /**
      * Assure que l'order_id a toujours le préfixe 'ORD'
      */
-    public function setOrderIdAttribute($value)
-    {
+
         // Si l'order_id ne commence pas par 'ORD', on le préfixe
-        if (!str_starts_with($value, 'ORD')) {
-            $this->attributes['order_id'] = 'ORD' . $value;
-        } else {
-            $this->attributes['order_id'] = $value;
-        }
-    }
+        public function setOrderIdAttribute($value)
+{
+    // Enlève le préfixe 'ORD' pour stocker uniquement l'ID
+    $this->attributes['order_id'] = str_replace('ORD', '', $value);
+}
+
+    
 
     /**
      * Récupère les données du callback sous forme d'objet PHP
