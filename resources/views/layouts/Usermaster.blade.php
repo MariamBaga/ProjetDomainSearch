@@ -165,7 +165,7 @@
                             <li class="nav-item">
                                 <a class="nav-link " href="{{ route('User.domain.list') }}">
                                     <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right"
-                                        aria-label="Error 404" data-bs-original-title="Error 404">
+                                        aria-label="Listes" data-bs-original-title="Error 404">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <g>
@@ -175,6 +175,22 @@
                                         </svg>
                                     </i>
                                     <span style="text-transform: none;"  class="item-name">Liste de Domaine</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{route('user.transaction.history')}}">
+                                    <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right"
+                                        aria-label="Error 500" data-bs-original-title="Error 500">
+                                        <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor">
+                                                </circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name" style="text-transform: none;">Historique des transaction</span>
                                 </a>
                             </li>
 
@@ -638,7 +654,7 @@
                     <li class="list-inline-item me-2"><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li class="list-inline-item"><a href="terms-of-use.html">Terms of Use</a></li>
                 </ul>
-                
+
             </div>
         </footer>
         <!-- Footer Section End -->

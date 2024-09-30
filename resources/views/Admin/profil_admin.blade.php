@@ -68,7 +68,8 @@
             <h4 class="card-title">Détails du Profil</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.users.updateRole') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+        <form action="{{ route('admin.users.updateRole', ['user' => Auth::user()->id]) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+
                 @csrf
                 @method('PUT')
 

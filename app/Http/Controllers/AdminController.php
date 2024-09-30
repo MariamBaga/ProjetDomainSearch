@@ -45,16 +45,17 @@ class AdminController extends Controller
             return view('Admin.profil_admin');
         }
 
-     public function updateRole(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        $role = $request->input('role');
+        public function updateRole(Request $request, $id)
+        {
+            $user = User::findOrFail($id);
+            $role = $request->input('role');
 
-        // Supprimer tous les rôles actuels et attribuer le rôle sélectionné
-        $user->syncRoles([$role]);
+            // Supprimer tous les rôles actuels et attribuer le rôle sélectionné
+            $user->syncRoles([$role]);
 
-        return redirect()->back()->with('success', 'Le rôle de l\'utilisateur a été mis à jour avec succès.');
-    }
+            return redirect()->back()->with('success', 'Le rôle de l\'utilisateur a été mis à jour avec succès.');
+        }
+
 
     public function updatePermissions(Request $request, $id)
     {

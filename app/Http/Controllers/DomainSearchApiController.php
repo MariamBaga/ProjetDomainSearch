@@ -28,18 +28,20 @@ class DomainSearchApiController extends Controller
                 $domains = $response->json()['data']['results'];
 
                 // Adapter la structure des données et filtrer les domaines disponibles
-                $formattedDomains = collect($domains)->map(function ($domain) {
-                    return [
-                        'id' => $domain['domainName'] ?? 'N/A', // Utiliser `domainName` comme identifiant
-                        'name' => $domain['sld'] ?? 'N/A',
-                        'extension' => $domain['tld'] ?? 'N/A',
-                        'status' => isset($domain['purchasable']) ? ($domain['purchasable'] ? 'available' : 'unavailable') : 'unknown',
-                        'price' => $domain['purchasePrice'] ?? 'N/A',
-                        'duration' => 1, // Fixé à 1 an pour cet exemple
-                    ];
-                })->filter(function ($domain) {
-                    return $domain['status'] === 'available'; // Filtrer pour garder seulement les disponibles
-                });
+                $formattedDomains = collect($domains)
+                    ->map(function ($domain) {
+                        return [
+                            'id' => $domain['domainName'] ?? 'N/A', // Utiliser `domainName` comme identifiant
+                            'name' => $domain['sld'] ?? 'N/A',
+                            'extension' => $domain['tld'] ?? 'N/A',
+                            'status' => isset($domain['purchasable']) ? ($domain['purchasable'] ? 'available' : 'unavailable') : 'unknown',
+                            'price' => $domain['purchasePrice'] ?? 'N/A',
+                            'duration' => 1, // Fixé à 1 an pour cet exemple
+                        ];
+                    })
+                    ->filter(function ($domain) {
+                        return $domain['status'] === 'available'; // Filtrer pour garder seulement les disponibles
+                    });
 
                 session()->put('searched_domains', $formattedDomains);
 
@@ -85,43 +87,40 @@ class DomainSearchApiController extends Controller
         }
     }
 
-
     public function registerDomains(Request $request)
-{
-    $domainName = $request->input('domain_name');
-    $purchasePrice = $request->input('purchase_price', 12.99);
+    {
+        $domainName = $request->input('domain_name');
+        $purchasePrice = $request->input('purchase_price', 12.99);
 
-    try {
-        $apiUrl = 'http://localhost:8001/api/register';
+        try {
+            $apiUrl = 'http://localhost:8001/api/register';
 
-        // Log du payload pour vérification
-        Log::info('Payload: ', ['domain_name' => $domainName, 'purchase_price' => $purchasePrice]);
+            // Log du payload pour vérification
+            Log::info('Payload: ', ['domain_name' => $domainName, 'purchase_price' => $purchasePrice]);
 
+            $response = Http::post($apiUrl, [
+                'domain_name' => $domainName,
+                'purchase_price' => $purchasePrice,
+            ]);
 
-        $response = Http::post($apiUrl, [
-            'domain_name' => $domainName,
-            'purchase_price' => $purchasePrice,
-        ]);
+            // Log la réponse complète
+            Log::info('API Response Status: ' . $response->status());
+            Log::info('API Response Body: ' . $response->body());
 
-         // Log la réponse complète
-         Log::info('API Response Status: ' . $response->status());
-         Log::info('API Response Body: ' . $response->body());
-
-        if ($response->successful()) {
-            return response()->json(['success' => 'Domaine enregistré avec succès.']);
-        } else {
-            $statusCode = $response->status();
-            $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
-            Log::error($errorMessage);
-            return response()->json(['error' => $errorMessage], $statusCode);
+            if ($response->successful()) {
+                return response()->json(['success' => 'Domaine enregistré avec succès.']);
+            } else {
+                $statusCode = $response->status();
+                $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
+                Log::error($errorMessage);
+                return response()->json(['error' => $errorMessage], $statusCode);
+            }
+        } catch (\Throwable $th) {
+            $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
+            Log::error('Exception Error: ' . $errorMessage);
+            return response()->json(['error' => $errorMessage], 500);
         }
-    } catch (\Throwable $th) {
-        $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
-        Log::error('Exception Error: ' . $errorMessage);
-        return response()->json(['error' => $errorMessage], 500);
     }
-}
-
 
     // Méthode pour renouveler un domaine
     public function renewDomain(Request $request)

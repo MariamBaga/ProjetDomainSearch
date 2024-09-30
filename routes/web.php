@@ -74,6 +74,11 @@ Route::GET('/User/domain_list', [DomainController::class, 'User_domains_list'])-
 Route::get('/contact', [ContactController::class, 'view'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendmessage'])->name('contact.post');
 
+Route::get('/user/transaction-history', [UserController::class, 'transactionHistory'])->name('user.transaction.history');
+Route::get('/user/transaction/{id}', [UserController::class, 'transactionDetails'])->name('user.transaction.details');
+Route::delete('/user/transaction/{id}', [UserController::class, 'destroyTransaction'])->name('user.transaction.destroy');
+
+
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
@@ -119,7 +124,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/user_role_permission', [AdminController::class, 'rolepermission'])->name('admin.user.role.permission');
 
     Route::put('/admin/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.updateRole');
-   
+
 });
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
@@ -154,5 +159,5 @@ Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::c
 Route::get('/paiement/success/{order}', [PaymentController::class, 'makePaymentSuccess'])->name('payment.success');
 Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
-Route::get('paiement/echec', [CheckoutController::class, 'makePaymentEchec'])->name('checkout.error');
+Route::get('paiement/echec/{order}', [CheckoutController::class, 'makePaymentEchec'])->name('checkout.error');
 Route::get('paiement/cancel', [CheckoutController::class, 'makePaymentCancel'])->name('payment.cancel');

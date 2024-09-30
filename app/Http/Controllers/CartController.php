@@ -72,7 +72,7 @@ class CartController extends Controller
 
 
 
-      public function add(Request $request)
+    public function add(Request $request)
     {
         // Valider que l'ID du domaine est fourni
         $request->validate([
@@ -82,14 +82,18 @@ class CartController extends Controller
         // Récupérer les domaines recherchés stockés en session
         $searchedDomains = session()->get('searched_domains', []);
 
-        // Débogage : voir ce qui est stocké dans la session
+        // Vérifier si la session contient des domaines
         if (empty($searchedDomains)) {
             return redirect()->back()->with('error', 'Aucun domaine trouvé dans la session. Veuillez effectuer une recherche.');
         }
 
+        // Récupérer l'ID du domaine depuis la requête
         $domainId = $request->input('domain_id');
+
+        // Vérifier si le domaine existe dans les résultats recherchés
         $domain = collect($searchedDomains)->firstWhere('id', $domainId);
 
+        // Si le domaine n'est pas trouvé, retourner une erreur
         if (!$domain) {
             return redirect()->back()->with('error', 'Domaine non trouvé dans les résultats de recherche.');
         }
@@ -105,15 +109,18 @@ class CartController extends Controller
             'name' => $domain['name'],
             'extension' => $domain['extension'],
             'price' => $domain['price'],
-            'duration' => 1,
+            'duration' => 1, // Par exemple, 1 an
         ];
 
+        // Mettre à jour la session avec le panier
         session()->put('cart', $cart);
 
+        // Si l'utilisateur est connecté, mettre à jour ou créer un panier en base de données
         if (Auth::check()) {
-            Cart::updateOrCreate(['user_id' => Auth::id()], ['items' => $cart]);
+            Cart::updateOrCreate(['user_id' => Auth::id()], ['items' => json_encode($cart)]); // Encoder en JSON avant de stocker en base
         }
 
+        // Redirection avec succès
         return redirect()->back()->with('success', 'Domaine ajouté au panier avec succès!');
     }
 

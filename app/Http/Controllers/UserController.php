@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Domain;
 use App\Models\Payment;
-
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -63,4 +63,44 @@ class UserController extends Controller
         return view('User.profil');
 
     }
+    public function transactionHistory()
+    {
+        // Récupérer toutes les transactions de l'utilisateur connecté
+        $transactions = DB::table('payments')
+            ->where('user_email', auth()->user()->email) // Filtrer par email de l'utilisateur connecté
+            ->get();
+
+        return view('User.transactions.historiques', compact('transactions'));
+    }
+
+    public function transactionDetails($id)
+    {
+        // Récupérer la transaction spécifique avec les éléments de la commande
+        $transaction = Payment::with('order.items')
+            ->where('user_email', auth()->user()->email) // Filtrer par email de l'utilisateur connecté
+            ->find($id);
+
+        Log::info('Transaction récupérée : ', ['transaction' => $transaction]);
+
+        if (!$transaction) {
+            return redirect()->route('user.transaction.history')->with('error', 'Transaction non trouvée.');
+        }
+
+        // Récupérer les éléments de la commande
+        $orderItems = $transaction->order ? $transaction->order->items : collect();
+
+        return view('User.transactions.details', compact('transaction', 'orderItems'));
+    }
+
+    public function destroyTransaction($id)
+    {
+        // Supprimer uniquement les transactions de l'utilisateur connecté
+        DB::table('payments')
+            ->where('id', $id)
+            ->where('user_email', auth()->user()->email) // Filtrer par email de l'utilisateur connecté
+            ->delete();
+
+        return redirect()->route('user.transaction.history')->with('success', 'Transaction supprimée avec succès.');
+    }
+
 }

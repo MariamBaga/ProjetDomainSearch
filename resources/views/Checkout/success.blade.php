@@ -5,6 +5,7 @@
 @section('content')
 
 <style>
+    /* Styles par défaut */
     .shop-checkout {
         margin-top: 2rem;
     }
@@ -68,6 +69,62 @@
     .checkout-cart-items th,
     .checkout-totals th {
         background-color: #f4f4f4;
+    }
+
+    /* Mode sombre */
+    @media (prefers-color-scheme: dark) {
+        body {
+            background-color: #121212; /* Fond sombre */
+            color: #e0e0e0; /* Texte clair */
+        }
+
+        .page-title {
+            color: #ffffff;
+        }
+
+        .order-complete {
+            background-color: #1e1e1e; /* Arrière-plan sombre */
+            border: 1px solid #333; /* Contour pour séparer */
+        }
+
+        .order-complete__message {
+            color: #ffffff; /* Couleur de texte en mode sombre */
+        }
+
+        .order-info__item label {
+            color: #ffffff;
+        }
+
+        .checkout__totals {
+            background-color: #222; /* Fond sombre pour les totaux */
+            border: 1px solid #333; /* Bordure contrastée */
+        }
+
+        .checkout-cart-items th,
+        .checkout-totals th {
+            background-color: #2c2c2c; /* Arrière-plan des en-têtes en mode sombre */
+            color: #e0e0e0; /* Texte clair */
+        }
+
+        .checkout-cart-items td,
+        .checkout-totals td {
+            background-color: #333; /* Fond des cellules */
+            color: #ffffff; /* Texte clair */
+        }
+
+        #registerDomainButton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        #registerDomainButton:hover {
+            background-color: #45a049; /* Changement de couleur au survol */
+        }
+
+        #registrationStatus {
+            color: #ffffff; /* Couleur de texte en cas de succès ou d'erreur */
+        }
     }
 </style>
 
@@ -163,25 +220,22 @@
             },
             body: JSON.stringify({
                 domain_name: '{{ $item->domain_name }}.{{ $item->domain_extension }}',
-                purchase_price: '{{ $item->price }}'
+                purchase_price: '{{ $item->price }}',
+                order_id: '{{ $order->id }}'
             })
         })
         .then(response => response.json())
         .then(data => {
-            if (data.status) {
-                document.getElementById('registrationStatus').innerText = 'Domaine enregistré avec succès.';
+            if (data.success) {
+                document.getElementById('registrationStatus').textContent = 'Domaine enregistré avec succès !';
             } else {
-                document.getElementById('registrationStatus').innerText = 'Échec de l\'enregistrement : ' + data.message;
+                document.getElementById('registrationStatus').textContent = 'Échec de l\'enregistrement du domaine.';
             }
         })
         .catch(error => {
-            console.error('Erreur lors de la requête:', error);
-            document.getElementById('registrationStatus').innerText = 'Une erreur est survenue.';
+            document.getElementById('registrationStatus').textContent = 'Erreur lors de l\'enregistrement du domaine.';
         });
     });
 </script>
 
 @endsection
-
-
-

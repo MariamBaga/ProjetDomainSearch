@@ -57,7 +57,7 @@ class PaymentController extends Controller
             $amount_100 = $order->total_amount;
 
             // Utiliser l'email de l'utilisateur si disponible
-        $userEmail = $order->user_email ?? 'N/A';
+            $userEmail = $order->user_email ?? 'N/A';
 
             // Vérifier si un paiement pour cet ordre existe déjà
             $payment = Payment::where('order_id', $orderId)->first();
@@ -87,31 +87,34 @@ class PaymentController extends Controller
                 $order->status = 'completed';
                 $order->save();
 
+                // Enregistrer le domaine dans la base de données
+                foreach ($order->items as $item) {
+                    Log::info('Enregistrement du domaine pour la commande ID: ' . $orderId);
 
-            // Enregistrer le domaine dans la base de données
-            foreach ($order->items as $item) {
-                Log::info('Enregistrement du domaine pour la commande ID: ' . $orderId);
+                    $domain = Domain::create([
+                        'name' => $item->domain_name,
+                        'extension' => $item->domain_extension,
+                        'price' => $item->price,
+                        'duration' => $item->duration,
+                        'status' => 'unavailable', // Marquer le domaine comme non disponible
+                        'user_email' => $userEmail,
+                    ]);
 
-                $domain =  Domain::create([
-                    'name' => $item->domain_name,
-                    'extension' => $item->domain_extension,
-                    'price' => $item->price,
-                    'duration' => $item->duration,
-                    'status' => 'unavailable', // Marquer le domaine comme non disponible
-                    'user_email' => $userEmail,
-                ]);
+                    // Appeler la méthode pour enregistrer le domaine
+                    // Bon code
+                    $this->registerDomain($domain, $userEmail);
 
-                // Appeler la méthode pour enregistrer le domaine
-               // Bon code
-$this->registerDomain($domain, $userEmail);
-
-                Log::info('Domaine enregistré dans la base de données pour l\'utilisateur: ' . $userEmail);
-            }
+                    Log::info('Domaine enregistré dans la base de données pour l\'utilisateur: ' . $userEmail);
+                    // Rediriger vers la page de succès
+        return redirect()->route('checkout.success', ['order' => $order->id]);
+                }
             } elseif ($failure) {
                 $payment->status = 'failed';
 
                 $order->status = 'failed';
                 $order->save();
+
+                return redirect()->route('checkout.error', ['order' => $order->id]);
             } else {
                 $payment->status = 'pending';
             }
@@ -130,8 +133,6 @@ $this->registerDomain($domain, $userEmail);
             ]);
 
             Log::info('Webhook créé avec succès pour la commande ID: ' . $orderId);
-
-
 
             // Si succès, rediriger vers la page de succès
 
@@ -187,37 +188,35 @@ $this->registerDomain($domain, $userEmail);
      * Enregistre le domaine au nom de l'utilisateur.
      */
     private function registerDomain($domain)
-{
-    $apiUrl = 'http://localhost:8001/api/register';
+    {
+        $apiUrl = 'http://localhost:8001/api/register';
 
-    try {
-        $response = Http::post($apiUrl, [
-            'domain_name' => $domain->name . '.' . $domain->extension,
-            'purchase_price' => $domain->price,
-            // 'user_email' => $userEmail, // Supprimé
-        ]);
+        try {
+            $response = Http::post($apiUrl, [
+                'domain_name' => $domain->name . '.' . $domain->extension,
+                'purchase_price' => $domain->price,
+                // 'user_email' => $userEmail, // Supprimé
+            ]);
 
-        if ($response->successful()) {
-            // Si l'enregistrement est réussi, marque le domaine comme non disponible
-            $domain->status = 'unavailable';
-            $domain->save();
+            if ($response->successful()) {
+                // Si l'enregistrement est réussi, marque le domaine comme non disponible
+                $domain->status = 'unavailable';
+                $domain->save();
 
-            Log::info('Domaine enregistré avec succès pour le domaine ' . $domain->name);
-            return true; // Indique un succès
-        } else {
-            $statusCode = $response->status();
-            $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
-            Log::error($errorMessage, ['response' => $response->body(), 'domain_name' => $domain->name]);
+                Log::info('Domaine enregistré avec succès pour le domaine ' . $domain->name);
+                return true; // Indique un succès
+            } else {
+                $statusCode = $response->status();
+                $errorMessage = 'Erreur lors de l\'enregistrement du domaine. Statut : ' . $statusCode;
+                Log::error($errorMessage, ['response' => $response->body(), 'domain_name' => $domain->name]);
+                return false; // Indique un échec
+            }
+        } catch (\Throwable $th) {
+            $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
+            Log::error('Exception Error: ' . $errorMessage);
             return false; // Indique un échec
         }
-    } catch (\Throwable $th) {
-        $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
-        Log::error('Exception Error: ' . $errorMessage);
-        return false; // Indique un échec
     }
-}
-
-
 
     /**
      * Gère les notifications webhook de paiement d'Orange Money.

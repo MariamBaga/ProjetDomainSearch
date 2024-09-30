@@ -115,7 +115,7 @@ class CheckoutController extends Controller
     $amount_100 = $order->total_amount * 100;
     $order_id = 'ORD' . $order->id;
 
-    $callback_url = 'https://73e7-2001-42c0-8244-c300-f99a-ac3f-849a-9f22.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
+    $callback_url = 'https://6275-2001-42c0-822f-a100-a61d-d9ae-f87e-db91.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
 
     $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
     $hash = sha1($upped);
@@ -132,8 +132,8 @@ class CheckoutController extends Controller
         'payment[order_id]' => $order_id,
         'payment[description]' => "Achat de domaine",
         'payment[amount_100]' => $amount_100,
-        'payment[return_url]' => url('/paiement/echec'),
-        'payment[decline_url]' => route('payment.success', ['order' => $order->id]),
+        'payment[return_url]' => route('payment.success', ['order' => $order->id]),
+        'payment[decline_url]' => route('checkout.error',['order' => $order->id]),
         'payment[cancel_url]' => url('/paiement/echec'),
         'payment[callback_url]' => $callback_url,
         'payment[email]' => $order->email,
@@ -162,9 +162,13 @@ class CheckoutController extends Controller
 }
 
 
-public function makePaymentEchec()
+public function makePaymentEchec($orderId)
 {
-    return view('Checkout.error')->with('message', 'Une erreur est survenue lors du traitement du paiement.');
+
+     // Récupérer la commande par ID
+     $order = Order::with('items')->findOrFail($orderId);
+
+    return view('Checkout.error', compact('order'))->with('message', 'Une erreur est survenue lors du traitement du paiement.');
 }
 
 
