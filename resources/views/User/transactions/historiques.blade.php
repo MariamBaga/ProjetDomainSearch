@@ -28,8 +28,8 @@
                 <td>{{ $transaction->created_at }}</td>
                 <td>{{ $transaction->status }}</td>
                 <td>
-                    <a href="{{ route('admin.transaction.details', $transaction->id) }}" class="btn btn-info">Détails</a>
-                    <form action="{{ route('admin.transaction.destroy', $transaction->id) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('user.transaction.details', $transaction->id) }}" class="btn btn-info">Détails</a>
+                    <form action="{{ route('user.transaction.destroy', $transaction->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette transaction ?');">Supprimer</button>

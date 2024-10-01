@@ -32,17 +32,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DomainSearchApiController;
 
-Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
 
-// Route pour renouveler un domaine
-Route::POST('/renew-domains', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
 
-// Route pour l'enregistrement du domaine
-// Route pour l'enregistrement du domaine
-Route::POST('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
+
+
 
 // Route pour transférer un domaine
-Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
+
 Route::GET('/transfer/{domainId}', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
 Route::GET('/renew/{domainId}', [DomainController::class, 'indexRenew'])->name('domain.Renew.view');
 
@@ -159,5 +155,5 @@ Route::post('/password/reset', [\App\Http\Controllers\ResetPasswordController::c
 Route::get('/paiement/success/{order}', [PaymentController::class, 'makePaymentSuccess'])->name('payment.success');
 Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
-Route::get('paiement/echec/{order}', [CheckoutController::class, 'makePaymentEchec'])->name('checkout.error');
-Route::get('paiement/cancel', [CheckoutController::class, 'makePaymentCancel'])->name('payment.cancel');
+Route::get('paiement/echec/{order}', [PaymentController::class, 'makePaymentEchec'])->name('payment.error');
+Route::get('paiement/cancel', [PaymentController::class, 'makePaymentCancel'])->name('payment.cancel');

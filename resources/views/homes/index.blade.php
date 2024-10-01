@@ -57,7 +57,7 @@
                             <option value="io">IO</option>
                         </select>
                     </div>
-                    <button class="btn btn-gradient">Search now</button>
+                    <button class="btn btn-gradient">Recherchez</button>
                 </div>
             </form>
 

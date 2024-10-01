@@ -247,4 +247,23 @@ class PaymentController extends Controller
 
         return view('Checkout.success', compact('order'));
     }
+
+    public function makePaymentEchec($orderId)
+{
+
+     // Récupérer la commande par ID
+     $order = Order::with('items')->findOrFail($orderId);
+
+    return view('Checkout.error', compact('order'))->with('message', 'Une erreur est survenue lors du traitement du paiement.');
+}
+   public function makePaymentCancel($orderId)
+{
+
+     // Récupérer la commande par ID
+     $order = Order::with('items')->findOrFail($orderId);
+
+    return view('Checkout.cancel', compact('order'))->with('message', 'Une erreur est survenue lors du traitement du paiement.');
+}
+
+
 }

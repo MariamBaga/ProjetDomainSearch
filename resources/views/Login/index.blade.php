@@ -9,8 +9,10 @@
         <div class="authentication-item bg-white">
             <div class="authentication-user-panel">
                 <div class="authentication-user-header">
-                    <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo1" alt="logo" width="80"></a>
-                    <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo2" alt="logo" width="80"></a>
+                    <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo1" alt="logo"
+                            width="80"></a>
+                    <a href="{{ route('home') }}"><img src="assets/images/Ibracilinklogo.png" class="logo2" alt="logo"
+                            width="80"></a>
                 </div>
 
                 <div class="authentication-connection-header text-center">
@@ -38,7 +40,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="flaticon-user"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" id="email" name="email" placeholder="Addresse Email*" required />
+                                            <input type="text" class="form-control" id="email" name="email"
+                                                placeholder="Addresse Email*" required />
                                         </div>
                                     </div>
                                 </div>
@@ -47,11 +50,14 @@
                                     <div class="form-group mb-20">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
-  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                                                </svg>
                                             </div>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe*" required />
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Mot de passe*" required />
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +68,8 @@
 
                                 <div class="authentication-account-access-item">
                                     <div class="authentication-link">
-                                        <p>Vous n'avez pas de compte ? <a href="{{ route('register') }}">Créer un Compte!</a></p>
+                                        <p>Vous n'avez pas de compte ? <a href="{{ route('register') }}">Créer un
+                                                Compte!</a></p>
                                     </div>
                                 </div>
                             </div>
