@@ -17,6 +17,7 @@ class Payment extends Model
         'status',
         'callback_data',
         'user_email', // Ajoutez 'user_email' ici''
+        'actions',
     ];
 
     // Relation avec le modèle Order (une commande peut avoir plusieurs paiements)
@@ -38,7 +39,7 @@ class Payment extends Model
     $this->attributes['order_id'] = str_replace('ORD', '', $value);
 }
 
-    
+
 
     /**
      * Récupère les données du callback sous forme d'objet PHP

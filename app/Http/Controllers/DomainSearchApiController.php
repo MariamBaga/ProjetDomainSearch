@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\Models\Domain;
+use App\Models\Order;
+use App\Models\OrderItem;
+
 
 class DomainSearchApiController extends Controller
 {
@@ -129,60 +133,181 @@ class DomainSearchApiController extends Controller
     // Méthode pour renouveler un domaine
     public function renewDomain(Request $request)
     {
-        $domainName = $request->input('domain_name');
-        $purchasePrice = $request->input('purchase_price', 12.99);
+        // Validation des données du formulaire
+        $validated = $request->validate([
+            'domain_id' => 'required|exists:domains,id',
+            'years' => 'required|integer|min:1|max:5',
+            'price' => 'required|numeric|min:0',
+        ]);
 
+        // Récupérer le domaine
+        $domain = Domain::findOrFail($validated['domain_id']);
+
+        // Créer la commande
+        $order = new Order();
+        $order->user_id = auth()->id();
+        $order->email = auth()->user()->email; // Stocker l'email de l'utilisateur
+        $order->phone = $request->input('phone'); // Vous pouvez le passer via le formulaire si nécessaire
+        $order->total_amount = $validated['price'];
+        $order->status = 'pending';
+        $order->actions = 'renew';
+
+        $order->save();
+
+        // Enregistrer les éléments de la commande
+        OrderItem::create([
+            'order_id' => $order->id,
+            'domain_name' => $domain->name,
+            'domain_extension' => $domain->extension,
+            'price' => $validated['price'],
+            'duration' => $validated['years'],
+            'actions' => 'renew', // Assigner "register" comme action
+        ]);
+
+        // Appeler la fonction de paiement
+        return $this->makePaymentrenew($order);
+    }
+
+    private function makePaymentrenew(Order $order)
+    {
+        $api_key = 'd7KvHyrHN6rg2A';
+        $api_secret = '93f0003d4dc2a6a8eb1de3b331133b29';
+        $amount_100 = $order->total_amount * 100;
+        $order_id = 'ORD' . $order->id;
+
+        $callback_url = 'https://9dc8-2001-42c0-821d-2800-ec77-6480-c82c-eb6e.ngrok-free.app/api/paiement/callback/renew'; // Remplacez par l'URL publique
+
+        $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
+        $hash = sha1($upped);
+
+        $payload = [
+            'api_key' => $api_key,
+            'hash' => $hash,
+            'username' => '',
+            'api_version' => '1',
+            'payment[language_code]' => 'fr',
+            'payment[currency_code]' => 'XOF',
+            'payment[country_code]' => 'ML',
+            'payment[order_id]' => $order_id,
+            'payment[description]' => "Renouvellement de domaine",
+            'payment[amount_100]' => $amount_100,
+            'payment[return_url]' => route('payment.success', ['order' => $order->id]),
+            'payment[decline_url]' => route('payment.error',['order' => $order->id]),
+            'payment[cancel_url]' => route('payment.cancel'),
+            'payment[callback_url]' => $callback_url,
+            'payment[email]' => auth()->user()->email,
+            'payment[api_key]' => $api_key,
+            'payment[p_type]' => 'orange_money',
+        ];
+
+        $client = new \GuzzleHttp\Client();
         try {
-            $apiUrl = 'http://localhost:8001/api/renew';
-
-            $response = Http::post($apiUrl, [
-                'domain_name' => $domainName,
-                'purchase_price' => $purchasePrice,
+            $response = $client->request('POST', 'https://api.vitepay.com/v1/prod/payments', [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'api_key' => $api_key,
+                    'api_secret' => $api_secret,
+                ],
+                'body' => http_build_query($payload),
+                'timeout' => 90,
+                'verify' => true,
             ]);
-
-            if ($response->successful()) {
-                return response()->json(['success' => 'Domaine renouvelé avec succès.']);
-            } else {
-                $statusCode = $response->status();
-                $errorMessage = 'Erreur lors du renouvellement du domaine. Statut : ' . $statusCode;
-                Log::error($errorMessage);
-                return response()->json(['error' => $errorMessage], $statusCode);
-            }
-        } catch (\Throwable $th) {
-            $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
-            Log::error('Exception Error: ' . $errorMessage);
-            return response()->json(['error' => $errorMessage], 500);
+            $url = $response->getBody()->getContents();
+            return redirect()->away($url);
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error('Erreur lors de la demande de paiement : ' . $e->getMessage());
+            return redirect()->route('checkout.error')->with('error', 'Une erreur est survenue lors du traitement du paiement.');
         }
     }
 
     // Méthode pour transférer un domaine
+
     public function transferDomain(Request $request)
     {
-        $domainName = $request->input('domain_name');
-        $authCode = $request->input('auth_code');
-        $purchasePrice = $request->input('purchase_price', 12.99);
+        // Validation des données du formulaire
+        $validated = $request->validate([
+            'domain_id' => 'required|exists:domains,id',
+            'newOwnerEmail' => 'required|email',
+            'price' => 'required|numeric|min:0',
+        ]);
 
+        // Récupérer le domaine
+        $domain = Domain::findOrFail($request->domain_id);
+
+        // Créer la commande pour le transfert
+        $order = new Order();
+        $order->domain_id = $domain->id;
+        $order->email = auth()->user()->email; // Stocker l'email de l'utilisateur
+        $order->user_id = auth()->id(); // ID de l'utilisateur connecté
+        $order->total_amount = $validated['price'];
+        $order->status = 'pending';
+        $order->actions = 'transfer'; // Assigner "renew" comme action
+
+        $order->save();
+           // Enregistrer les éléments de la commande
+           OrderItem::create([
+            'order_id' => $order->id,
+            'domain_name' => $domain->name,
+            'domain_extension' => $domain->extension,
+            'price' => $validated['price'],
+            'duration' => $validated['years'],
+            'actions' => 'transfer', // Assigner "register" comme action
+        ]);
+
+        // Appeler la fonction de paiement
+        return $this->makePaymenttransfer($order);
+    }
+
+    private function makePaymenttransfer(Order $order)
+    {
+        $api_key = 'd7KvHyrHN6rg2A';
+        $api_secret = '93f0003d4dc2a6a8eb1de3b331133b29';
+        $amount_100 = $order->total_amount * 100;
+        $order_id = 'ORD' . $order->id;
+
+        $callback_url = 'https://9dc8-2001-42c0-821d-2800-ec77-6480-c82c-eb6e.ngrok-free.app/api/paiement/callback/transfer'; // Remplacez par l'URL publique
+
+        $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
+        $hash = sha1($upped);
+
+        $payload = [
+            'api_key' => $api_key,
+            'hash' => $hash,
+            'username' => '',
+            'api_version' => '1',
+            'payment[language_code]' => 'fr',
+            'payment[currency_code]' => 'XOF',
+            'payment[country_code]' => 'ML',
+            'payment[order_id]' => $order_id,
+            'payment[description]' => "Transfert de domaine",
+            'payment[amount_100]' => $amount_100,
+            'payment[return_url]' => route('payment.success', ['order' => $order->id]),
+            'payment[decline_url]' => route('payment.error',['order' => $order->id]),
+            'payment[cancel_url]' => route('payment.cancel'),
+            'payment[callback_url]' => $callback_url,
+            'payment[email]' => $order->email, // Remplacez avec l'email de l'utilisateur ou du nouveau propriétaire
+            'payment[api_key]' => $api_key,
+            'payment[p_type]' => 'orange_money',
+        ];
+
+        $client = new \GuzzleHttp\Client();
         try {
-            $apiUrl = 'http://localhost:8001/api/transfer';
-
-            $response = Http::post($apiUrl, [
-                'domain_name' => $domainName,
-                'auth_code' => $authCode,
-                'purchase_price' => $purchasePrice,
+            $response = $client->request('POST', 'https://api.vitepay.com/v1/prod/payments', [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'api_key' => $api_key,
+                    'api_secret' => $api_secret,
+                ],
+                'body' => http_build_query($payload),
+                'timeout' => 90,
+                'verify' => true,
             ]);
-
-            if ($response->successful()) {
-                return response()->json(['success' => 'Domaine transféré avec succès.']);
-            } else {
-                $statusCode = $response->status();
-                $errorMessage = 'Erreur lors du transfert du domaine. Statut : ' . $statusCode;
-                Log::error($errorMessage);
-                return response()->json(['error' => $errorMessage], $statusCode);
-            }
-        } catch (\Throwable $th) {
-            $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
-            Log::error('Exception Error: ' . $errorMessage);
-            return response()->json(['error' => $errorMessage], 500);
+            $url = $response->getBody()->getContents();
+            return redirect()->away($url);
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error('Erreur lors de la demande de paiement : ' . $e->getMessage());
+            return redirect()->route('checkout.error')->with('error', 'Une erreur est survenue lors du traitement du paiement.');
         }
     }
+
 }

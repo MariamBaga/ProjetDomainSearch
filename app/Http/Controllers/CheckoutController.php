@@ -84,6 +84,7 @@ class CheckoutController extends Controller
              'total_amount' => $totalAmount,
              'payment_method' => $request->input('payment_method'),
              'status' => 'pending',
+             'actions' => 'register', // Assigner "register" comme action
          ]);
 
          // Enregistrer les éléments de la commande
@@ -95,6 +96,7 @@ class CheckoutController extends Controller
                 'domain_extension' => $domain['extension'], // Utiliser l'extension du domaine
                 'price' => $domain['price'],
                 'duration' => $domain['duration'],
+                'actions' => 'register', // Assigner "register" comme action
             ]);
 
 

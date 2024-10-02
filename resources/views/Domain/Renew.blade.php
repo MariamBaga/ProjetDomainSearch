@@ -35,6 +35,7 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <!-- Formulaire de renouvellement -->
                         <form method="POST" action="{{ route('domain.Renew') }}">
                             @csrf
                             <input type="hidden" name="domain_id" value="{{ $domain->id }}">

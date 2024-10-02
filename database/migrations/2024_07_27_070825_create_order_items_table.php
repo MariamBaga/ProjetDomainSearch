@@ -16,6 +16,7 @@ class CreateOrderItemsTable extends Migration
         $table->decimal('price', 8, 2);
         $table->integer('duration'); // Durée en années
         $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        $table->string('actions')->nullable(); // Ajoute la colonne actions
         $table->timestamps();
 
 

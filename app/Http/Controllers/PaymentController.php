@@ -75,6 +75,7 @@ class PaymentController extends Controller
                     'amount' => $amount,
                     'status' => 'pending', // Mettre à jour après selon les données reçues
                     'user_email' => $userEmail, // Ajouter l'email de l'utilisateur
+                    'actions'=>'register',
                 ]);
                 Log::info('Nouveau paiement créé pour la commande ID: ' . $orderId);
             }

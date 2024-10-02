@@ -15,11 +15,12 @@ class OrderItem extends Model
         'domain_extension',
         'price',
         'duration',
+        'actions',
     ];
 
     public function order()
     {
         return $this->belongsTo(Order::class);
     }
-    
+
 }
