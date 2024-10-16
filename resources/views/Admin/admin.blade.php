@@ -9,7 +9,7 @@
                 <div class="col-md-12">
                     <div class="flex-wrap d-flex justify-content-between align-items-center">
                         <div>
-                            <h1>Hello Qompac!</h1>
+                            <h1>Hello !</h1>
                             <p>Experience a simple yet powerful way to build Dashboards with "Domaine".</p>
                         </div>
                         <div>
@@ -65,32 +65,30 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $user)
-                                        @if ($user->hasRole('user')) <!-- Vérifiez si l'utilisateur a le rôle 'user' -->
-                                            <tr>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>
-                                                    <!-- Formulaire de mise à jour du rôle -->
-                                                    <form action="{{ route('admin.users.updateRole', $user->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('PUT') <!-- Changez PATCH en PUT -->
-                                                        <select name="role" class="form-select form-select-sm">
-                                                            @foreach ($roles as $role)
-                                                                <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
-                                                                    {{ $role->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        <button type="submit" class="btn btn-primary btn-sm mt-2">
-                                                            Mettre à jour
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <!-- Ajoutez ici des actions supplémentaires si nécessaire -->
-                                                </td>
-                                            </tr>
-                                        @endif
+                                        <tr>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                <!-- Formulaire de mise à jour du rôle -->
+                                                <form action="{{ route('admin.users.updateRole', $user->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT') <!-- Changez PATCH en PUT -->
+                                                    <select name="role" class="form-select form-select-sm">
+                                                        @foreach ($roles as $role)
+                                                            <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
+                                                                {{ $role->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <button type="submit" class="btn btn-primary btn-sm mt-2">
+                                                        Mettre à jour
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <!-- Autres actions (modifier, supprimer) -->
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

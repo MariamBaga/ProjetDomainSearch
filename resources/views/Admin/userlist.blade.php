@@ -12,7 +12,7 @@
                     <div class="flex-wrap d-flex justify-content-between align-items-center">
                         <div>
                             <h1>Salut!</h1>
-                            <p>Experience a simple yet powerful way to build Dashboards with "Domaine".</p>
+                            <p>Vous êtes ici pour voir la liste des utilisateurs.</p>
                         </div>
                         <div>
                             <a href="#" class="btn btn-link bg-light-subtle text-gray">

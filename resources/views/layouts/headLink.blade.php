@@ -5,6 +5,7 @@
     <meta name="keywords" content="HTML,CSS,JavaScript">
     <meta name="author" content="HiBootstrap">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>@yield('title') </title>
 

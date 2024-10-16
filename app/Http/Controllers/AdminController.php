@@ -17,15 +17,14 @@ use App\Models\Payment;
 
 class AdminController extends Controller
 {
-    public function rolepermission()
-    {
-        // Récupérer les utilisateurs avec le rôle 'user'
-       // Récupérer tous les utilisateurs
-    $users = User::all(); // Remplacez `User::role('user')->get();` par `User::all();`
-    $roles = Role::all();
+    public function role()
+{
+    // Récupérer tous les utilisateurs
+    $users = User::all(); // On récupère tous les utilisateurs
+    $roles = Role::all(); // On récupère tous les rôles
+    return view('Admin.admin', compact('users', 'roles'));
+}
 
-        return view('Admin.admin', compact('users', 'roles'));
-    }
 
 
     public function Dashbaord() {

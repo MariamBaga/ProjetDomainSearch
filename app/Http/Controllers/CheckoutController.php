@@ -78,7 +78,7 @@ class CheckoutController extends Controller
              'phone' => $request->input('phone'),
              'first_name' => $request->input('first_name'),
              'last_name' => $request->input('last_name'),
-             'country_id' => $request->input('country'),
+             'country_name' => $request->input('country'),
              'address' => $request->input('address'),
              'city' => $request->input('city'),
              'total_amount' => $totalAmount,
@@ -117,7 +117,7 @@ class CheckoutController extends Controller
     $amount_100 = $order->total_amount * 100;
     $order_id = 'ORD' . $order->id;
 
-    $callback_url = 'https://9dc8-2001-42c0-821d-2800-ec77-6480-c82c-eb6e.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
+    $callback_url = 'https://8f26-2001-42c0-825d-1000-bd08-b4b4-d6d1-ecb6.ngrok-free.app/api/paiement/callback'; // Remplacez par l'URL publique
 
     $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
     $hash = sha1($upped);

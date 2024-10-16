@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title data-setting="app_name">@yield('title')</title>
-    <meta name="description"
-        content="Qompac UI is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules.">
+    <meta name="description" content="Ibracilink.">
     <meta name="keywords"
         content="premium, admin, dashboard, template, bootstrap 5, clean ui, qompac-ui, admin dashboard,responsive dashboard, optimized dashboard,">
     <meta name="author" content="Iqonic Design">
     <meta name="DC.title" content="Qompac UI Responsive Bootstrap 5 Admin Dashboard Template">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets1/images/favicon.ico') }}">
 
@@ -21,7 +21,7 @@
     <!-- Flatpickr css -->
     <link rel="stylesheet" href="{{ asset('assets1/vendor/flatpickr/dist/flatpickr.min.css') }}">
 
-    <!-- qompac-ui Design System Css -->
+
     <link rel="stylesheet" href="{{ asset('assets1/css/qompac-ui.min28b5.css?v=2.0.0') }}">
 
     <!-- Custom Css -->
@@ -174,12 +174,12 @@
                                             </g>
                                         </svg>
                                     </i>
-                                    <span style="text-transform: none;"  class="item-name">Liste de Domaine</span>
+                                    <span style="text-transform: none;" class="item-name">Liste de Domaine</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link " href="{{route('user.transaction.history')}}">
+                                <a class="nav-link " href="{{ route('user.transaction.history') }}">
                                     <i class="icon" data-bs-toggle="tooltip" data-bs-placement="right"
                                         aria-label="Error 500" data-bs-original-title="Error 500">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
@@ -190,7 +190,8 @@
                                             </g>
                                         </svg>
                                     </i>
-                                    <span class="item-name" style="text-transform: none;">Historique des transaction</span>
+                                    <span class="item-name" style="text-transform: none;">Historique des
+                                        transaction</span>
                                 </a>
                             </li>
 
@@ -204,7 +205,7 @@
                     </li>
                     <li class="nav-item static-item">
                         <a class="nav-link static-item disabled" href="#" tabindex="-1">
-                            <span class="default-icon">Elements</span>
+                            <span class="default-icon"></span>
                             <span class="mini-icon" data-bs-toggle="tooltip" title="Elements"
                                 data-bs-placement="right">-</span>
                         </a>
@@ -224,7 +225,7 @@
                                         ry="1" fill="currentColor"></ellipse>
                                 </svg>
                             </i>
-                            <span class="item-name">Maps</span>
+                            <span class="item-name">Page D'accueil</span>
                             <i class="right-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" class="icon-18"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -235,7 +236,7 @@
                         </a>
                         <ul class="sub-nav collapse" id="sidebar-maps" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a class="nav-link " href="maps/google.html">
+                                <a class="nav-link " href="{{ route('home') }}">
                                     <i class="icon">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -246,26 +247,11 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Google"
-                                        data-bs-placement="right"> G </i>
-                                    <span class="item-name">Google</span>
+                                        data-bs-placement="right"> A </i>
+                                    <span class="item-name">Accueil<span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="maps/vector.html">
-                                    <i class="icon">
-                                        <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor">
-                                                </circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Vector"
-                                        data-bs-placement="right"> V </i>
-                                    <span class="item-name">Vector</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </li>
 
@@ -373,7 +359,8 @@
                                         <div
                                             class="p-3 card-header d-flex justify-content-between bg-primary rounded-top">
                                             <div class="header-title">
-                                                <h5 class="mb-0 text-white" style="text-transform: none;">Tous les notifications</h5>
+                                                <h5 class="mb-0 text-white" style="text-transform: none;">Tous les
+                                                    notifications</h5>
                                             </div>
                                         </div>
                                         <div class="p-0 card-body all-notification">
@@ -611,7 +598,8 @@
 
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-setting">
                                     <li><a class="dropdown-item" href="{{ route('Userprofil') }}">Profile</a></li>
-                                    <li><a class="dropdown-item" href="app/user-privacy-setting.html">Paramètre</a></li>
+                                    <li><a class="dropdown-item" href="app/user-privacy-setting.html">Paramètre</a>
+                                    </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -972,8 +960,8 @@
                                         </label>
                                     </div>
                                     <div data-setting="radio">
-                                        <input type="radio" value="color-4" class="btn-check"
-                                            name="theme_color" id="theme-color-4">
+                                        <input type="radio" value="color-4" class="btn-check" name="theme_color"
+                                            id="theme-color-4">
                                         <label class="btn btn-border d-block bg-transparent" for="theme-color-4"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Theme-4"
                                             data-bs-original-title="Theme-4">
@@ -985,8 +973,8 @@
                                         </label>
                                     </div>
                                     <div data-setting="radio">
-                                        <input type="radio" value="color-5" class="btn-check"
-                                            name="theme_color" id="theme-color-5">
+                                        <input type="radio" value="color-5" class="btn-check" name="theme_color"
+                                            id="theme-color-5">
                                         <label class="btn btn-border d-block bg-transparent" for="theme-color-5"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Theme-5"
                                             data-bs-original-title="Theme-5">

@@ -11,8 +11,8 @@
                     <div class="col-md-12">
                         <div class="flex-wrap d-flex justify-content-between align-items-center">
                             <div>
-                                <h1>Hello Qompac!</h1>
-                                <p>Experience a simple yet powerful way to build Dashboards with "Domaine".</p>
+                                <h1>Salut !</h1>
+                                <p>Liste de vos domaines.</p>
                             </div>
                             <div>
                                 <a href="#" class="btn btn-link bg-light-subtle text-gray">
@@ -84,9 +84,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                                 <li><a class="dropdown-item"
-                                                                        href="{{ route('domain.Transfer.view', $domain->id) }}">Transfer</a></li>
+                                                                        href="{{ route('domain.Transfer.view', $domain->id) }}">Transferer</a></li>
                                                                 <li><a class="dropdown-item"
-                                                                        href="{{ route('domain.Renew.view', $domain->id) }}">Renew</a></li>
+                                                                        href="{{ route('domain.Renew.view', $domain->id) }}">Renouveller</a></li>
                                                                 <li><a class="dropdown-item text-danger"
                                                                         href="#">Supprimer</a></li>
                                                             </ul>
@@ -95,7 +95,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="5">No domains found.</td>
+                                                    <td colspan="5">domains non trouvé.</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

@@ -8,92 +8,102 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Domain;
 use App\Models\Order;
 use App\Models\OrderItem;
-
+use Illuminate\Support\Facades\Auth;
 
 class DomainSearchApiController extends Controller
 {
     public function fetchDomains(Request $request)
-{
-    // Récupérer les données du formulaire
-    $domainName = $request->input('domain_name');
-    $domainExtension = $request->input('domain_extension');
+    {
 
-    try {
-        // URL de l'API locale
-        $apiUrl = 'http://localhost:8001/api/search'; // URL correcte de l'API locale
+        Log::info('Session avant l\'appel API: ', session()->all());
 
-        // Appel à l'API pour obtenir les domaines
-        $response = Http::get($apiUrl, [
-            'domain_name' => $domainName,
-            'domain_extension' => $domainExtension,
-        ]);
+        // Récupérer les données du formulaire
+        $domainName = $request->input('domain_name');
+        $domainExtension = $request->input('domain_extension');
 
-        if ($response->successful()) {
-            $domains = $response->json()['data']['results'];
+        try {
+            // URL de l'API locale
+            $apiUrl = 'http://localhost:8001/api/search'; // URL correcte de l'API locale
 
-            // Taux de conversion actuel
-            $conversionRate = 600; // 1 USD = 600 FCFA
-
-            // Adapter la structure des données et filtrer les domaines disponibles
-            $formattedDomains = collect($domains)->map(function ($domain) use ($conversionRate) {
-                // Conversion du prix en FCFA
-                $priceInCFA = isset($domain['purchasePrice']) ? $domain['purchasePrice'] * $conversionRate : 'N/A';
-
-                return [
-                    'id' => $domain['domainName'] ?? 'N/A', // Utiliser `domainName` comme identifiant
-                    'name' => $domain['sld'] ?? 'N/A',
-                    'extension' => $domain['tld'] ?? 'N/A',
-                    'status' => isset($domain['purchasable']) ? ($domain['purchasable'] ? 'available' : 'unavailable') : 'unknown',
-                    'price' => $priceInCFA, // Prix en FCFA
-                    'duration' => 1, // Fixé à 1 an pour cet exemple
-                ];
-            })->filter(function ($domain) {
-                return $domain['status'] === 'available'; // Filtrer pour garder seulement les disponibles
-            });
-
-            session()->put('searched_domains', $formattedDomains);
-
-            // Passer les domaines formatés à la vue Blade
-            return view('Domain.indexApii', [
-                'domains' => $formattedDomains,
-                'domainName' => $domainName,
-                'extension' => $domainExtension,
+            session()->save(); // Cela sauvegarde explicitement la session
+            // Appel à l'API pour obtenir les domaines
+            $response = Http::get($apiUrl, [
+                'domain_name' => $domainName,
+                'domain_extension' => $domainExtension,
             ]);
-        } else {
-            // Gérer les erreurs d'API
-            $statusCode = $response->status();
-            $errorMessage = '';
+            Log::info('Session après l\'appel API: ', session()->all());
+            if ($response->successful()) {
+                $domains = $response->json()['data']['results'];
 
-            switch ($statusCode) {
-                case 401:
-                    $errorMessage = 'Authentification échouée. Veuillez vérifier votre nom d\'utilisateur et votre token.';
-                    break;
-                case 403:
-                    $errorMessage = 'Accès refusé. Vos identifiants n\'ont pas les permissions nécessaires.';
-                    break;
-                case 404:
-                    $errorMessage = 'API non trouvée. Veuillez vérifier l\'URL de l\'API.';
-                    break;
-                case 500:
-                    $errorMessage = 'Erreur serveur interne. Essayez de nouveau plus tard.';
-                    break;
-                default:
-                    $errorMessage = 'Une erreur inconnue est survenue. Statut : ' . $statusCode;
+                // Taux de conversion actuel
+                $conversionRate = 600; // 1 USD = 600 FCFA
+
+                // Adapter la structure des données et filtrer les domaines disponibles
+                $formattedDomains = collect($domains)
+                    ->map(function ($domain) use ($conversionRate) {
+                        // Conversion du prix en FCFA
+                        $priceInCFA = isset($domain['purchasePrice']) ? $domain['purchasePrice'] * $conversionRate : 'N/A';
+
+                        return [
+                            'id' => $domain['domainName'] ?? 'N/A', // Utiliser `domainName` comme identifiant
+                            'name' => $domain['sld'] ?? 'N/A',
+                            'extension' => $domain['tld'] ?? 'N/A',
+                            'status' => isset($domain['purchasable']) ? ($domain['purchasable'] ? 'available' : 'unavailable') : 'unknown',
+                            'price' => $priceInCFA, // Prix en FCFA
+                            'duration' => 1, // Fixé à 1 an pour cet exemple
+                        ];
+                    })
+                    ->filter(function ($domain) {
+                        return $domain['status'] === 'available'; // Filtrer pour garder seulement les disponibles
+                    });
+
+                session()->put('searched_domains', $formattedDomains);
+                // Log de l'utilisateur après l'appel à l'API
+                Log::info('Réponse de recherche de domaine reçue pour l\'utilisateur : ', ['user_id' => Auth::id()]);
+
+                // Log des résultats avant de retourner la vue
+                Log::info('Résultats de recherche pour : ', ['domain' => $request->input('domain_name'), 'results' => $response]);
+
+                // Passer les domaines formatés à la vue Blade
+                return view('Domain.indexApii', [
+                    'domains' => $formattedDomains,
+                    'domainName' => $domainName,
+                    'extension' => $domainExtension,
+                ]);
+            } else {
+                // Gérer les erreurs d'API
+                $statusCode = $response->status();
+                $errorMessage = '';
+
+                switch ($statusCode) {
+                    case 401:
+                        $errorMessage = 'Authentification échouée. Veuillez vérifier votre nom d\'utilisateur et votre token.';
+                        break;
+                    case 403:
+                        $errorMessage = 'Accès refusé. Vos identifiants n\'ont pas les permissions nécessaires.';
+                        break;
+                    case 404:
+                        $errorMessage = 'API non trouvée. Veuillez vérifier l\'URL de l\'API.';
+                        break;
+                    case 500:
+                        $errorMessage = 'Erreur serveur interne. Essayez de nouveau plus tard.';
+                        break;
+                    default:
+                        $errorMessage = 'Une erreur inconnue est survenue. Statut : ' . $statusCode;
+                }
+
+                Log::error('API Error: ' . $errorMessage . ' | Status Code: ' . $statusCode . ' | Response: ' . $response->body());
+
+                return response()->json(['error' => $errorMessage], $statusCode);
             }
+        } catch (\Throwable $th) {
+            // Gérer les exceptions et retourner une réponse JSON avec le message d'erreur
+            $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
+            Log::error('Exception Error: ' . $errorMessage);
 
-            Log::error('API Error: ' . $errorMessage . ' | Status Code: ' . $statusCode . ' | Response: ' . $response->body());
-
-            return response()->json(['error' => $errorMessage], $statusCode);
+            return response()->json(['error' => $errorMessage], 500);
         }
-    } catch (\Throwable $th) {
-        // Gérer les exceptions et retourner une réponse JSON avec le message d'erreur
-        $errorMessage = 'Une erreur inattendue s\'est produite : ' . $th->getMessage();
-        Log::error('Exception Error: ' . $errorMessage);
-
-        return response()->json(['error' => $errorMessage], 500);
     }
-}
-
 
     public function registerDomains(Request $request)
     {
@@ -175,7 +185,7 @@ class DomainSearchApiController extends Controller
         $amount_100 = $order->total_amount * 100;
         $order_id = 'ORD' . $order->id;
 
-        $callback_url = 'https://9dc8-2001-42c0-821d-2800-ec77-6480-c82c-eb6e.ngrok-free.app/api/paiement/callback/renew'; // Remplacez par l'URL publique
+        $callback_url = 'https://8f26-2001-42c0-825d-1000-bd08-b4b4-d6d1-ecb6.ngrok-free.app/api/paiement/callback/renew'; // Remplacez par l'URL publique
 
         $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
         $hash = sha1($upped);
@@ -189,10 +199,10 @@ class DomainSearchApiController extends Controller
             'payment[currency_code]' => 'XOF',
             'payment[country_code]' => 'ML',
             'payment[order_id]' => $order_id,
-            'payment[description]' => "Renouvellement de domaine",
+            'payment[description]' => 'Renouvellement de domaine',
             'payment[amount_100]' => $amount_100,
             'payment[return_url]' => route('payment.success', ['order' => $order->id]),
-            'payment[decline_url]' => route('payment.error',['order' => $order->id]),
+            'payment[decline_url]' => route('payment.error', ['order' => $order->id]),
             'payment[cancel_url]' => route('payment.cancel'),
             'payment[callback_url]' => $callback_url,
             'payment[email]' => auth()->user()->email,
@@ -244,8 +254,8 @@ class DomainSearchApiController extends Controller
         $order->actions = 'transfer'; // Assigner "renew" comme action
 
         $order->save();
-           // Enregistrer les éléments de la commande
-           OrderItem::create([
+        // Enregistrer les éléments de la commande
+        OrderItem::create([
             'order_id' => $order->id,
             'domain_name' => $domain->name,
             'domain_extension' => $domain->extension,
@@ -265,7 +275,7 @@ class DomainSearchApiController extends Controller
         $amount_100 = $order->total_amount * 100;
         $order_id = 'ORD' . $order->id;
 
-        $callback_url = 'https://9dc8-2001-42c0-821d-2800-ec77-6480-c82c-eb6e.ngrok-free.app/api/paiement/callback/transfer'; // Remplacez par l'URL publique
+        $callback_url = 'https://8f26-2001-42c0-825d-1000-bd08-b4b4-d6d1-ecb6.ngrok-free.app/api/paiement/callback/transfer'; // Remplacez par l'URL publique
 
         $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
         $hash = sha1($upped);
@@ -279,10 +289,10 @@ class DomainSearchApiController extends Controller
             'payment[currency_code]' => 'XOF',
             'payment[country_code]' => 'ML',
             'payment[order_id]' => $order_id,
-            'payment[description]' => "Transfert de domaine",
+            'payment[description]' => 'Transfert de domaine',
             'payment[amount_100]' => $amount_100,
             'payment[return_url]' => route('payment.success', ['order' => $order->id]),
-            'payment[decline_url]' => route('payment.error',['order' => $order->id]),
+            'payment[decline_url]' => route('payment.error', ['order' => $order->id]),
             'payment[cancel_url]' => route('payment.cancel'),
             'payment[callback_url]' => $callback_url,
             'payment[email]' => $order->email, // Remplacez avec l'email de l'utilisateur ou du nouveau propriétaire
@@ -309,5 +319,4 @@ class DomainSearchApiController extends Controller
             return redirect()->route('checkout.error')->with('error', 'Une erreur est survenue lors du traitement du paiement.');
         }
     }
-
 }

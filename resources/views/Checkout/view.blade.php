@@ -56,7 +56,7 @@
                 <div class="col-sm-12 col-lg-6 pb-30">
                     <div class="checkout-item">
                         <div class="sub-section-title">
-                            <h3>Billing Details</h3>
+                            <h3>Entrez vos informations</h3>
                         </div>
                         <div class="checkout-form">
                             <form action="{{ route('checkout.process') }}" method="POST">
@@ -69,7 +69,7 @@
                                                     <span class="input-group-text"><i class="flaticon-envelope"></i></span>
                                                 </div>
                                                 <input type="email" name="email" class="form-control" required
-                                                    placeholder="Email Address*" value="bagayokom2003@gmail.com"/>
+                                                    placeholder="Address émail*" value="bagayokom2003@gmail.com"/>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                                     <span class="input-group-text"><i class="flaticon-envelope"></i></span>
                                                 </div>
                                                 <input type="text" name="phone" class="form-control" required
-                                                    placeholder="Phone Number*" value="78777800" />
+                                                    placeholder="Numéro de téléphone*" value="78777800" />
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                                     <span class="input-group-text"><i class="flaticon-user"></i></span>
                                                 </div>
                                                 <input type="text" name="first_name" class="form-control" required
-                                                    placeholder="First Name*" value="Mariam" />
+                                                    placeholder="Prénom*" value="Mariam" />
                                             </div>
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@
                                                     <span class="input-group-text"><i class="flaticon-user"></i></span>
                                                 </div>
                                                 <input type="text" name="last_name" class="form-control" required
-                                                    placeholder="Last Name*" value="Bagayoko"/>
+                                                    placeholder="Nom*" value="Bagayoko"/>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                         <div class="form-group mb-20">
                                             <div class="input-group">
                                                 <input type="text" name="company_name" class="form-control"
-                                                    placeholder="Company Name" value="Ibraci" />
+                                                    placeholder="Nom de l'entreprise" value="Ibraci" />
                                             </div>
                                         </div>
                                     </div>
@@ -161,13 +161,13 @@
                 <div class="col-sm-12 col-lg-6 pb-30">
                     <div class="checkout-item">
                         <div class="sub-section-title">
-                            <h3>Your Orders</h3>
+                            <h3>Votre Commandes</h3>
                         </div>
                         <div class="checkout-details mb-30">
                             <div class="cart-total-box">
                                 @foreach ($cart as $domain)
                                     <div class="cart-total-item">
-                                        <h4>{{ $domain['name'] . '.' . $domain['extension'] }} <strong>Transfer</strong>
+                                        <h4>{{ $domain['name'] . '' . $domain['extension'] }} <strong>Transfer</strong>
                                         </h4>
                                         <p>{{ $domain['price'] * $domain['duration'] }} FCFA</p>
                                     </div>
@@ -187,7 +187,7 @@
 
                     <div class="checkout-payment-area default-box-shadow">
                         <div class="sub-section-title mb-20">
-                            <h3>What's Payment Method</h3>
+                            <h3>Méthode de paiement</h3>
                         </div>
                         <div class="checkout-form">
 
@@ -200,7 +200,7 @@
                             </div>
                             <div class="col-sm-12">
                                 <button class="btn btn-gradient full-width" type="submit">
-                                    Make Payment
+                                    Payer
                                 </button>
                             </div>
                             </form>

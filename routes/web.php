@@ -32,19 +32,20 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DomainSearchApiController;
 
-
-
-
-
-
 // Route pour transférer un domaine
+Route::get('/session', function () {
+    // Récupérer une valeur de la session avec une clé spécifique
+    $value = session('key', 'default'); // La valeur par défaut est 'default'
 
-Route::GET('/transfer/{domainId}', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
-Route::GET('/renew/{domainId}', [DomainController::class, 'indexRenew'])->name('domain.Renew.view');
+    // Stocker une nouvelle valeur dans la session
+    session(['key' => 'value']);
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+    // Retourner les données de la session sous forme de réponse JSON
+    return response()->json([
+        'session_value' => $value,
+        'session_data' => session()->all(), // Toutes les données de session
+    ]);
+});
 
 // Route::get('/test-role', function () {
 //     $user = User::find(4);
@@ -53,6 +54,8 @@ Route::GET('/renew/{domainId}', [DomainController::class, 'indexRenew'])->name('
 // });
 
 Route::get('/', [HomeController::class, 'index']);
+
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/Politique', [HomeController::class, 'Politique'])->name('politique');
 Route::get('/Condition', [HomeController::class, 'Condition'])->name('condition');
@@ -74,7 +77,6 @@ Route::get('/user/transaction-history', [UserController::class, 'transactionHist
 Route::get('/user/transaction/{id}', [UserController::class, 'transactionDetails'])->name('user.transaction.details');
 Route::delete('/user/transaction/{id}', [UserController::class, 'destroyTransaction'])->name('user.transaction.destroy');
 
-
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
@@ -88,6 +90,8 @@ Route::post('/checkout/process', [CheckoutController::class, 'checkoutprocess'])
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::GET('/transfer/{domainId}', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
+    Route::GET('/renew/{domainId}', [DomainController::class, 'indexRenew'])->name('domain.Renew.view');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -110,17 +114,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('admin/user_list/{id}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
 
     Route::get('/admin/dashboard', [AdminController::class, 'Dashbaord'])->name('admin.dashboard');
- Route::get('/admin/profil', [AdminController::class, 'profil_Admin'])->name('admin.profil');
-
+    Route::get('/admin/profil', [AdminController::class, 'profil_Admin'])->name('admin.profil');
 
     Route::put('/superadmin/users/{user}/role', [SuperAdminController::class, 'updateRole'])->name('superadmin.users.updateRole');
     Route::get('/admin/user_list', [UserController::class, 'index'])->name('admin.user.list');
     Route::GET('/admin/domain_list', [AdminController::class, 'admin_domains_list'])->name('admin.domain.list');
 
-    Route::get('/admin/user_role_permission', [AdminController::class, 'rolepermission'])->name('admin.user.role.permission');
+    Route::get('/admin/user_role', [AdminController::class, 'role'])->name('admin.user.role');
 
     Route::put('/admin/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.updateRole');
-
 });
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
@@ -139,6 +141,8 @@ Route::post('/register', [RegisterController::class, 'registerpost'])->name('reg
 
 Route::get('/cart', [CartController::class, 'view'])->name('cart');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+
+Route::post('/test', [CartController::class, 'test'])->name('cart.test');
 Route::delete('/cart/remove/{domainId}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 

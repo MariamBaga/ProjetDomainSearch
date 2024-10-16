@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
                 DomainSeeder::class,
                 CountriesTableSeeder::class,
                 DomainPriceSeeder::class,
-                CountriesTableSeeder::class,
+                
                 DomainSeeder::class,
             ]);
 

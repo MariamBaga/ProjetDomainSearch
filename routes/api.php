@@ -14,14 +14,18 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // Route pour renouveler un domaine
-Route::POST('/renew-domains', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
+//Route::middleware(['auth:sanctum'])->group(function () {
 
-//route pour le transfer
-Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
-Route::POST('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
+ Route::post('/renew-domains', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
+    Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
+    Route::post('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
+    Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
 
 
-Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
+//});
+
+
+
 
 
 // Route pour le callback de paiement d'Orange Money

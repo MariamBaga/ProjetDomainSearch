@@ -53,7 +53,7 @@
                         @if (!empty($cart) && is_array($cart))
                             @foreach ($cart as $domainId => $domain)
                                 <tr>
-                                    <td>{{ $domain['name'] . '.' . $domain['extension'] }}</td>
+                                    <td>{{ $domain['name'] . '' . $domain['extension'] }}</td>
                                     <td>{{ $domain['price'] }} FCFA</td>
 
                                     <td>
@@ -102,42 +102,41 @@
                 </table>
 
                 <div class="row">
-    <div class="col-sm-12 col-lg-6 pb-30">
-        <div class="cart-details default-box-shadow">
-            <h3 class="cart-details-title">Total du Panier</h3>
-            <div class="cart-total-box">
-                @if (!empty($cart) && is_array($cart))
-                    @foreach ($cart as $domain)
-                        <div class="cart-total-item">
-                            <h4>{{ $domain['name'] . '.' . $domain['extension'] }}</h4>
-                            <p>{{ $domain['price'] * $domain['duration'] }} FCFA</p>
+                    <div class="col-sm-12 col-lg-6 pb-30">
+                        <div class="cart-details default-box-shadow">
+                            <h3 class="cart-details-title">Total du Panier</h3>
+                            <div class="cart-total-box">
+                                @if (!empty($cart) && is_array($cart))
+                                    @foreach ($cart as $domain)
+                                        <div class="cart-total-item">
+                                            <h4>{{ $domain['name'] . '' . $domain['extension'] }}</h4>
+                                            <p>{{ $domain['price'] * $domain['duration'] }} FCFA</p>
+                                        </div>
+                                    @endforeach
+                                    <div class="cart-total-item">
+                                        <h4>Total</h4>
+                                        <p>{{ array_sum(array_map(fn($domain) => $domain['price'] * $domain['duration'], $cart)) }}
+                                            FCFA</p>
+                                    </div>
+                                    <!-- Bouton "Passer à la caisse" seulement si le panier n'est pas vide -->
+                                    <a href="{{ route('checkout') }}" class="btn btn-gradient">Passer à la caisse</a>
+
+                                    <!--<a href="{{ route('domain.register') }}" class="btn btn-gradient">Passer à la caisse</a>-->
+                                @else
+                                    <!-- Message si le panier est vide -->
+                                    <p>Ajoutez des domaines pour continuer.</p>
+                                    <!-- Bouton pour ajouter des domaines -->
+                                    <a href="{{ route('home') }}" class="btn btn-gradient">Ajouter des domaines</a>
+                                @endif
+                            </div>
                         </div>
-                    @endforeach
-                    <div class="cart-total-item">
-                        <h4>Total</h4>
-                        <p>{{ array_sum(array_map(fn($domain) => $domain['price'] * $domain['duration'], $cart)) }} FCFA</p>
                     </div>
-                    <!-- Bouton "Passer à la caisse" seulement si le panier n'est pas vide -->
-                     <a href="{{ route('checkout') }}" class="btn btn-gradient">Passer à la caisse</a>
-
-                    <!--<a href="{{ route('domain.register') }}" class="btn btn-gradient">Passer à la caisse</a>-->
-
-
-                @else
-                    <!-- Message si le panier est vide -->
-                    <p>Ajoutez des domaines pour continuer.</p>
-                    <!-- Bouton pour ajouter des domaines -->
-                    <a href="{{ route('home') }}" class="btn btn-gradient">Ajouter des domaines</a>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-lg-6 pb-30">
-        <div class="faq-accordion">
-            <!-- FAQ Section -->
-        </div>
-    </div>
-</div>
+                    <div class="col-sm-12 col-lg-6 pb-30">
+                        <div class="faq-accordion">
+                            <!-- FAQ Section -->
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

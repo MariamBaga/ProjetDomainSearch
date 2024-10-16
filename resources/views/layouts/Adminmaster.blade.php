@@ -12,6 +12,7 @@
     <meta name="author" content="Iqonic Design">
     <meta name="DC.title" content="Qompac UI Responsive Bootstrap 5 Admin Dashboard Template">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets1/images/favicon.ico') }}">
 
@@ -188,7 +189,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link " href="{{ route('admin.user.role.permission') }}">
+                                <a class="nav-link " href="{{ route('admin.user.role') }}">
                                     <i class="icon">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -200,7 +201,7 @@
                                     </i>
                                     <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="User List"
                                         data-bs-placement="right"> RP </i>
-                                    <span class="item-name">Utilisateur role et permission</span>
+                                    <span class="item-name">Utilisateur et role</span>
                                 </a>
                             </li>
 
@@ -309,13 +310,7 @@
                     <li>
                         <hr class="hr-horizontal">
                     </li>
-                    <li class="nav-item static-item">
-                        <a class="nav-link static-item disabled" href="#" tabindex="-1">
-                            <span class="default-icon">Elements</span>
-                            <span class="mini-icon" data-bs-toggle="tooltip" title="Elements"
-                                data-bs-placement="right">-</span>
-                        </a>
-                    </li>
+                  
 
 
                     <li class="nav-item">
@@ -331,7 +326,7 @@
                                         ry="1" fill="currentColor"></ellipse>
                                 </svg>
                             </i>
-                            <span class="item-name">Maps</span>
+                            <span class="item-name">Page D'accueil</span>
                             <i class="right-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" class="icon-18"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -342,7 +337,7 @@
                         </a>
                         <ul class="sub-nav collapse" id="sidebar-maps" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a class="nav-link " href="maps/google.html">
+                                <a class="nav-link " href="{{ route('home') }}">
                                     <i class="icon">
                                         <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -353,26 +348,11 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Google"
-                                        data-bs-placement="right"> G </i>
-                                    <span class="item-name">Google</span>
+                                        data-bs-placement="right"> A </i>
+                                    <span class="item-name">Accueil<span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="maps/vector.html">
-                                    <i class="icon">
-                                        <svg class="icon-10" width="10" viewBox="0 0 24 24" fill="currentColor"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor">
-                                                </circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Vector"
-                                        data-bs-placement="right"> V </i>
-                                    <span class="item-name">Vector</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </li>
 

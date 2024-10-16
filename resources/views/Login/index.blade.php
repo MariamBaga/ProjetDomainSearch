@@ -76,6 +76,15 @@
                                         <p>Vous n'avez pas de compte ? <a href="{{ route('register') }}">Créer un
                                                 Compte!</a></p>
                                     </div>
+
+
+                                     <div class="authentication-account-access-item">
+                                    <div class="authentication-link text-center" >
+                                        <a href="{{ route('password.forget') }}">mot_de_passe oubliée</a>
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         </form>

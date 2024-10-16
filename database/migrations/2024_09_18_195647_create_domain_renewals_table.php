@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('domain_renewals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('domain_id');
-            $table->string('domain_name'); // Le nom du domaine
-            $table->integer('years'); // Durée du renouvellement en années
-            $table->date('current_expiration'); // Date d'expiration actuelle du domaine
+            $table->string('domain_name');
+            $table->integer('renewal_duration'); // Durée en années
             $table->decimal('renewal_price', 10, 2); // Prix du renouvellement
+            $table->string('user_email'); // Email de l'utilisateur
+            $table->string('status')->default('pending'); // Statut du renouvellement (pending, completed, etc.)
+           
             $table->timestamps();
 
             // Foreign key constraint to the domain table

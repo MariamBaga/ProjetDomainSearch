@@ -4,7 +4,7 @@
 
 @section('beforecontente')
 
-<div class="position-relative iq-banner">
+    <div class="position-relative iq-banner">
         <!--Nav Start-->
         <div class="iq-navbar-header" style="height: 215px;">
             <div class="container-fluid iq-container">
@@ -12,8 +12,8 @@
                     <div class="col-md-12">
                         <div class="flex-wrap d-flex justify-content-between align-items-center">
                             <div>
-                                <h1>Hello Qompac!</h1>
-                                <p>Experience a simple yet powerful way to build Dashboards with "Domaine".</p>
+                                <h1>Salut !</h1>
+                                <p>La listes des domaines achétées Ci-désous .</p>
                             </div>
                             <div>
                                 <a href="#" class="btn btn-link bg-light-subtle text-gray">
@@ -22,10 +22,10 @@
                                         <!-- SVG content here -->
                                     </svg>
                                     @if (session('error'))
-        <div class="alert alert-error">
-            {{ session('error') }}
-        </div>
-    @endif
+                                        <div class="alert alert-error">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                 </a>
                             </div>
                         </div>
@@ -69,38 +69,46 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-    @forelse ($domainsDirect as $domain)
-        <tr>
-            <td>{{ $domain->name }}.{{ $domain->extension }}</td>
-            <td>{{ $domain->user_email ?? 'N/A' }}</td>
-            <td>{{ $domain->purchase_date ?? 'N/A' }}</td> <!-- Utilisez purchase_date -->
-            <td>{{ $domain->expiration_date }}</td>
-            <td>
-                @if (strtotime($domain->expiration_date) > time())
-                    <span class="badge bg-primary">Active</span>
-                @else
-                    <span class="badge bg-secondary">Expired</span>
-                @endif
-            </td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        ...
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="{{ route('domain.Transfer.view', $domain->id) }}">Transfer</a></li>
-                        <li><a class="dropdown-item" href="{{ route('domain.Renew.view', $domain->id) }}">Renew</a></li>
-                        <li><a class="dropdown-item text-danger" href="#">Supprimer</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-    @empty
-        <tr>
-            <td colspan="6">No domains found.</td>
-        </tr>
-    @endforelse
-</tbody>
+                                            @forelse ($domainsDirect as $domain)
+                                                <tr>
+                                                    <td>{{ $domain->name }}.{{ $domain->extension }}</td>
+                                                    <td>{{ $domain->user_email ?? 'N/A' }}</td>
+                                                    <td>{{ $domain->purchase_date ?? 'N/A' }}</td>
+                                                    <!-- Utilisez purchase_date -->
+                                                    <td>{{ $domain->expiration_date }}</td>
+                                                    <td>
+                                                        @if (strtotime($domain->expiration_date) > time())
+                                                            <span class="badge bg-primary">Active</span>
+                                                        @else
+                                                            <span class="badge bg-secondary">Expired</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-secondary dropdown-toggle"
+                                                                type="button" id="dropdownMenuButton"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                ...
+                                                            </button>
+                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <li><a class="dropdown-item"
+                                                                        href="{{ route('domain.Transfer.view', $domain->id) }}">Transferer</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="{{ route('domain.Renew.view', $domain->id) }}">Renouveller</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item text-danger"
+                                                                        href="#">Supprimer</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6">No domains found.</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
 
                                     </table>
                                 </div>

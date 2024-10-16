@@ -58,7 +58,7 @@
 
                 <div class="mobile-nav">
                     <a href="{{ route('home') }}" class="mobile-logo">
-                        <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo logo1">
+                        <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo logo1" >
                         <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo logo2">
                     </a>
 
@@ -111,7 +111,7 @@
                                 @else
                                     <li class="navbar-option-item">
                                         <a href="{{ route('login') }}" class="btn btn-blue btn-pill text-nowrap">
-                                            Login / Register
+                                        Connection/Inscription
                                         </a>
                                     </li>
                                 @endauth
@@ -124,8 +124,8 @@
                     <div class="custom-container-fluid container-fluid">
                         <nav class="navbar navbar-expand-md navbar-light">
                             <a class="navbar-brand" href="{{ route('home') }}">
-                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo" width="120">
-                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo" width="120">
+                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="white-logo" width="120" style="background-color: white;border-radius: 20%;">
+                                <img src="{{ asset('assets/images/Ibracilinklogo.png') }}" alt="logo" class="blue-logo" width="120" style="background-color: white;border-radius: 20%;">
                             </a>
 
                             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
