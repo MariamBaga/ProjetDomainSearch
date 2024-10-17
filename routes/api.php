@@ -11,18 +11,15 @@ use App\Http\Controllers\TransferController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
+
 })->middleware('auth:sanctum');
 
 // Route pour renouveler un domaine
-//Route::middleware(['auth:sanctum'])->group(function () {
-
- Route::post('/renew-domains', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
-    Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
-    Route::post('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
-    Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
+Route::middleware(['auth:sanctum'])->group(function () {
 
 
-//});
+
+});
 
 
 

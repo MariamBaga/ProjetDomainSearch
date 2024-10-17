@@ -56,6 +56,14 @@ Route::get('/session', function () {
 Route::get('/', [HomeController::class, 'index']);
 
 
+
+
+
+
+
+
+
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/Politique', [HomeController::class, 'Politique'])->name('politique');
 Route::get('/Condition', [HomeController::class, 'Condition'])->name('condition');
@@ -88,6 +96,11 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'checkoutprocess'])->name('checkout.process');
 
 Route::middleware('auth')->group(function () {
+    Route::post('/renew-domains', [DomainSearchApiController::class, 'renewDomain'])->name('domain.Renew');
+    Route::post('/transfer', [DomainSearchApiController::class, 'transferDomain'])->name('domain.Transfer');
+    Route::post('/register-domains', [DomainSearchApiController::class, 'registerDomains'])->name('domain.register');
+    Route::GET('/fetch-domains', [DomainSearchApiController::class, 'fetchDomains'])->name('domain.fetch');
+
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::GET('/transfer/{domainId}', [DomainController::class, 'indexTransfer'])->name('domain.Transfer.view');
