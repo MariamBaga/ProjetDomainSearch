@@ -14,7 +14,6 @@ class DomainSearchApiController extends Controller
 {
     public function fetchDomains(Request $request)
     {
-
         Log::info('Session avant l\'appel API: ', session()->all());
 
         // Récupérer les données du formulaire
@@ -185,7 +184,7 @@ class DomainSearchApiController extends Controller
         $amount_100 = $order->total_amount * 100;
         $order_id = 'ORD' . $order->id;
 
-        $callback_url = 'https://8f26-2001-42c0-825d-1000-bd08-b4b4-d6d1-ecb6.ngrok-free.app/api/paiement/callback/renew'; // Remplacez par l'URL publique
+        $callback_url = 'https://cffc-2001-42c0-8204-8e00-ffd5-b63c-570b-5887.ngrok-free.app/api/paiement/callback/renew'; // Remplacez par l'URL publique
 
         $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
         $hash = sha1($upped);
@@ -201,9 +200,9 @@ class DomainSearchApiController extends Controller
             'payment[order_id]' => $order_id,
             'payment[description]' => 'Renouvellement de domaine',
             'payment[amount_100]' => $amount_100,
-            'payment[return_url]' => route('payment.success', ['order' => $order->id]),
-            'payment[decline_url]' => route('payment.error', ['order' => $order->id]),
-            'payment[cancel_url]' => route('payment.cancel'),
+            'payment[return_url]' => route('payment.success.renew', ['order' => $order->id]),
+            'payment[decline_url]' => route('payment.error.renew', ['order' => $order->id]),
+            'payment[cancel_url]' => route('payment.cancel.renew'),
             'payment[callback_url]' => $callback_url,
             'payment[email]' => auth()->user()->email,
             'payment[api_key]' => $api_key,
@@ -275,7 +274,7 @@ class DomainSearchApiController extends Controller
         $amount_100 = $order->total_amount * 100;
         $order_id = 'ORD' . $order->id;
 
-        $callback_url = 'https://8f26-2001-42c0-825d-1000-bd08-b4b4-d6d1-ecb6.ngrok-free.app/api/paiement/callback/transfer'; // Remplacez par l'URL publique
+        $callback_url = 'https://cffc-2001-42c0-8204-8e00-ffd5-b63c-570b-5887.ngrok-free.app/api/paiement/callback/transfer'; // Remplacez par l'URL publique
 
         $upped = strtoupper("$order_id;$amount_100;XOF;$callback_url;$api_secret");
         $hash = sha1($upped);
@@ -291,9 +290,9 @@ class DomainSearchApiController extends Controller
             'payment[order_id]' => $order_id,
             'payment[description]' => 'Transfert de domaine',
             'payment[amount_100]' => $amount_100,
-            'payment[return_url]' => route('payment.success', ['order' => $order->id]),
-            'payment[decline_url]' => route('payment.error', ['order' => $order->id]),
-            'payment[cancel_url]' => route('payment.cancel'),
+            'payment[return_url]' => route('payment.success.transfer', ['order' => $order->id]),
+            'payment[decline_url]' => route('payment.error.transfer', ['order' => $order->id]),
+            'payment[cancel_url]' => route('payment.cancel.transfer'),
             'payment[callback_url]' => $callback_url,
             'payment[email]' => $order->email, // Remplacez avec l'email de l'utilisateur ou du nouveau propriétaire
             'payment[api_key]' => $api_key,
