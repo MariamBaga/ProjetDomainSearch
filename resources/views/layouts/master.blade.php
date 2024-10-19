@@ -22,7 +22,7 @@
                             <i class="flaticon-chat"></i>
                         </div>
                         <div class="topbar-list-content">
-                            <a href="{{route('contact')}}">Chat With A Consultant</a>
+                            <a href="{{route('contact')}}">Discutez</a>
                         </div>
                     </div>
                     <div class="topbar-item-list">

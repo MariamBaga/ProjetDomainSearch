@@ -151,15 +151,22 @@ class DomainSearchApiController extends Controller
 
         // Récupérer le domaine
         $domain = Domain::findOrFail($validated['domain_id']);
+        $user = auth()->user(); // Ajout de cette ligne pour définir la variable $user
+
 
         // Créer la commande
         $order = new Order();
         $order->user_id = auth()->id();
         $order->email = auth()->user()->email; // Stocker l'email de l'utilisateur
-        $order->phone = $request->input('phone'); // Vous pouvez le passer via le formulaire si nécessaire
+        $order->user_email = $user ? $user->email : 'default@example.com';
+        $order->phone = $request->input('phone') ?? '0000000000';
+        $order->country_name = 'default_country';
+        $order->address = $request->input('address') ?? 'default_address';
+        $order->city = $request->input('city') ?? 'default_city';
         $order->total_amount = $validated['price'];
         $order->status = 'pending';
         $order->actions = 'renew';
+
 
         $order->save();
 

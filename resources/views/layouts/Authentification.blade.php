@@ -17,7 +17,7 @@
         }
     </style>
 
-<link rel="icon" href="{{ asset('assets/images/tab.png') }}" type="image/png" sizes="16x16">
+<link rel="icon" href="{{ asset('assets/images/tab1.png') }}" type="image/png" sizes="16x16">
 
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css" media="all" />
 
